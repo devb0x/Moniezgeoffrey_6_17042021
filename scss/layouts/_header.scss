@@ -1,0 +1,18 @@
+@import "../utils/mixins";
+
+header {
+  //position: relative;
+
+  @include for-desktop-up() {
+    display: flex;
+  }
+}
+
+.top-nav {
+  margin: 40px 0 0 20px;
+  width: 150px;
+}
+a > img {
+  width: 150px;
+  transform: scale(1.5);
+}

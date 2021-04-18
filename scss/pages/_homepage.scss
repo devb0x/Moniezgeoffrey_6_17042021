@@ -1,0 +1,70 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+
+h1 {
+  position: absolute;
+  top: 50px;
+  right: 22px;
+  margin-top: 0;
+  font-size: 14px;
+  color: $p_red;
+
+  @include for-tablet-portrait-up() {
+    font-size: 36px;
+    top: 34px;
+  }
+}
+
+.photographers {
+  width: 90%;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+
+  @include for-tablet-landscape-up() {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .photographer-item {
+    width: 360px;
+    margin: 3rem auto;
+    text-align: center;
+
+    a > img {
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 2.5rem;
+    }
+
+    &__name {
+      font-size: 2.25rem;
+      color: $p_orange;
+      margin-bottom: 0;
+    }
+
+    &__info {
+
+      &-location {
+        color: $p_red;
+        margin: 0;
+      }
+
+      &-tagline {
+        font-size: 10px;
+        font-weight: 400;
+      }
+
+      &-price {
+        color: $gray;
+        font-size: 9px;
+      }
+
+      &-filters {
+
+      }
+    }
+  }
+}

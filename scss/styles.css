@@ -1,0 +1,124 @@
+html {
+  font-size: 100%;
+  font-family: "DM Sans", sans-serif;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.filters-nav {
+  width: 80%;
+  margin: 2rem auto;
+  text-align: center;
+}
+@media (min-width: 75em) {
+  .filters-nav {
+    width: max-content;
+    margin: 45px 33% 0 auto;
+  }
+}
+
+.filter-btn {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: #911d1d;
+  padding: 3px 7px 3px 7px;
+  margin: 2px;
+  border: 0.5px solid #c4c4c4;
+  border-radius: 11px;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+}
+.filter-btn:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #911d1d;
+}
+
+@media (min-width: 75em) {
+  header {
+    display: flex;
+  }
+}
+
+.top-nav {
+  margin: 40px 0 0 20px;
+  width: 150px;
+}
+
+a > img {
+  width: 150px;
+  transform: scale(1.5);
+}
+
+h1 {
+  position: absolute;
+  top: 50px;
+  right: 22px;
+  margin-top: 0;
+  font-size: 14px;
+  color: #911d1d;
+}
+@media (min-width: 37.5em) {
+  h1 {
+    font-size: 36px;
+    top: 34px;
+  }
+}
+
+.photographers {
+  width: 90%;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 56.25em) {
+  .photographers {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+.photographers .photographer-item {
+  width: 360px;
+  margin: 3rem auto;
+  text-align: center;
+}
+.photographers .photographer-item a > img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 2.5rem;
+}
+.photographers .photographer-item__name {
+  font-size: 2.25rem;
+  color: #d3573c;
+  margin-bottom: 0;
+}
+.photographers .photographer-item__info-location {
+  color: #911d1d;
+  margin: 0;
+}
+.photographers .photographer-item__info-tagline {
+  font-size: 10px;
+  font-weight: 400;
+}
+.photographers .photographer-item__info-price {
+  color: #757575;
+  font-size: 9px;
+}
+
+/*# sourceMappingURL=styles.css.map */
