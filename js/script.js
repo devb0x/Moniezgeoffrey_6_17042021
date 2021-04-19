@@ -24,10 +24,10 @@ document.getElementById('test').addEventListener('click', () => {
   loadAllPhotographers();
 })
 
-getPhotographers();
+// getPhotographers();
 // loadTest();
 // renderAllPhotographers();
-
+// photographer();
 /**
  * return response
  */
@@ -36,13 +36,6 @@ getPhotographers();
 //     console.log(response);
 //   }).catch(function(error) {
 //   console.log('Request failed', error)
-// });
-
-
-// document.querySelectorAll('.filter-btn').forEach( () => {
-//   addEventListener('click', () => {
-//     console.log('check event clicked');
-//   });
 // });
 
 let b = document.body;
@@ -55,11 +48,16 @@ b.addEventListener('click', (e) => {
   }
 });
 
-// document.body.addEventListener("change", function(e) {
-//   // console.log(e.target);
-//   console.log('wkdjaz');
-// });
-
 function filter(e) {
-  console.log(e.target.innerText);
+  // console.log(e.target.innerText);
+  filterPhotographer(e);
 }
+
+// fetchData();
+// getItems();
+arraysPush();
+
+
+// getPhotographers();
+// console.log(items);
+// console.log(photographersList);
