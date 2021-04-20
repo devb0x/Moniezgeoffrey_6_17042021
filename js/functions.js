@@ -1,7 +1,127 @@
+const photographers_section = document.querySelector('.photographers');
+
 let arrayFilter = [];
 let items = [];
 let photographersList = [];
 let mediaList = [];
+
+class Photographer {
+  name;
+  id;
+  city;
+  country;
+  tags = [];
+  tagline;
+  price;
+  portrait;
+
+  constructor(name, id, city, country, tags, tagline, price, portrait) {
+    this.name = name;
+    this.id = id;
+    this.city = city;
+    this.country = country;
+    this.tags = tags;
+    this.tagline = tagline;
+    this.price = price;
+    this.portrait = portrait;
+  }
+}
+
+class PhotographerItem {
+  constructor(photographer) {
+    this.photographer = photographer;
+  }
+
+  render() {
+    const photographerEl = document.createElement('div');
+    photographerEl.classList.add('photographer-item');
+
+    /**
+     * image portrait
+     * @type {HTMLAnchorElement}
+     */
+    const a = document.createElement('a');
+    const img = document.createElement('img');
+    a.href = '#';
+    img.srcset = "./Sample%20Photos/Photographers%20ID%20Photos/" + `${inputPhotographer[i].portrait}`;
+    img.alt = `${inputPhotographer[i].name}`
+    // why doesn't work
+    // img.innerHTML = `<img src="./Sample%20Photos/Photographers%20ID%20Photos/${photographers[i].portrait}" alt="${photographers[i].name} picture">`
+
+    /**
+     * name below picture
+     * @type {HTMLHeadingElement}
+     */
+    const h2 = document.createElement('h2');
+    h2.innerHTML =
+      `<h2 class="photographer-item__name">
+        ${inputPhotographer[i].name}
+      </h2>
+      `;
+    a.appendChild(img);
+    a.appendChild(h2);
+
+    photographers_section.appendChild(photographerEl);
+    photographerEl.appendChild(a);
+
+    /**
+     * info div
+     * @type {HTMLDivElement}
+     */
+    const info_div = document.createElement('div');
+    info_div.classList.add('photographer-item__info');
+    info_div.innerHTML = `
+      <p class="photographer-item__info-location">
+        ${inputPhotographer[i].city}, ${inputPhotographer[i].country}
+      </p>
+      <p class="photographer-item__info-tagline">
+        ${inputPhotographer[i].tagline}
+      </p>
+      <p class="photographer-item__info-price">
+        ${inputPhotographer[i].price}&euro;/jour
+      </p>
+      `;
+    photographerEl.appendChild(info_div);
+
+    const filter = document.createElement('p');
+    filter.classList.add('photographer-item__info-filters');
+
+    /**
+     * filters buttons inside <span>
+     * @type {HTMLParagraphElement}
+     */
+
+    const tags_p = document.createElement('p');
+
+    for (let j = 0; j < inputPhotographer[i].tags.length; j++) {
+      const span = document.createElement('span');
+      const btn = document.createElement('button');
+      btn.classList.add('filter-btn');
+      tags_p.appendChild(span);
+      span.appendChild(btn);
+      btn.textContent = '#' + inputPhotographer[i].tags[j];
+      info_div.appendChild(filter);
+      filter.appendChild(span);
+    }
+    return photographerEl;
+  }
+}
+
+class PhotographerList {
+  photographers = photographersList;
+
+  static render() {
+    for (const photographer of this.photographers) {
+      const photographerItem = new PhotographerItem(photographer);
+      const photographerEl = photographerItem.render();
+      photographers_section.append(photographerEl);
+    }
+    // phtographerEl
+  }
+
+}
+
+console.log(new Photographer());
 
 /**
  * Fetch json data from local file.json
@@ -36,9 +156,11 @@ getItems = async () => {
 
 arraysPush = async () => {
   await getItems();
-  items[0].photographers.forEach(element => photographersList.push(element));
+  // items[0].photographers.forEach(element => photographersList.push(element));
+  items[0].photographers.forEach(element => photographersList.push(new Photographer(element)));
   items[0].media.forEach(element => mediaList.push(element));
 }
+
 
 
 function oldLoadAllPhotographers() {
@@ -330,3 +452,7 @@ function resetRender() {
   photographers_section.innerHTML = ``;
   arrayFilter = [];
 }
+
+
+const photographerList = new PhotographerList();
+PhotographerList.render();
