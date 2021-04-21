@@ -58,10 +58,10 @@ class PhotographerItem {
      * @type {HTMLParagraphElement}
      */
 
+    const parent = photographerEl.querySelector('.photographer-item__info');
     const tags_p = document.createElement('p');
 
     for (let i = 0; i < this.photographer.tags.length; i++) {
-      console.log('i m here');
       const span = document.createElement('span');
       const btn = document.createElement('button');
       btn.classList.add('filter-btn');
@@ -69,7 +69,7 @@ class PhotographerItem {
       span.appendChild(btn);
       btn.textContent = '#' + this.photographer.tags[i];
       filter.appendChild(span);
-      photographerEl.appendChild(span);
+      parent.appendChild(span);
     }
 
     return photographerEl;
@@ -77,29 +77,90 @@ class PhotographerItem {
 }
 
 class PhotographerList {
-  photographers = [
-    new Photographer(
-      'nabeel bradford',
-      '2516',
-      'london',
-      'UK',
-      ['sport', 'fashion'],
-      'life is great',
-      '999',
-      'NabeelBradford.jpg'
-    ),
-    new Photographer(
-      'rhode dubois',
-      '1921',
-      'madrid',
-      'spain',
-      ['dance', 'art'],
-      'life is beautiful',
-      '456',
-      'RhodeDubois.jpg'
-    )
-  ];
+  // photographers = [
+  //   new Photographer(
+  //     'nabeel bradford',
+  //     '2516',
+  //     'london',
+  //     'UK',
+  //     ['sport', 'fashion'],
+  //     'life is great',
+  //     '999',
+  //     'NabeelBradford.jpg'
+  //   ),
+  //   new Photographer(
+  //     'rhode dubois',
+  //     '1921',
+  //     'madrid',
+  //     'spain',
+  //     ['dance', 'art'],
+  //     'life is beautiful',
+  //     '456',
+  //     'RhodeDubois.jpg'
+  //   )
+  // ];
+  photographers = [];
 
+  getPhotographers = () => {
+    fetch('../file.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP error" + response.status);
+        }
+        return response.json();
+      })
+      .then(json => {
+        this.addPhotographer(json.photographers);
+        console.log(json.photographers);
+        console.log(this.photographers);
+      })
+  }
+
+  addPhotographer(photographer) {
+    this.photographers.push(photographer);
+  }
+
+  addPhotographerTest() {
+    for (let i = 0; i < this.photographers.length; i++) {
+      new Photographer(this.photographers[i]);
+      console.log('check');
+    }
+  }
+
+  // constructor() {
+  //   this.url = '../file.json';
+  //   this.entries = [];
+  //   this.initialize();
+  // }
+  //
+  // initialize() {
+  //   this.photographers = fetch('../file.json')
+  //   .then(response => {
+  //     if (!response.ok) {
+  //       console.log('response not ok');
+  //       throw new Error("HTTP error " + response.status);
+  //     }
+  //     return response.json();
+  //     // return Object.assign(new Photographer(this.photographers));
+  //   })
+  //   .then(json => {
+  //     this.entries = json.photographers;
+  //     // loadAllPhotographers(photographers);
+  //   })
+  //   .catch(function () {
+  //     this.dataError = true;
+  //   })
+  //
+  // // fetchData () {
+  // //   let response = fetch('../file.json')
+  // //     .then(response => response.json())
+  // //     .then()
+  // // }
+  // // async getItems () {
+  // //   let itemsEl = await fetchData();
+  // //   return items.push(itemsEl);
+  // }
+  //
   render() {
     for (const photographer of this.photographers) {
       const photographerItem = new PhotographerItem(photographer);
@@ -112,3 +173,8 @@ class PhotographerList {
 
 const photographerList = new PhotographerList();
 photographerList.render();
+
+// photographerList.initialize();
+photographerList.getPhotographers();
+// photographerList.addPhotographer();
+
