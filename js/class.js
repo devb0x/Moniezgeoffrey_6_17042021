@@ -1,5 +1,3 @@
-const photographers_section = document.querySelector('.photographers');
-
 class Photographer {
 
   constructor(name, id, city, country, tags, tagline, price, portrait) {
@@ -44,7 +42,6 @@ class Photographer {
      * filters buttons inside <span>
      * @type {HTMLParagraphElement}
      */
-
     const parent = photographerEl.querySelector('.photographer-item__info');
     const tags_p = document.createElement('p');
 
@@ -69,8 +66,11 @@ class PhotographerList {
     this.photographers = [];
   }
 
+  /**
+   * Fetch from json locally
+   * @returns {Promise<any>}
+   */
   getPhotographers = () => {
-    // console.log(this.photographers);
     return fetch('../file.json')
       .then(response => {
         if (!response.ok) {
@@ -79,34 +79,24 @@ class PhotographerList {
         return response.json();
       })
       .then(json => {
-        // console.log(json.photographers);
         json.photographers.forEach((element) => {
           this.addPhotographer(element);
         });
       });
   }
 
+  /**
+   * add photographer
+   * @param photographerList
+   */
   addPhotographer(photographerList) {
     this.photographers.push(photographerList);
   }
 
-  // render() {
-  //   console.log(this.photographers)
-  //   for (const photographer of this.photographers) {
-  //     const photographerItem = new Photographer(
-  //     this.photographers.name,
-  //         this.photographers.id,
-  //         this.photographers.city,
-  //         this.photographers.country,
-  //         this.photographers.tags,
-  //         this.photographers.tagline,
-  //         this.photographers.price,
-  //         this.photographers.portrait,);
-  //     const photographerEl = photographerItem.render();
-  //     photographers_section.append(photographerEl);
-  //   }
-  // }
-
+  /**
+   * Create new Photographer
+   * & render it
+   */
   render() {
     for (let i = 0; i < this.photographers.length; i++) {
       const photographerItem = new Photographer(
@@ -125,14 +115,7 @@ class PhotographerList {
     }
   }
 
-
 }
 
 const photographerList = new PhotographerList();
 photographerList.getPhotographers().then(() => photographerList.render());
-
-// const test = () => {
-//   Promise.all([photographerList.getPhotographers(), photographerList.render()])
-// }
-//
-// test()
