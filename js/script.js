@@ -15,3 +15,7 @@ body.addEventListener('click', (e) => {
   }
 });
 
+const photographerList = new PhotographerList();
+photographerList.getPhotographers().then(() => photographerList.render());
+
+checkUrl();

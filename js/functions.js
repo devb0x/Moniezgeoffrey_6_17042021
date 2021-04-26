@@ -28,7 +28,7 @@
 function filterPhotographer(e) {
   arrayFilter = [];
   resetRender();
-  let filter = e.target.innerText.substring(1); // remove #
+  let filter = e.target.innerText.substring(1).toLowerCase(); // remove #
   // console.log('filter is : ' + filter);
 
   for (let i = 0; i < photographerList.photographers.length; i++) {
@@ -63,4 +63,29 @@ function resetRender() {
   photographers_section.innerHTML = '';
 }
 
+// const photographerList = new PhotographerList();
+// photographerList.getPhotographers().then(() => photographerList.render());
 
+/**
+ * Check url for render
+ * window.location.href.split('/?')[1] = photographer id (e.g: "82")
+ */
+
+function checkUrl () {
+  const photographerId = parseInt(window.location.href.split('?')[1]);
+
+  if (photographerId !== undefined) {
+    console.log('we have id photographer');
+    console.log(typeof photographerId + ' ' + photographerId);
+    for (let i = 0; i < photographerList.photographers.length; i++) {
+      if (photographerId === photographerList.photographers[i].id) {
+        console.log('lucky boy');
+      } else {
+        console.log('unlucky boy');
+        // const photographerList = new PhotographerList();
+        // photographerList.getPhotographers().then(() => photographerList.render());
+      }
+
+    }
+  }
+}
