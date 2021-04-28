@@ -16,7 +16,7 @@ class Photographer {
     photographerEl.classList.add('photographer-item');
 
     photographerEl.innerHTML = `
-      <a href="../html/photographer.html?${this.id}">
+      <a href="../html/photographer.html?id=${this.id}">
           <img src="./Sample%20Photos/Photographers%20ID%20Photos/${this.portrait}" alt="${this.name}">
           
           <h2 class="photographer-item__name">
@@ -60,7 +60,8 @@ class Photographer {
   }
 
 }
-class PhotographerList {
+
+class PhotographersList {
 
   constructor() {
     this.photographers = [];
@@ -87,10 +88,10 @@ class PhotographerList {
 
   /**
    * add photographer
-   * @param photographerList
+   * @param photographersList
    */
-  addPhotographer(photographerList) {
-    this.photographers.push(photographerList);
+  addPhotographer(photographersList) {
+    this.photographers.push(photographersList);
   }
 
   /**

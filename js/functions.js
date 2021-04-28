@@ -31,20 +31,20 @@ function filterPhotographer(e) {
   let filter = e.target.innerText.substring(1).toLowerCase(); // remove #
   // console.log('filter is : ' + filter);
 
-  for (let i = 0; i < photographerList.photographers.length; i++) {
-    for (let j = 0; j < photographerList.photographers[i].tags.length; j++) {
-      if (photographerList.photographers[i].tags[j].match(filter)) {
-        arrayFilter.push(photographerList.photographers[i]);
+  for (let i = 0; i < photographersList.photographers.length; i++) {
+    for (let j = 0; j < photographersList.photographers[i].tags.length; j++) {
+      if (photographersList.photographers[i].tags[j].match(filter)) {
+        arrayFilter.push(photographersList.photographers[i]);
 
         const photographerItem = new Photographer(
-          photographerList.photographers[i].name,
-          photographerList.photographers[i].id,
-          photographerList.photographers[i].city,
-          photographerList.photographers[i].country,
-          photographerList.photographers[i].tags,
-          photographerList.photographers[i].tagline,
-          photographerList.photographers[i].price,
-          photographerList.photographers[i].portrait,
+          photographersList.photographers[i].name,
+          photographersList.photographers[i].id,
+          photographersList.photographers[i].city,
+          photographersList.photographers[i].country,
+          photographersList.photographers[i].tags,
+          photographersList.photographers[i].tagline,
+          photographersList.photographers[i].price,
+          photographersList.photographers[i].portrait,
         );
 
         const photographerEl = photographerItem.render();
@@ -71,21 +71,25 @@ function resetRender() {
  * window.location.href.split('/?')[1] = photographer id (e.g: "82")
  */
 
-function checkUrl () {
-  const photographerId = parseInt(window.location.href.split('?')[1]);
-
-  if (photographerId !== undefined) {
-    console.log('we have id photographer');
-    console.log(typeof photographerId + ' ' + photographerId);
-    for (let i = 0; i < photographerList.photographers.length; i++) {
-      if (photographerId === photographerList.photographers[i].id) {
-        console.log('lucky boy');
-      } else {
-        console.log('unlucky boy');
-        // const photographerList = new PhotographerList();
-        // photographerList.getPhotographers().then(() => photographerList.render());
-      }
-
-    }
-  }
-}
+// function checkUrl () {
+//   const photographerId = parseInt(window.location.href.split('?id=')[1]);
+//   // const photographerId = Number(window.location.href.split('?')[1]);
+//   // Number(photographerId);
+//
+//   if (photographerId) {
+//     // console.log(photographerId !== undefined && NaN);
+//     console.log('we have id photographer');
+//     console.log(typeof photographerId + ' ' + photographerId);
+//     for (let i = 0; i < photographersList.photographers.length; i++) {
+//       if (photographerId === photographersList.photographers[i].id) {
+//         console.log('lucky boy');
+//         console.log(photographersList.photographers[i].id);
+//       } else {
+//         console.log('unlucky boy');
+//         // const photographerList = new PhotographerList();
+//         // photographerList.getPhotographers().then(() => photographerList.render());
+//       }
+//
+//     }
+//   }
+// }
