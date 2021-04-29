@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://kit.fontawesome.com/95587cb5c9.js" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../scss/styles.css">
+
+  <title>Fisheye</title>
+</head>
+<body>
+
+  <header>
+    <nav class="top-nav">
+      <a href="/">
+        <img src="../logo.png" alt="Fisheye Home page">
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="photographer">
+
+    </section>
+
+    <section class="photographer-gallery">
+
+      <div class="photographer-gallery__filter" style="display: flex">
+        <label for="filter">Trier par</label>
+        <div class="select">
+
+          <select name="filter-choice" id="filter">
+            <option value="popularity" class="test">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../js/functions.js" defer></script>
+  <script src="../js/class.js"></script>
+  <script src="../js/photographer.js" defer></script>
+<!--  <script src="../js/script.js" defer></script>-->
+
+</body>
+</html>
