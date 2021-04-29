@@ -189,9 +189,13 @@ h1 {
 .photographer-gallery {
   width: 90%;
   margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .photographer-gallery__filter {
   margin-bottom: 2rem;
+  width: 90%;
 }
 .photographer-gallery__filter label, .photographer-gallery__filter select {
   font-size: 18px;
@@ -209,15 +213,21 @@ h1 {
   padding: 1rem;
 }
 .photographer-gallery__item {
-  width: 100%;
+  width: fit-content;
   margin-bottom: 1rem;
 }
 .photographer-gallery__item-img {
   width: 100%;
-  max-height: 190px;
+  height: 190px;
   object-fit: cover;
   object-position: center;
   border-radius: 5px;
+}
+@media (min-width: 37.5em) {
+  .photographer-gallery__item-img {
+    width: 350px;
+    height: 300px;
+  }
 }
 .photographer-gallery__item-info {
   display: flex;
