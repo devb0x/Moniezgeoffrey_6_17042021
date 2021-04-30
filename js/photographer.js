@@ -37,7 +37,7 @@ let photograph = [];
 
 function getPhotographerById() {
 
-  return fetch('../file.json')
+  return fetch('https://raw.githubusercontent.com/devb0x/Moniezgeoffrey_6_17042021/master/file.json')
     .then(response => {
       if (!response.ok) {
         throw new Error("HTTP error" + response.status);
@@ -230,7 +230,7 @@ class MediaList {
   }
 
   getMedia = () => {
-    return fetch('../file.json')
+    return fetch('https://raw.githubusercontent.com/devb0x/Moniezgeoffrey_6_17042021/master/file.json')
       .then(response => {
         if (!response.ok) {
           throw new Error("HTTP error" + response.status);
