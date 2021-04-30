@@ -72,7 +72,7 @@ class PhotographersList {
    * @returns {Promise<any>}
    */
   getPhotographers = () => {
-    return fetch('../file.json')
+    return fetch('./../file.json')
       .then(response => {
         if (!response.ok) {
           throw new Error("HTTP error" + response.status);
