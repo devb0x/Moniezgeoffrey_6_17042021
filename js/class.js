@@ -16,7 +16,7 @@ class Photographer {
     photographerEl.classList.add('photographer-item');
 
     photographerEl.innerHTML = `
-      <a href="../html/photographer.html?id=${this.id}">
+      <a href="Moniezgeoffrey_6_17042021/html/html/photographer.html?id=${this.id}">
           <img src="./Sample%20Photos/Photographers%20ID%20Photos/${this.portrait}" alt="${this.name}">
           
           <h2 class="photographer-item__name">
