@@ -1,6 +1,26 @@
 const params = new URLSearchParams(document.location.search);
 const photographerId = Number(params.get("id"));
 
+let photographerPath = '';
+if (photographerId === 243) {
+  photographerPath = 'Mimi';
+}
+if (photographerId === 930) {
+  photographerPath = 'Ellie%20Rose';
+}
+if (photographerId === 82) {
+  photographerPath = 'Tracy';
+}
+if (photographerId === 527) {
+  photographerPath = 'Nabeel';
+}
+if (photographerId === 925) {
+  photographerPath = 'Rhode';
+}
+if (photographerId === 195) {
+  photographerPath = 'Marcel';
+}
+
 /**
  * DOM selector
  * @type {Element}
@@ -48,6 +68,7 @@ function getPhotographerById() {
  * We generate DOM for photographer
  */
 function renderPhotographer() {
+
   const photographerEl = document.createElement('div');
   photographerEl.classList.add('photographer-item');
 
@@ -97,8 +118,22 @@ getPhotographerById().then(() => {
   renderPhotographer()
 })
 
+/**
+ * Class representing an Image
+ */
 class Image {
 
+  /**
+   * Create an Image
+   * @param id
+   * @param photographerId
+   * @param title
+   * @param image
+   * @param tags
+   * @param likes
+   * @param date
+   * @param price
+   */
   constructor(id, photographerId, title, image, tags, likes, date, price) {
     this.id = id;
     this.photographerId = photographerId;
@@ -111,31 +146,6 @@ class Image {
   }
 
   render() {
-    let photographerPath = '';
-    if (this.photographerId === 243) {
-      photographerPath = 'Mimi';
-    }
-    if (this.photographerId === 930) {
-      photographerPath = 'Ellie%20Rose';
-    }
-    if (this.photographerId === 82) {
-      photographerPath = 'Tracy';
-    }
-    if (this.photographerId === 527) {
-      photographerPath = 'Nabeel';
-    }
-    if (this.photographerId === 925) {
-      photographerPath = 'Rhode';
-    }
-    if (this.photographerId === 195) {
-      photographerPath = 'Marcel';
-    }
-
-    // switch (this.photographerId) {
-    //   case this.photographerId === 243:
-    //     photographerPath = 'Mimi';
-    //     break;
-    // }
 
     const mediaImageEl = document.createElement('div');
     mediaImageEl.classList.add('photographer-gallery__item');
@@ -149,20 +159,36 @@ class Image {
     
     <span class="photographer-gallery__item-info">
       <h2 class="photographer-gallery__item-info-title">${this.title}</h2>
+      <div class="photographer-gallery__item-info-price">${this.price} &euro;</div>
       <div class="photographer-gallery__item-info-likes">${this.likes}<i class="fas fa-heart"></i></div>
     </span>
   `;
 
-  return mediaImageEl;
+    return mediaImageEl;
   }
 
 }
 
+/**
+ * Class representing a Video
+ */
 class Video {
 
-  constructor(id, photographerId, video, tags, likes, date, price) {
+  /**
+   * Create a Video
+   * @param id
+   * @param photographerId
+   * @param title
+   * @param video
+   * @param tags
+   * @param likes
+   * @param date
+   * @param price
+   */
+  constructor(id, photographerId, title, video, tags, likes, date, price) {
     this.id = id;
     this.photographerId = photographerId;
+    this.title = title;
     this.video = video;
     this.tags = tags;
     this.likes = likes;
@@ -170,9 +196,33 @@ class Video {
     this.price = price;
   }
 
+  render() {
+
+    const mediaVideoEl = document.createElement('div');
+    mediaVideoEl.classList.add('photographer-gallery__item');
+    mediaVideoEl.innerHTML = `
+    
+    <a href="" class=".photographer-gallery__item-link">
+    <video class="photographer-gallery__item-vid" controls>
+      <source src="./../Sample%20Photos/${photographerPath}/${this.video}" type="video/mp4">
+    </video>
+    </a>
+    
+    <span class="photographer-gallery__item-info">
+      <h2 class="photographer-gallery__item-info-title">${this.title}</h2>
+      <div class="photographer-gallery__item-info-price">${this.price} &euro;</div>
+      <div class="photographer-gallery__item-info-likes">${this.likes}<i class="fas fa-heart"></i></div>
+    </span>
+    `;
+
+    return mediaVideoEl
+  }
+
 }
 
-
+/**
+ * Class representing the media list
+ */
 class MediaList {
 
   constructor() {
@@ -201,7 +251,6 @@ class MediaList {
   }
 
   renderMedia() {
-    console.log(this.media.length);
     for (let i = 0; i < this.media.length; i++) {
       if (this.media[i].image) {
         const mediaItem = new Image (
@@ -212,11 +261,26 @@ class MediaList {
           this.media[i].tags,
           this.media[i].likes,
           this.media[i].date,
-          this.media[i].price,
+          this.media[i].price
         );
 
         const imageEl = mediaItem.render();
         photographerGallery_div.append(imageEl);
+      }
+      if (this.media[i].video) {
+        const mediaItem = new Video (
+          this.media[i].id,
+          this.media[i].photographerId,
+          this.media[i].title,
+          this.media[i].video,
+          this.media[i].tags,
+          this.media[i].likes,
+          this.media[i].date,
+          this.media[i].price
+        );
+
+        const videoEl = mediaItem.render();
+        photographerGallery_div.append(videoEl);
       }
     }
   }

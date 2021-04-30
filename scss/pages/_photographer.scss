@@ -6,7 +6,6 @@
   .photographer-item {
     width: 90%;
     margin: 1.313rem auto;
-    //border: 1px solid;
 
     @include for-tablet-portrait-up() {
       height: 313px;
@@ -79,7 +78,6 @@
 
 // Section photographer-gallery
 .photographer-gallery {
-  //border: 1px solid;
   width: 90%;
   margin: auto;
   display: flex;
@@ -114,6 +112,7 @@
   &__item {
     width: fit-content;
     margin-bottom: 1rem;
+    max-width: 350px;
 
     &-link {
 
@@ -132,20 +131,43 @@
       }
     }
 
+    &-vid {
+      width: 100%;
+      height: 190px;
+
+      @include for-tablet-portrait-up() {
+        width: 350px;
+        height: 300px;
+      }
+    }
+
     &-info {
       display: flex;
       justify-content: space-between;
+      color: $p_red;
+      font-size: 0.875rem;
+      font-weight: 500;
+
+      @include for-tablet-portrait-up() {
+        font-size: 1.5rem;
+      }
 
       &-title {
         font-size: 0.875rem;
-        color: $p_red;
+        font-weight: 500;
+        width: 60%;
+
+        @include for-tablet-portrait-up() {
+          font-size: 1.5rem;
+        }
+      }
+
+      &-price {
+        margin: auto 1rem auto auto;
       }
 
       &-likes {
-        font-size: 0.875rem;
         margin: auto 0;
-        color: $p_red;
-        font-weight: bold;
 
         i {
           margin-left: 0.225rem;
