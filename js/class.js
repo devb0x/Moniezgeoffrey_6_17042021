@@ -72,7 +72,7 @@ class PhotographersList {
    * @returns {Promise<any>}
    */
   getPhotographers = () => {
-    return fetch('./../file.json')
+    return fetch('https://raw.githubusercontent.com/devb0x/Moniezgeoffrey_6_17042021/master/file.json')
       .then(response => {
         if (!response.ok) {
           throw new Error("HTTP error" + response.status);
