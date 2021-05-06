@@ -40,21 +40,21 @@ export class PhotographersList {
    * & render it
    */
   render() {
-    for (let i = 0; i < this.photographers.length; i++) {
+    this.photographers.forEach(el => {
       const photographerItem = new Photographer(
-        this.photographers[i].name,
-        this.photographers[i].id,
-        this.photographers[i].city,
-        this.photographers[i].country,
-        this.photographers[i].tags,
-        this.photographers[i].tagline,
-        this.photographers[i].price,
-        this.photographers[i].portrait,
+        el.name,
+        el.id,
+        el.city,
+        el.country,
+        el.tags,
+        el.tagline,
+        el.price,
+        el.portrait,
       );
 
-      const photographerEl = photographerItem.render();
+      const photographerEl = photographerItem.render(el);
       photographers_section.append(photographerEl);
-    }
+    })
   }
 
 }

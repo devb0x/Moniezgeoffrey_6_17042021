@@ -50,21 +50,20 @@ function getPhotographerById() {
     })
     .then(json => {
       data.push(json);
-
-      for (let i = 0; i < data[0].photographers.length; i++) {
-        if (photographerId === data[0].photographers[i].id) {
+      data[0].photographers.forEach(el => {
+        if (photographerId === el.id) {
           photograph.push(new Photographer(
-            data[0].photographers[i].name,
-            data[0].photographers[i].id,
-            data[0].photographers[i].city,
-            data[0].photographers[i].country,
-            data[0].photographers[i].tags,
-            data[0].photographers[i].tagline,
-            data[0].photographers[i].price,
-            data[0].photographers[i].portrait,
-          ));
+            el.name,
+            el.id,
+            el.city,
+            el.country,
+            el.tags,
+            el.tagline,
+            el.price,
+            el.portrait,
+          ))
         }
-      }
+      })
     })
 }
 
@@ -103,17 +102,16 @@ function renderPhotographer() {
   const parent = photographerEl.querySelector('.photographer-item__info');
   const tags_p = document.createElement('p');
 
-  // TODO use forEach
-  for (let i = 0; i < photograph[0].tags.length; i++) {
+  photograph[0].tags.forEach(el => {
     const span = document.createElement('span');
     const btn = document.createElement('button');
     btn.classList.add('filter-btn');
     tags_p.appendChild(span);
     span.appendChild(btn);
-    btn.textContent = '#' + photograph[0].tags[i];
+    btn.textContent = '#' + el;
     filter.appendChild(span);
     parent.appendChild(span);
-  }
+  });
 
   photographer_section.appendChild(photographerEl);
 }

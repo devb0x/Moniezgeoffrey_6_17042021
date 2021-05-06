@@ -48,16 +48,16 @@ export class Photographer {
     const parent = photographerEl.querySelector('.photographer-item__info');
     const tags_p = document.createElement('p');
 
-    for (let i = 0; i < this.tags.length; i++) {
+    this.tags.forEach(el => {
       const span = document.createElement('span');
       const btn = document.createElement('button');
       btn.classList.add('filter-btn');
       tags_p.appendChild(span);
       span.appendChild(btn);
-      btn.textContent = '#' + this.tags[i];
+      btn.textContent = '#' + el;
       filter.appendChild(span);
       parent.appendChild(span);
-    }
+    });
 
     return photographerEl;
   }

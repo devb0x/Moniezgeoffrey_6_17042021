@@ -35,38 +35,38 @@ export class MediaList {
   }
 
   renderMedia() {
-    for (let i = 0; i < this.media.length; i++) {
-      if (this.media[i].image) {
-        const mediaItem = new Image (
-          this.media[i].id,
-          this.media[i].photographerId,
-          this.media[i].title,
-          this.media[i].image,
-          this.media[i].tags,
-          this.media[i].likes,
-          this.media[i].date,
-          this.media[i].price
+    this.media.forEach(el => {
+      if (el.image) {
+        const mediaItem = new Image(
+          el.id,
+          el.photographerId,
+          el.title,
+          el.image,
+          el.tags,
+          el.likes,
+          el.date,
+          el.price
         );
-
         const imageEl = mediaItem.render();
         photographerGallery_div.append(imageEl);
       }
-      if (this.media[i].video) {
-        const mediaItem = new Video (
-          this.media[i].id,
-          this.media[i].photographerId,
-          this.media[i].title,
-          this.media[i].video,
-          this.media[i].tags,
-          this.media[i].likes,
-          this.media[i].date,
-          this.media[i].price
-        );
 
+      if (el.video) {
+        const mediaItem = new Video(
+          el.id,
+          el.photographerId,
+          el.title,
+          el.video,
+          el.tags,
+          el.likes,
+          el.date,
+          el.price
+        );
         const videoEl = mediaItem.render();
         photographerGallery_div.append(videoEl);
       }
-    }
+
+    })
   }
 
 }
