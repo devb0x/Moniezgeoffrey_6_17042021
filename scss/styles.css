@@ -48,6 +48,12 @@ a {
   background-color: #911d1d;
 }
 
+.btn-active {
+  cursor: pointer;
+  color: white;
+  background-color: #911d1d;
+}
+
 @media (min-width: 75em) {
   header {
     display: flex;

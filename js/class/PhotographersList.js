@@ -12,7 +12,7 @@ export class PhotographersList {
    * Fetch from json locally
    * @returns {Promise<any>}
    */
-  getPhotographers = () => {
+  getPhotographers() {
     return fetch('https://raw.githubusercontent.com/devb0x/Moniezgeoffrey_6_17042021/master/file.json')
       .then(response => {
         if (!response.ok) {
@@ -55,6 +55,39 @@ export class PhotographersList {
       const photographerEl = photographerItem.render(el);
       photographers_section.append(photographerEl);
     })
+  }
+
+  filter(e) {
+    let arrayFilter;
+    arrayFilter = [];
+    this.resetRender();
+    let filter = e.target.innerText.substring(1).toLowerCase(); // remove #
+
+    this.photographers.forEach(photographer => {
+      photographer.tags.forEach(tag => {
+        if (tag.match(filter)) {
+          arrayFilter.push(photographer);
+
+          const photographerItem = new Photographer(
+            photographer.name,
+            photographer.id,
+            photographer.city,
+            photographer.country,
+            photographer.tags,
+            photographer.tagline,
+            photographer.price,
+            photographer.portrait,
+          );
+
+          const photographerEl = photographerItem.render();
+          photographers_section.append(photographerEl);
+        }
+      })
+    })
+  }
+
+  resetRender() {
+    photographers_section.innerHTML = '';
   }
 
 }
