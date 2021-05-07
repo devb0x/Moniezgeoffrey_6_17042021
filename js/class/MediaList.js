@@ -1,7 +1,11 @@
 import { Image } from "./Image.js";
 import { Video } from "./Video.js";
+import {photographerPath} from "../page2.js";
 
 const photographerGallery_div = document.querySelector('.photographer-gallery');
+// const lightbox = document.getElementById('lightbox');
+const lightbox = document.getElementById('lightbox');
+
 
 const params = new URLSearchParams(document.location.search);
 const photographerId = Number(params.get("id"));
@@ -49,6 +53,27 @@ export class MediaList {
         );
         const imageEl = mediaItem.render();
         photographerGallery_div.append(imageEl);
+
+        imageEl.addEventListener('click', () => {
+
+          document.body.classList.add('stop-scrolling');
+          lightbox.style.display = "block";
+          lightbox.innerHTML = `
+            <button
+              class="lightbox-btn btn-close"
+              onclick="lightbox.style.display='none';
+              document.body.classList.remove('stop-scrolling');">
+              &#x2715;
+            </button>
+            <button class="lightbox-btn left-arrow">^</button>
+            <button class="lightbox-btn right-arrow">^</button>
+            <img
+              src="./../Sample%20Photos/${photographerPath}/${el.image}"
+              alt="${el.image}"
+              class="photographer-gallery__item-img">
+          `;
+
+        });
       }
 
       if (el.video) {

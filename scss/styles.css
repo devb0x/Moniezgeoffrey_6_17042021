@@ -30,6 +30,15 @@ a {
   }
 }
 
+.hidden {
+  display: none;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 .filter-btn {
   font-size: 12px;
   font-weight: bold;
@@ -68,6 +77,60 @@ a {
 a > img {
   width: 150px;
   transform: scale(1.5);
+}
+
+.lightbox {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+.lightbox img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 80%;
+  width: 80%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+}
+.lightbox .lightbox-btn {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  font-size: 3rem;
+}
+
+.btn-close {
+  right: 5%;
+  top: 15%;
+  color: black;
+  font-weight: 900;
+  font-size: 1rem;
+}
+@media (min-width: 56.25em) {
+  .btn-close {
+    top: 10%;
+    right: 4%;
+    font-size: 2.5rem;
+  }
+}
+.btn-close:hover {
+  cursor: pointer;
+}
+
+.lightbox-btn.left-arrow {
+  transform: rotate(-90deg);
+  top: 45%;
+  left: 5%;
+}
+
+.lightbox-btn.right-arrow {
+  transform: rotate(90deg);
+  top: 45%;
+  right: 5%;
 }
 
 h1 {

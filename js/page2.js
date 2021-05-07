@@ -120,6 +120,10 @@ getPhotographerById().then(() => {
   renderPhotographer()
 })
 
+// function openLightbox() {
+//   console.log('click')
+// }
+
 /**
  * Displaying list of media from photographer Id
  * @type {MediaList}

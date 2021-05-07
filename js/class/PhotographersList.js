@@ -2,6 +2,9 @@ import { Photographer } from "./Photographer.js";
 
 const photographers_section = document.querySelector('.photographers');
 
+/**
+ * Class representing PhotographersList for Homepage
+ */
 export class PhotographersList {
 
   constructor() {
@@ -57,6 +60,10 @@ export class PhotographersList {
     })
   }
 
+  /**
+   * Push Filter Photographer into an array from e.listener on .filter-btn
+   * @param e
+   */
   filter(e) {
     let arrayFilter;
     arrayFilter = [];
@@ -86,6 +93,9 @@ export class PhotographersList {
     })
   }
 
+  /**
+   * Cleaning the html before rerender when we filter
+   */
   resetRender() {
     photographers_section.innerHTML = '';
   }
