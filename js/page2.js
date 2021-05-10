@@ -1,5 +1,6 @@
 import { Photographer } from "./class/Photographer.js";
 import { MediaList } from "./class/MediaList.js";
+import { Lightbox } from "./class/Lightbox.js";
 
 const params = new URLSearchParams(document.location.search);
 const photographerId = Number(params.get("id"));
@@ -130,3 +131,5 @@ getPhotographerById().then(() => {
  */
 const mediaList = new MediaList();
 mediaList.getMedia().then(() => mediaList.renderMedia());
+
+new Lightbox();

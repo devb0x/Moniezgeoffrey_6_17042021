@@ -1,8 +1,9 @@
 import { photographerPath } from "../page2.js";
 
+import { Lightbox } from "./Lightbox.js"
+
+
 // const lightbox = document.getElementById('lightbox');
-
-
 
 /**
  * Class representing an Image
@@ -38,10 +39,10 @@ export class Image {
     mediaImageEl.innerHTML = `
     
     <picture>
-      <img
-        src="./../Sample%20Photos/${photographerPath}/${this.image}"
-        alt="${this.image}"
-        class="photographer-gallery__item-img">
+        <img
+          src="./../Sample%20Photos/${photographerPath}/${this.image}"
+          alt="${this.image}"
+          class="photographer-gallery__item-img">
     </picture>
     
     <span class="photographer-gallery__item-info">
@@ -51,34 +52,8 @@ export class Image {
     </span>
   `;
 
-    // mediaImageEl.addEventListener('click', () => {
-    //
-    //   document.body.classList.add('stop-scrolling');
-    //   lightbox.style.display = "block";
-    //   lightbox.innerHTML = `
-    //   <button
-    //     class="lightbox-btn btn-close"
-    //     onclick="lightbox.style.display='none';
-    //     document.body.classList.remove('stop-scrolling');">
-    //     &#x2715;
-    //   </button>
-    //   <button class="lightbox-btn left-arrow">^</button>
-    //   <button class="lightbox-btn right-arrow">^</button>
-    //   <img
-    //     src="./../Sample%20Photos/${photographerPath}/${this.image}"
-    //     alt="${this.image}"
-    //     class="photographer-gallery__item-img">
-    //   `;
-    //
-    // });
-
-
     return mediaImageEl;
   }
-
-  // close() {
-  //   console.log('lol closed');
-  // }
 
 }
 
