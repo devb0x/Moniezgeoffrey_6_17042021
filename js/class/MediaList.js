@@ -55,7 +55,8 @@ export class MediaList {
 
         imageEl.addEventListener('click', (e) => {
           e.preventDefault()
-          myLightbox.render()
+          console.log('photo id : ' + el.id)
+          myLightbox.render(el.id)
         })
 
       }
@@ -76,7 +77,8 @@ export class MediaList {
 
         videoEl.addEventListener('click', (e) => {
           e.preventDefault()
-          myLightbox.render()
+          console.log('video id : ' + el.id)
+          myLightbox.render(el.id)
         })
       }
 

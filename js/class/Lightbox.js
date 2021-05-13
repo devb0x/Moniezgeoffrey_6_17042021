@@ -6,7 +6,7 @@ export class Lightbox {
 
   constructor(mediaList) {
     this.mediaList = mediaList
-    // this.ActiveId = null
+    this.activeId = null
   }
 
   next() {
@@ -22,9 +22,13 @@ export class Lightbox {
     lightBox_div.innerHTML = ''
   }
 
-  render() {
-    // this.ActiveId = id
+  render(idMedia) {
+    this.activeId = idMedia
     lightBox_div.style.display = "block"
+
+    console.log('this.activeId from Lightbox : ' + this.activeId)
+
+    console.log(this.mediaList)
 
     /**
      * Close button
@@ -76,8 +80,19 @@ export class Lightbox {
      */
     const containerImg = document.createElement('img')
     containerImg.classList.add('lightbox__container-img')
-    containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[0].image}`
-    lightBox__container.append(containerImg)
+
+    for (let i = 0; i < this.mediaList.length; i++) {
+      if (this.activeId === this.mediaList[i].id) {
+        /**
+         * <img>
+         * @type {HTMLImageElement}
+         */
+        const containerImg = document.createElement('img')
+        containerImg.classList.add('lightbox__container-img')
+        containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[i].image}`
+        lightBox__container.append(containerImg)
+      }
+    }
 
   }
 
