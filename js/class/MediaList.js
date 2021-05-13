@@ -2,9 +2,6 @@ import { Image } from "./Image.js";
 import { Video } from "./Video.js";
 import { Lightbox } from "./Lightbox.js";
 
-const lightBox_div = document.getElementById('lightbox')
-
-
 const photographerGallery_div = document.querySelector('.photographer-gallery');
 
 const params = new URLSearchParams(document.location.search);
@@ -39,9 +36,9 @@ export class MediaList {
   }
 
   renderMedia() {
-    new Lightbox(this.media)
 
     this.media.forEach(el => {
+
       if (el.image) {
         const mediaItem = new Image(
           el.id,
@@ -58,8 +55,7 @@ export class MediaList {
 
         imageEl.addEventListener('click', (e) => {
           e.preventDefault()
-          new Lightbox(this.media)
-          lightBox_div.style.display = "block"
+          myLightbox.render()
         })
 
       }
@@ -80,12 +76,13 @@ export class MediaList {
 
         videoEl.addEventListener('click', (e) => {
           e.preventDefault()
-          lightBox_div.style.display = "block"
+          myLightbox.render()
         })
       }
 
-
     })
+
+    const myLightbox = new Lightbox(this.media)
 
   }
 

@@ -95,11 +95,18 @@ a > img {
   border: none;
   position: fixed;
   cursor: pointer;
+  right: 50%;
 }
 .lightbox__prev, .lightbox__next {
   border: none;
   position: fixed;
   cursor: pointer;
+}
+.lightbox__prev {
+  left: 0;
+}
+.lightbox__next {
+  right: 0;
 }
 .lightbox__container {
   display: flex;
