@@ -101,6 +101,7 @@ a > img {
   border: none;
   position: fixed;
   cursor: pointer;
+  top: 0;
 }
 .lightbox__prev {
   left: 0;
