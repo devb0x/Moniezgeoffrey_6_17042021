@@ -22,7 +22,6 @@ export class Lightbox {
   }
 
   next() {
-
     console.log('next image')
     this.index += 1
     console.log('index after next : ' + this.index)
@@ -36,17 +35,26 @@ export class Lightbox {
 
     this.reset()
 
-    const containerImg = document.createElement('img')
-    containerImg.classList.add('lightbox__container-img')
-    containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].image}`
+    if (this.mediaList[this.index].image) {
+      const containerImg = document.createElement('img')
+      containerImg.classList.add('lightbox__container-img')
+      containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].image}`
+      lightBoxContainer_div.append(containerImg)
+    }
 
-    lightBoxContainer_div.append(containerImg)
+    if (this.mediaList[this.index].video) {
+      const containerVideo = document.createElement('video')
+      containerVideo.classList.add('lightbox__container-img')
+      containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].video}`
+      containerVideo.controls = true
+      lightBoxContainer_div.append(containerVideo)
+    }
 
     const titleDiv = document.createElement('div')
     titleDiv.classList.add('lightbox__container-title')
     titleDiv.innerHTML = `${this.mediaList[this.index].title}`
-
     lightBoxContainer_div.append(titleDiv)
+
   }
 
   prev() {
@@ -63,16 +71,24 @@ export class Lightbox {
 
     this.reset()
 
-    const containerImg = document.createElement('img')
-    containerImg.classList.add('lightbox__container-img')
-    containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].image}`
+    if (this.mediaList[this.index].image) {
+      const containerImg = document.createElement('img')
+      containerImg.classList.add('lightbox__container-img')
+      containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].image}`
+      lightBoxContainer_div.append(containerImg)
+    }
 
-    lightBoxContainer_div.append(containerImg)
+    if (this.mediaList[this.index].video) {
+      const containerVideo = document.createElement('video')
+      containerVideo.classList.add('lightbox__container-img')
+      containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].video}`
+      containerVideo.controls = true
+      lightBoxContainer_div.append(containerVideo)
+    }
 
     const titleDiv = document.createElement('div')
     titleDiv.classList.add('lightbox__container-title')
     titleDiv.innerHTML = `${this.mediaList[this.index].title}`
-
     lightBoxContainer_div.append(titleDiv)
   }
 
@@ -119,7 +135,6 @@ export class Lightbox {
           containerVideo.controls = true
           lightBoxContainer_div.append(containerVideo)
         }
-
 
         /**
          * Create <div> for the title image
