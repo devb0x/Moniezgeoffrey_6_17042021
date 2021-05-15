@@ -1,3 +1,5 @@
+@import '../utils/variables';
+
 .lightbox {
   display: none;
   position: fixed;
@@ -9,31 +11,21 @@
   background-color: white;
   overflow: auto;
 
-  &__close {
-    z-index: 100;
+  &-btn {
     border: none;
-    position: fixed;
-    cursor: pointer;
-    right: 50%;
-  }
+    background-color: transparent;
+    color: $p_red;
+    font-size: 1.5rem;
 
-  &__prev, &__next {
-    border: none;
-    position: fixed;
-    cursor: pointer;
-    top: 0;
-  }
-
-  &__prev {
-    left: 0;
-  }
-
-  &__next {
-    right: 0;
+    &__close {
+      right: 2%;
+      position: absolute;
+    }
   }
 
   &__container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
@@ -42,6 +34,13 @@
     &-img {
       max-width: 100%;
       height: auto;
+    }
+
+    &-title {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: $p_red;
+      width: 100%;
     }
   }
 

@@ -90,27 +90,19 @@ a > img {
   background-color: white;
   overflow: auto;
 }
-.lightbox__close {
-  z-index: 100;
+.lightbox-btn {
   border: none;
-  position: fixed;
-  cursor: pointer;
-  right: 50%;
+  background-color: transparent;
+  color: #911d1d;
+  font-size: 1.5rem;
 }
-.lightbox__prev, .lightbox__next {
-  border: none;
-  position: fixed;
-  cursor: pointer;
-  top: 0;
-}
-.lightbox__prev {
-  left: 0;
-}
-.lightbox__next {
-  right: 0;
+.lightbox-btn__close {
+  right: 2%;
+  position: absolute;
 }
 .lightbox__container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -119,6 +111,12 @@ a > img {
 .lightbox__container-img {
   max-width: 100%;
   height: auto;
+}
+.lightbox__container-title {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #911d1d;
+  width: 100%;
 }
 
 h1 {
