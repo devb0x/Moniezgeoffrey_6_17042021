@@ -111,12 +111,25 @@ a > img {
 .lightbox__container-img {
   max-width: 100%;
   height: auto;
+  border-radius: 5px;
+  object-fit: contain;
+}
+@media (min-width: 56.25em) {
+  .lightbox__container-img {
+    height: 900px;
+    width: 1050px;
+  }
 }
 .lightbox__container-title {
   margin-top: 0.5rem;
   font-size: 0.875rem;
   color: #911d1d;
   width: 100%;
+}
+@media (min-width: 56.25em) {
+  .lightbox__container-title {
+    font-size: 1.5rem;
+  }
 }
 
 h1 {

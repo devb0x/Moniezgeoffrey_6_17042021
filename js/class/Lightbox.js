@@ -96,14 +96,30 @@ export class Lightbox {
 
         console.error(this.mediaList.indexOf(this.mediaList[i])) // ok
 
-        /**
-         * Create <img> inside the lightbox container
-         * @type {HTMLImageElement}
-         */
-        const containerImg = document.createElement('img')
-        containerImg.classList.add('lightbox__container-img')
-        containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[i].image}`
-        lightBoxContainer_div.append(containerImg)
+        if (this.mediaList[i].image) {
+          console.log('we\'re gonna display an image')
+          /**
+           * Create <img> inside the lightbox container
+           * @type {HTMLImageElement}
+           */
+          const containerImg = document.createElement('img')
+          containerImg.classList.add('lightbox__container-img')
+          containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[i].image}`
+          lightBoxContainer_div.append(containerImg)
+        }
+
+        if (this.mediaList[i].video) {
+          console.log('we\'re gonna display a beautiful video')
+          /**
+           * Create video
+           */
+          const containerVideo = document.createElement('video')
+          containerVideo.classList.add('lightbox__container-img')
+          containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.mediaList[i].video}`
+          containerVideo.controls = true
+          lightBoxContainer_div.append(containerVideo)
+        }
+
 
         /**
          * Create <div> for the title image

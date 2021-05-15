@@ -1,4 +1,5 @@
 @import '../utils/variables';
+@import "../utils/mixins";
 
 .lightbox {
   display: none;
@@ -34,6 +35,13 @@
     &-img {
       max-width: 100%;
       height: auto;
+      border-radius: 5px;
+      object-fit: contain;
+
+      @include for-tablet-landscape-up() {
+        height: 900px;
+        width: 1050px;
+      }
     }
 
     &-title {
@@ -41,6 +49,10 @@
       font-size: 0.875rem;
       color: $p_red;
       width: 100%;
+
+      @include for-tablet-landscape-up() {
+        font-size: 1.5rem;
+      }
     }
   }
 
