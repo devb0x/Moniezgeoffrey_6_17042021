@@ -20,22 +20,23 @@ export class Photographer {
 
     photographerEl.innerHTML = `
       <a href="html/photographer.html?id=${this.id}">
-          <img src="./Sample%20Photos/Photographers%20ID%20Photos/${this.portrait}" alt="${this.name}">
-          
-          <h2 class="photographer-item__name">
-            ${this.name}
-          </h2>
-        </a>
-        <div class="photographer-item__info">
-          <p class="photographer-item__info-location">
-            ${this.country}, ${this.city}
-          </p>
-          <p class="photographer-item__info-tagline">
-            ${this.tagline}
-          </p>
-          <p class="photographer-item__info-price">
-            ${this.price}€/jour
-          </p>
+        <img src="./Sample%20Photos/Photographers%20ID%20Photos/${this.portrait}" alt="${this.name}">
+        
+        <h2 class="photographer-item__name">
+          ${this.name}
+        </h2>
+      </a>
+      <div class="photographer-item__info">
+        <p class="photographer-item__info-location">
+          ${this.country}, ${this.city}
+        </p>
+        <p class="photographer-item__info-tagline">
+          ${this.tagline}
+        </p>
+        <p class="photographer-item__info-price">
+          ${this.price}€/jour
+        </p>
+      </div>
     `;
 
     const filter = document.createElement('p');

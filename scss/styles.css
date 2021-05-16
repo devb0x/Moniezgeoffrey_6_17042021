@@ -226,10 +226,47 @@ h1 {
   font-size: 2.25rem;
   font-weight: normal;
   color: #d3573c;
+  line-height: 1;
 }
 @media (min-width: 56.25em) {
   .photographer .photographer-item__header h1 {
+    margin-right: 2rem;
     font-size: 64px;
+  }
+}
+.photographer .photographer-item__header-contact {
+  height: 69px;
+  align-self: center;
+  display: flex;
+}
+.photographer .photographer-item__header-contact-btn {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5%;
+  color: white;
+  background-color: #911d1d;
+  border: none;
+  font-size: 1.125rem;
+  font-weight: bold;
+  line-height: 23px;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  min-width: 170px;
+  z-index: 100;
+}
+@media (min-width: 37.5em) {
+  .photographer .photographer-item__header-contact-btn {
+    position: relative;
+    left: unset;
+    transform: none;
+    line-height: 26px;
+  }
+}
+@media (min-width: 75em) {
+  .photographer .photographer-item__header-contact-btn {
+    font-size: 1.25rem;
   }
 }
 .photographer .photographer-item__info {

@@ -79,9 +79,12 @@ function renderPhotographer() {
   photographerEl.innerHTML = `
     <header class="photographer-item__header">
       <img src="./../Sample%20Photos/Photographers%20ID%20Photos/${photograph[0].portrait}" alt="photographer name">
+      <div class="photographer-item__header-contact">
         <h1>
           ${photograph[0].name}
         </h1>
+          <button id="contactBtn" class="photographer-item__header-contact-btn">Contactez-moi</button>
+      </div>
     </header>
 
     <div class="photographer-item__info">
@@ -91,6 +94,7 @@ function renderPhotographer() {
       <p class="photographer-item__info-tagline">
         ${photograph[0].tagline}
       </p>
+<!--      <button id="contactBtn" class="photographer-item__info-contact">Contactez-moi</button>-->
   `;
 
   const filter = document.createElement('p');
