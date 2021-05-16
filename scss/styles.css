@@ -194,18 +194,17 @@ h1 {
 }
 @media (min-width: 37.5em) {
   .photographer .photographer-item {
-    height: 313px;
-    padding: 0 48px;
+    padding: 48px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #fafafa;
   }
 }
 .photographer .photographer-item__header {
   display: flex;
   justify-content: space-between;
-  height: 47px;
+  height: 112px;
 }
 .photographer .photographer-item__header img {
   order: 2;
@@ -216,7 +215,6 @@ h1 {
 }
 @media (min-width: 37.5em) {
   .photographer .photographer-item__header img {
-    margin-top: 3%;
     height: 200px;
     width: 200px;
   }
@@ -229,7 +227,7 @@ h1 {
   font-weight: normal;
   color: #d3573c;
 }
-@media (min-width: 37.5em) {
+@media (min-width: 56.25em) {
   .photographer .photographer-item__header h1 {
     font-size: 64px;
   }

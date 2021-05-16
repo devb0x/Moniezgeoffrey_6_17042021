@@ -79,9 +79,9 @@ function renderPhotographer() {
   photographerEl.innerHTML = `
     <header class="photographer-item__header">
       <img src="./../Sample%20Photos/Photographers%20ID%20Photos/${photograph[0].portrait}" alt="photographer name">
-      <h1>
-        ${photograph[0].name}
-      </h1>
+        <h1>
+          ${photograph[0].name}
+        </h1>
     </header>
 
     <div class="photographer-item__info">

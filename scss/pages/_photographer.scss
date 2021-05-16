@@ -8,18 +8,17 @@
     margin: 1.313rem auto;
 
     @include for-tablet-portrait-up() {
-      height: 313px;
-      padding: 0 48px;
+      padding: 48px;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
       background-color: $s_lightGrey;
     }
 
     &__header {
       display: flex;
       justify-content: space-between;
-      height: 47px;
+      height: 112px;
 
       img {
         order: 2;
@@ -29,7 +28,6 @@
         object-fit: cover;
 
         @include for-tablet-portrait-up() {
-          margin-top: 3%;
           height: 200px;
           width: 200px;
         }
@@ -44,7 +42,7 @@
         font-weight: normal;
         color: $p_orange;
 
-        @include for-tablet-portrait-up() {
+        @include for-tablet-landscape-up() {
           font-size: 64px;
         }
 
