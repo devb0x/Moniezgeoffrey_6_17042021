@@ -1,6 +1,5 @@
 import { Photographer } from "./class/Photographer.js";
 import { MediaList } from "./class/MediaList.js";
-import { Lightbox } from "./class/Lightbox.js";
 
 const params = new URLSearchParams(document.location.search);
 const photographerId = Number(params.get("id"));
@@ -76,34 +75,55 @@ function renderPhotographer() {
   const photographerEl = document.createElement('div');
   photographerEl.classList.add('photographer-item');
 
-  photographerEl.innerHTML = `
-    <header class="photographer-item__header">
-      <img src="./../Sample%20Photos/Photographers%20ID%20Photos/${photograph[0].portrait}" alt="photographer name">
-      <div class="photographer-item__header-contact">
-        <h1>
-          ${photograph[0].name}
-        </h1>
-          <button id="contactBtn" class="photographer-item__header-contact-btn">Contactez-moi</button>
-      </div>
-    </header>
+  /**
+   * header photographer, with img, h1 & button
+   * @type {HTMLElement}
+   */
+  const header = document.createElement('header')
+  header.classList.add('photographer-item__header')
+  const headerImg = document.createElement('img')
+  headerImg.src = `./../Sample%20Photos/Photographers%20ID%20Photos/${photograph[0].portrait}`
+  headerImg.alt = `${photograph[0].name}`
+  header.appendChild(headerImg)
 
-    <div class="photographer-item__info">
-      <p class="photographer-item__info-location">
-        ${photograph[0].city}, ${photograph[0].country}
-      </p>
-      <p class="photographer-item__info-tagline">
-        ${photograph[0].tagline}
-      </p>
-<!--      <button id="contactBtn" class="photographer-item__info-contact">Contactez-moi</button>-->
-  `;
+  const headerDiv = document.createElement('div')
+  headerDiv.classList.add('photographer-item__header-contact')
+  const headerTitle = document.createElement('h1')
+  headerTitle.innerText = `${photograph[0].name}`
+  header.appendChild(headerTitle)
 
-  const filter = document.createElement('p');
-  filter.classList.add('photographer-item__info-filters');
+  const headerBtn = document.createElement('button')
+  headerBtn.id = 'contactBtn'
+  headerBtn.classList.add('photographer-item__header-contact-btn')
+  headerBtn.innerText = 'Contactez-moi'
+  headerTitle.appendChild(headerBtn)
+
+  /**
+   * div photographer for displaying info
+   * @type {HTMLDivElement}
+   */
+  const infoDiv = document.createElement('div')
+  infoDiv.classList.add('photographer-item__info')
+  const infoLoc = document.createElement('p')
+  infoLoc.classList.add('photographer-item__info-location')
+  infoLoc.innerText = `${photograph[0].city}, ${photograph[0].country}`
+  infoDiv.appendChild(infoLoc)
+
+  const infoTag = document.createElement('p')
+  infoTag.classList.add('photographer-item__info-tagline')
+  infoTag.innerText = `${photograph[0].tagline}`
+  infoDiv.appendChild(infoTag)
+
+  photographerEl.appendChild(header)
+  photographerEl.appendChild(infoDiv)
 
   /**
    * filters buttons inside <span>
    * @type {HTMLParagraphElement}
    */
+  const filter = document.createElement('p');
+  filter.classList.add('photographer-item__info-filters');
+
   const parent = photographerEl.querySelector('.photographer-item__info');
   const tags_p = document.createElement('p');
 
@@ -125,10 +145,6 @@ getPhotographerById().then(() => {
   renderPhotographer()
 })
 
-// function openLightbox() {
-//   console.log('click')
-// }
-
 /**
  * Displaying list of media from photographer Id
  * @type {MediaList}
@@ -136,4 +152,27 @@ getPhotographerById().then(() => {
 const mediaList = new MediaList();
 mediaList.getMedia().then(() => mediaList.renderMedia());
 
-new Lightbox();
+
+/**
+ * innerHTML photographer p2
+ */
+// photographerEl.innerHTML = `
+//   <header class="photographer-item__header">
+//     <img src="./../Sample%20Photos/Photographers%20ID%20Photos/${photograph[0].portrait}" alt="photographer name">
+//     <div class="photographer-item__header-contact">
+//       <h1>
+//         ${photograph[0].name}
+//       </h1>
+//         <button id="contactBtn" class="photographer-item__header-contact-btn">Contactez-moi</button>
+//     </div>
+//   </header>
+//
+//   <div class="photographer-item__info">
+//     <p class="photographer-item__info-location">
+//       ${photograph[0].city}, ${photograph[0].country}
+//     </p>
+//     <p class="photographer-item__info-tagline">
+//       ${photograph[0].tagline}
+//     </p>
+// `;
+

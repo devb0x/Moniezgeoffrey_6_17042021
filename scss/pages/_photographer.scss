@@ -1,5 +1,7 @@
-@import "../utils/variables";
 @import "../utils/mixins";
+@import "../utils/variables";
+//@import "../utils/mixins";
+
 
 .photographer {
 
@@ -68,7 +70,7 @@
           padding: 0.5rem 1rem;
           cursor: pointer;
           min-width: 170px;
-          z-index: 100;
+          z-index: 2;
 
           @include for-tablet-portrait-up {
             position: relative;
