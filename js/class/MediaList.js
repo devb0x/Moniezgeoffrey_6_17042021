@@ -55,7 +55,7 @@ export class MediaList {
 
         imageEl.addEventListener('click', (e) => {
           e.preventDefault()
-          console.log('photo id : ' + el.id)
+          // console.log('photo id : ' + el.id)
           myLightbox.render(el.id)
         })
 

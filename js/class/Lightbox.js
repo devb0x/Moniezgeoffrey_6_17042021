@@ -1,4 +1,5 @@
-import { photographerPath } from "../page2.js";
+import { LightboxImage } from "./LightboxImage.js";
+import { LightboxVideo } from "./LightboxVideo.js";
 
 const lightBox_div = document.getElementById('lightbox')
 const lightBoxContainer_div = document.querySelector('.lightbox__container')
@@ -22,9 +23,7 @@ export class Lightbox {
   }
 
   next() {
-    console.log('next image')
     this.index += 1
-    console.log('index after next : ' + this.index)
 
     /**
      * If we are on the last element, display the first one
@@ -36,18 +35,13 @@ export class Lightbox {
     this.reset()
 
     if (this.mediaList[this.index].image) {
-      const containerImg = document.createElement('img')
-      containerImg.classList.add('lightbox__container-img')
-      containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].image}`
-      lightBoxContainer_div.append(containerImg)
+      const lightboxImage = new LightboxImage(this.mediaList[this.index]).render()
+      lightBoxContainer_div.append(lightboxImage)
     }
 
     if (this.mediaList[this.index].video) {
-      const containerVideo = document.createElement('video')
-      containerVideo.classList.add('lightbox__container-img')
-      containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].video}`
-      containerVideo.controls = true
-      lightBoxContainer_div.append(containerVideo)
+      const lightboxVideo = new LightboxVideo(this.mediaList[this.index]).render()
+      lightBoxContainer_div.append(lightboxVideo)
     }
 
     const titleDiv = document.createElement('div')
@@ -58,9 +52,7 @@ export class Lightbox {
   }
 
   prev() {
-    console.log('prev image')
     this.index -= 1
-    console.log('index after prev : ' + this.index)
 
     /**
      * If we are on first element, display the last one
@@ -72,18 +64,13 @@ export class Lightbox {
     this.reset()
 
     if (this.mediaList[this.index].image) {
-      const containerImg = document.createElement('img')
-      containerImg.classList.add('lightbox__container-img')
-      containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].image}`
-      lightBoxContainer_div.append(containerImg)
+      const lightboxImage = new LightboxImage(this.mediaList[this.index]).render()
+      lightBoxContainer_div.append(lightboxImage)
     }
 
     if (this.mediaList[this.index].video) {
-      const containerVideo = document.createElement('video')
-      containerVideo.classList.add('lightbox__container-img')
-      containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.mediaList[this.index].video}`
-      containerVideo.controls = true
-      lightBoxContainer_div.append(containerVideo)
+      const lightboxVideo = new LightboxVideo(this.mediaList[this.index]).render()
+      lightBoxContainer_div.append(lightboxVideo)
     }
 
     const titleDiv = document.createElement('div')
@@ -91,7 +78,6 @@ export class Lightbox {
     titleDiv.innerHTML = `${this.mediaList[this.index].title}`
     lightBoxContainer_div.append(titleDiv)
   }
-
 
   close() {
     lightBox_div.style.display = "none"
@@ -102,38 +88,27 @@ export class Lightbox {
     this.activeId = idMedia
     lightBox_div.style.display = "block"
 
-    console.log('this.activeId from Lightbox : ' + this.activeId)
-    console.log(this.mediaList)
-
     for (let i = 0; i < this.mediaList.length; i++) {
 
       if (this.activeId === this.mediaList[i].id) {
         this.index = this.mediaList.indexOf(this.mediaList[i])
 
-        console.error(this.mediaList.indexOf(this.mediaList[i])) // ok
-
         if (this.mediaList[i].image) {
-          console.log('we\'re gonna display an image')
           /**
-           * Create <img> inside the lightbox container
+           * Create a new LightboxImage
            * @type {HTMLImageElement}
            */
-          const containerImg = document.createElement('img')
-          containerImg.classList.add('lightbox__container-img')
-          containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList[i].image}`
-          lightBoxContainer_div.append(containerImg)
+          const lightboxImage = new LightboxImage(this.mediaList[i]).render()
+          lightBoxContainer_div.append(lightboxImage)
         }
 
         if (this.mediaList[i].video) {
-          console.log('we\'re gonna display a beautiful video')
           /**
-           * Create video
+           * Create a new LightboxVideo
+           * @type {HTMLVideoElement}
            */
-          const containerVideo = document.createElement('video')
-          containerVideo.classList.add('lightbox__container-img')
-          containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.mediaList[i].video}`
-          containerVideo.controls = true
-          lightBoxContainer_div.append(containerVideo)
+          const lightboxVideo = new LightboxVideo(this.mediaList[i]).render()
+          lightBoxContainer_div.append(lightboxVideo)
         }
 
         /**
@@ -164,42 +139,3 @@ export class Lightbox {
   }
 
 }
-
-
-
-/**
- * Close button
- * @type {HTMLButtonElement}
- */
-// const close_btn = document.createElement('button')
-// close_btn.classList.add('lightbox__close')
-// close_btn.innerText = 'close'
-// lightBox_div.append(close_btn)
-// close_btn.addEventListener('click', (e) => {
-//   this.close()
-// })
-
-
-/**
- * Next button
- * @type {HTMLButtonElement}
- */
-// const next_btn = document.createElement('button')
-// next_btn.classList.add('lightbox__next')
-// next_btn.innerText = 'next'
-// lightBox_div.append(next_btn)
-// next_btn.addEventListener('click', (e) => {
-//   this.next()
-// })
-//
-/**
- * Previous button
- * @type {HTMLButtonElement}
- */
-// const prev_btn = document.createElement('button')
-// prev_btn.classList.add('lightbox__prev')
-// prev_btn.innerText = 'prev'
-// lightBox_div.append(prev_btn)
-// prev_btn.addEventListener('click', (e) => {
-//   this.prev()
-// })

@@ -96,6 +96,9 @@ function renderPhotographer() {
   headerBtn.id = 'contactBtn'
   headerBtn.classList.add('photographer-item__header-contact-btn')
   headerBtn.innerText = 'Contactez-moi'
+  headerBtn.addEventListener('click', () => {
+    console.log('open contact modal')
+  })
   headerTitle.appendChild(headerBtn)
 
   /**
