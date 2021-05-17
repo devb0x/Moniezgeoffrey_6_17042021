@@ -1,14 +1,8 @@
 import { photographerPath } from "../page2.js";
 
-import { Lightbox } from "./Lightbox.js"
-
-
-// const lightbox = document.getElementById('lightbox');
-
 /**
  * Class representing an Image
  */
-
 export class Image {
   /**
    * Create an Image

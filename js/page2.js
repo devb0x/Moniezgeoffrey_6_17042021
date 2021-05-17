@@ -1,8 +1,10 @@
-import { Photographer } from "./class/Photographer.js";
-import { MediaList } from "./class/MediaList.js";
+import { Photographer } from "./class/Photographer.js"
+import { MediaList } from "./class/MediaList.js"
 
-const params = new URLSearchParams(document.location.search);
-const photographerId = Number(params.get("id"));
+const params = new URLSearchParams(document.location.search)
+const photographerId = Number(params.get('id'))
+
+const menuFilter = document.getElementById('filter')
 
 export let photographerPath = '';
 switch (photographerId) {
@@ -178,4 +180,35 @@ mediaList.getMedia().then(() => mediaList.renderMedia());
 //       ${photograph[0].tagline}
 //     </p>
 // `;
+
+/**
+ * Event Listener
+ */
+
+menuFilter.addEventListener('change', () => {
+  const value = menuFilter.value
+  console.log('filter menu change for ' + value)
+
+  if (value === 'title') {
+    mediaList.media.sort(
+      (x, y) => {
+        if (x.title.toLowerCase() < y.title.toLowerCase())
+          return -1
+        if (x.title.toLowerCase() > y.title.toLowerCase())
+          return 1
+        return 0
+      }
+    )
+
+    /**
+     * remove previous media from the DOM
+     */
+    document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e));
+    mediaList.renderMedia()
+  }
+
+  if (value === 'date') {
+    console.log('date filter selected')
+  }
+})
 

@@ -25,6 +25,8 @@ export class Lightbox {
   next() {
     this.index += 1
 
+    console.log(this.index)
+
     /**
      * If we are on the last element, display the first one
      */
@@ -48,11 +50,12 @@ export class Lightbox {
     titleDiv.classList.add('lightbox__container-title')
     titleDiv.innerHTML = `${this.mediaList[this.index].title}`
     lightBoxContainer_div.append(titleDiv)
-
   }
 
   prev() {
     this.index -= 1
+
+    console.log(this.index)
 
     /**
      * If we are on first element, display the last one
@@ -92,6 +95,7 @@ export class Lightbox {
 
       if (this.activeId === this.mediaList[i].id) {
         this.index = this.mediaList.indexOf(this.mediaList[i])
+        console.log('this.index = ' + this.index)
 
         if (this.mediaList[i].image) {
           /**

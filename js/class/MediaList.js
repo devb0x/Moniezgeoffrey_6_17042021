@@ -1,24 +1,23 @@
-import { Image } from "./Image.js";
-import { Video } from "./Video.js";
-import { Lightbox } from "./Lightbox.js";
+import { Image } from "./Image.js"
+import { Video } from "./Video.js"
+import { Lightbox } from "./Lightbox.js"
 
-const photographerGallery_div = document.querySelector('.photographer-gallery');
+const photographerGallery_div = document.querySelector('.photographer-gallery')
 
-const params = new URLSearchParams(document.location.search);
-const photographerId = Number(params.get("id"));
-
+const params = new URLSearchParams(document.location.search)
+const photographerId = Number(params.get("id"))
 
 export class MediaList {
 
   constructor() {
-    this.media = [];
+    this.media = []
   }
 
   getMedia() {
     return fetch('https://raw.githubusercontent.com/devb0x/Moniezgeoffrey_6_17042021/master/file.json')
       .then(response => {
         if (!response.ok) {
-          throw new Error("HTTP error" + response.status);
+          throw new Error("HTTP error" + response.status)
         }
         return response.json();
       })
@@ -32,7 +31,7 @@ export class MediaList {
   }
 
   addMedia(mediaList) {
-    this.media.push(mediaList);
+    this.media.push(mediaList)
   }
 
   renderMedia() {
@@ -50,12 +49,11 @@ export class MediaList {
           el.date,
           el.price
         );
-        const imageEl = mediaItem.render();
-        photographerGallery_div.append(imageEl);
+        const imageEl = mediaItem.render()
+        photographerGallery_div.append(imageEl)
 
         imageEl.addEventListener('click', (e) => {
           e.preventDefault()
-          // console.log('photo id : ' + el.id)
           myLightbox.render(el.id)
         })
 
@@ -72,12 +70,11 @@ export class MediaList {
           el.date,
           el.price
         );
-        const videoEl = mediaItem.render();
-        photographerGallery_div.append(videoEl);
+        const videoEl = mediaItem.render()
+        photographerGallery_div.append(videoEl)
 
         videoEl.addEventListener('click', (e) => {
           e.preventDefault()
-          console.log('video id : ' + el.id)
           myLightbox.render(el.id)
         })
       }
