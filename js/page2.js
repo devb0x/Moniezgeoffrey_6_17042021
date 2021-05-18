@@ -6,6 +6,10 @@ const photographerId = Number(params.get('id'))
 
 const menuFilter = document.getElementById('filter')
 
+/**
+ * Set the photographPath from the id
+ * @type {string}
+ */
 export let photographerPath = '';
 switch (photographerId) {
   case 243:
@@ -146,6 +150,14 @@ function renderPhotographer() {
   photographer_section.appendChild(photographerEl);
 }
 
+function renderFiltered() {
+  document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e));
+  mediaList.renderMedia()
+}
+/**
+ * Get the id then
+ * Displaying photographer informations on the top of the page
+ */
 getPhotographerById().then(() => {
   renderPhotographer()
 })
@@ -157,37 +169,24 @@ getPhotographerById().then(() => {
 const mediaList = new MediaList();
 mediaList.getMedia().then(() => mediaList.renderMedia());
 
-
-/**
- * innerHTML photographer p2
- */
-// photographerEl.innerHTML = `
-//   <header class="photographer-item__header">
-//     <img src="./../Sample%20Photos/Photographers%20ID%20Photos/${photograph[0].portrait}" alt="photographer name">
-//     <div class="photographer-item__header-contact">
-//       <h1>
-//         ${photograph[0].name}
-//       </h1>
-//         <button id="contactBtn" class="photographer-item__header-contact-btn">Contactez-moi</button>
-//     </div>
-//   </header>
-//
-//   <div class="photographer-item__info">
-//     <p class="photographer-item__info-location">
-//       ${photograph[0].city}, ${photograph[0].country}
-//     </p>
-//     <p class="photographer-item__info-tagline">
-//       ${photograph[0].tagline}
-//     </p>
-// `;
-
 /**
  * Event Listener
  */
-
 menuFilter.addEventListener('change', () => {
   const value = menuFilter.value
-  console.log('filter menu change for ' + value)
+
+  if (value === 'popularity') {
+    mediaList.media.sort(
+      (x, y) => {
+        if (x.likes < y.likes)
+          return 1
+        if (x.likes > y.likes)
+          return -1
+        return 0
+      }
+    )
+    renderFiltered()
+  }
 
   if (value === 'title') {
     mediaList.media.sort(
@@ -199,16 +198,20 @@ menuFilter.addEventListener('change', () => {
         return 0
       }
     )
-
-    /**
-     * remove previous media from the DOM
-     */
-    document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e));
-    mediaList.renderMedia()
+    renderFiltered()
   }
 
   if (value === 'date') {
-    console.log('date filter selected')
+    mediaList.media.sort(
+      (x, y) => {
+        if (x.date < y.date)
+          return 1
+        if (x.date > y.date)
+          return -1
+        return 0
+      }
+    )
+    renderFiltered()
   }
 })
 

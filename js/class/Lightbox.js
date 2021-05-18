@@ -39,16 +39,12 @@ export class Lightbox {
 
   next() {
     this.index += 1
-
-    console.log(this.index)
-
     /**
      * If we are on the last element, display the first one
      */
     if (this.index > this.mediaList.length -1) {
       this.index = 0
     }
-
     this.reset()
 
     if (this.mediaList[this.index].image) {
@@ -69,16 +65,12 @@ export class Lightbox {
 
   prev() {
     this.index -= 1
-
-    console.log(this.index)
-
     /**
      * If we are on first element, display the last one
      */
     if (this.index < 0) {
       this.index = this.mediaList.length -1
     }
-
     this.reset()
 
     if (this.mediaList[this.index].image) {
@@ -100,9 +92,6 @@ export class Lightbox {
   close() {
     lightBox_div.style.display = "none"
     lightBoxContainer_div.innerHTML = ''
-    lightBoxNext_btn.removeEventListener('click', () => {
-      this.next()
-    })
   }
 
   render(idMedia) {
