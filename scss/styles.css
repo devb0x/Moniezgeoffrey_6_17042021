@@ -162,7 +162,66 @@ a > img {
   }
 }
 
-h1 {
+.modal {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #db8876;
+  z-index: 100;
+}
+.modal > form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+}
+.modal-header > h1 {
+  margin-bottom: 0;
+}
+.modal-header > * {
+  font-size: 2.25rem;
+}
+.modal-btn__close {
+  position: absolute;
+  top: 3vh;
+  right: 3vh;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  background-color: #db8876;
+}
+.modal-label {
+  font-size: 1.5rem;
+}
+.modal-input {
+  border-radius: 5px;
+  height: 52px;
+  font-size: 1.5rem;
+  margin: 0.8rem 0 0.4rem 0;
+  border: none;
+}
+.modal-textarea {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  resize: none;
+}
+.modal-btn {
+  color: white;
+  background-color: #911d1d;
+  border: none;
+  margin: 2rem auto;
+  width: 170px;
+  padding: 5px 50px 7px 51px;
+  font-size: 1.125rem;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.homepage-title {
   position: absolute;
   top: 50px;
   right: 22px;
@@ -171,7 +230,7 @@ h1 {
   color: #911d1d;
 }
 @media (min-width: 37.5em) {
-  h1 {
+  .homepage-title {
     font-size: 36px;
     top: 34px;
   }

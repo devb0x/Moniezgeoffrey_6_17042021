@@ -1,9 +1,9 @@
 import { Photographer } from "./class/Photographer.js"
 import { MediaList } from "./class/MediaList.js"
+import { ContactModal } from "./class/ContactModal.js";
 
 const params = new URLSearchParams(document.location.search)
 const photographerId = Number(params.get('id'))
-
 const menuFilter = document.getElementById('filter')
 
 /**
@@ -102,8 +102,12 @@ function renderPhotographer() {
   headerBtn.id = 'contactBtn'
   headerBtn.classList.add('photographer-item__header-contact-btn')
   headerBtn.innerText = 'Contactez-moi'
+  /**
+   * create ContactModal
+   */
   headerBtn.addEventListener('click', () => {
-    console.log('open contact modal')
+    // new ContactModal(`${photograph[0]}`)
+    new ContactModal(photograph[0].name)
   })
   headerTitle.appendChild(headerBtn)
 
@@ -170,7 +174,7 @@ const mediaList = new MediaList();
 mediaList.getMedia().then(() => mediaList.renderMedia());
 
 /**
- * Event Listener
+ * Filter Event Listener
  */
 menuFilter.addEventListener('change', () => {
   const value = menuFilter.value
@@ -214,4 +218,3 @@ menuFilter.addEventListener('change', () => {
     renderFiltered()
   }
 })
-

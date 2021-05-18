@@ -16,8 +16,7 @@ function resetActive() {
 let buttons = document.querySelectorAll(".filter-btn");
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', (e) => {
-      // console.log('event clic filter');
-        resetActive();
+      resetActive();
       if (e.target.matches("button.filter-btn")) {
         e.target.classList.add('btn-active');
         photographersList.filter(e);

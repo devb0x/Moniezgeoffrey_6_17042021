@@ -103,8 +103,6 @@ export class Lightbox {
       if (this.activeId === this.mediaList[i].id) {
         this.index = this.mediaList.indexOf(this.mediaList[i])
 
-        console.log('this.index = ' + this.index)
-
         if (this.mediaList[i].image) {
           /**
            * Create a new LightboxImage
