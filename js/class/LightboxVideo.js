@@ -8,7 +8,7 @@ export class LightboxVideo {
 
   render() {
     const containerVideo = document.createElement('video')
-    containerVideo.classList.add('lightbox__container-img')
+    containerVideo.classList.add('lightbox__container-media')
     containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.mediaList.video}`
     containerVideo.controls = true
     return containerVideo

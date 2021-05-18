@@ -8,7 +8,7 @@ export class LightboxImage {
 
   render() {
     const containerImg = document.createElement('img')
-    containerImg.classList.add('lightbox__container-img')
+    containerImg.classList.add('lightbox__container-media')
     containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.mediaList.image}`
     return containerImg
   }

@@ -17,10 +17,37 @@
     background-color: transparent;
     color: $p_red;
     font-size: 1.5rem;
+    position: absolute;
 
     &__close {
-      right: 2%;
-      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-20%, 10vh);
+
+      @include for-tablet-landscape-up() {
+        top: 5vh;
+        right: 5vw;
+      }
+    }
+
+    &__prev {
+      left: 0;
+      top: 50%;
+      transform: translate(40%, -50%);
+
+      @include for-tablet-landscape-up() {
+        left: 5vw;
+      }
+    }
+
+    &__next {
+      right: 0;
+      top: 50%;
+      transform: translate(-40%, -50%);
+
+      @include for-tablet-landscape-up() {
+        right: 5vw;
+      }
     }
   }
 
@@ -30,17 +57,19 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    margin: 0 50px;
+    max-width: 80vw;
+    width: fit-content;
+    width: -moz-fit-content;
+    margin: auto;
 
-    &-img {
+    &-media {
       max-width: 100%;
       height: auto;
       border-radius: 5px;
       object-fit: contain;
 
       @include for-tablet-landscape-up() {
-        height: 900px;
-        width: 1050px;
+        max-height: 80vh;
       }
     }
 

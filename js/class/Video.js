@@ -32,7 +32,7 @@ export class Video {
     mediaVideoEl.classList.add('photographer-gallery__item');
     mediaVideoEl.innerHTML = `
       <a href="" class=".photographer-gallery__item-link">
-      <video class="photographer-gallery__item-vid">
+      <video class="photographer-gallery__item-media">
         <source src="./../Sample%20Photos/${photographerPath}/${this.video}" type="video/mp4">
       </video>
       </a>

@@ -36,7 +36,7 @@ export class Image {
         <img
           src="./../Sample%20Photos/${photographerPath}/${this.image}"
           alt="${this.image}"
-          class="photographer-gallery__item-img">
+          class="photographer-gallery__item-media">
     </picture>
     
     <span class="photographer-gallery__item-info">
