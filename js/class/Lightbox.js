@@ -13,6 +13,21 @@ export class Lightbox {
     this.mediaList = mediaList
     this.activeId = null
     this.index = null
+
+    /**
+     * Event Listener for close prev and next
+     */
+    lightBoxClose_btn.addEventListener('click', () => {
+      this.close()
+    })
+
+    lightBoxPrev_btn.addEventListener('click', () => {
+      this.prev()
+    })
+
+    lightBoxNext_btn.addEventListener('click', () => {
+      this.next()
+    })
   }
 
   /**
@@ -85,6 +100,9 @@ export class Lightbox {
   close() {
     lightBox_div.style.display = "none"
     lightBoxContainer_div.innerHTML = ''
+    lightBoxNext_btn.removeEventListener('click', () => {
+      this.next()
+    })
   }
 
   render(idMedia) {
@@ -95,6 +113,7 @@ export class Lightbox {
 
       if (this.activeId === this.mediaList[i].id) {
         this.index = this.mediaList.indexOf(this.mediaList[i])
+
         console.log('this.index = ' + this.index)
 
         if (this.mediaList[i].image) {
@@ -126,20 +145,6 @@ export class Lightbox {
       }
     }
 
-    /**
-     * Event Listener for close prev and next
-     */
-    lightBoxClose_btn.addEventListener('click', () => {
-      this.close()
-    })
-
-    lightBoxPrev_btn.addEventListener('click', () => {
-      this.prev()
-    })
-
-    lightBoxNext_btn.addEventListener('click', () => {
-      this.next()
-    })
   }
 
 }
