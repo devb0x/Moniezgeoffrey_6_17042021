@@ -210,6 +210,7 @@ a > img {
   resize: none;
 }
 .modal-btn {
+  cursor: pointer;
   color: white;
   background-color: #911d1d;
   border: none;
