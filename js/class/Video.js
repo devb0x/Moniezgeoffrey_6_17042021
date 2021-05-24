@@ -31,11 +31,11 @@ export class Video {
     const mediaVideoEl = document.createElement('div');
     mediaVideoEl.classList.add('photographer-gallery__item');
     mediaVideoEl.innerHTML = `
-      <a href="" class=".photographer-gallery__item-link">
+      <div class=".photographer-gallery__item-link">
       <video class="photographer-gallery__item-media">
         <source src="./../Sample%20Photos/${photographerPath}/${this.video}" type="video/mp4">
       </video>
-      </a>
+      </div>
       
       <span class="photographer-gallery__item-info">
         <h2 class="photographer-gallery__item-info-title">${this.title}</h2>

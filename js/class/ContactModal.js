@@ -45,7 +45,7 @@ export class ContactModal {
     const labelFname = document.createElement('label')
     labelFname.classList.add('modal-label')
     labelFname.setAttribute('for', 'lastname')
-    labelFname.innerText = 'Prénom'
+    labelFname.innerText = 'Nom'
     const inputFname = document.createElement('input')
     inputFname.classList.add('modal-input')
     inputFname.id = 'firstname'

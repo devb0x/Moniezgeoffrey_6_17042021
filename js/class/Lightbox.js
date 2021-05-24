@@ -7,12 +7,16 @@ const lightBoxClose_btn = document.querySelector('.lightbox-btn__close')
 const lightBoxPrev_btn = document.querySelector('.lightbox-btn__prev')
 const lightBoxNext_btn = document.querySelector('.lightbox-btn__next')
 
+/**
+ * Class representing the Lightbox
+ */
 export class Lightbox {
 
   constructor(mediaList) {
     this.mediaList = mediaList
     this.activeId = null
     this.index = null
+    this.onKeyUp = this.onKeyUp.bind(this)
 
     /**
      * Event Listener for close prev and next
@@ -28,6 +32,31 @@ export class Lightbox {
     lightBoxNext_btn.addEventListener('click', () => {
       this.next()
     })
+
+  }
+
+  /**
+   * function for preventing scroll
+   * used when we render & close the Lightbox
+   */
+  noScroll() {
+    window.scrollTo(0, 0)
+  }
+
+  /**
+   * Keyboard Event for navigation / close
+   * @param e
+   */
+  onKeyUp(e) {
+    if (e.key === 'Escape') {
+      this.close()
+    }
+    if (e.key === 'ArrowLeft') {
+      this.prev()
+    }
+    if (e.key === 'ArrowRight') {
+      this.next()
+    }
   }
 
   /**
@@ -89,12 +118,24 @@ export class Lightbox {
     lightBoxContainer_div.append(titleDiv)
   }
 
+  /**
+   * hide the Lightbox
+   * remove the scroll lock function
+   */
   close() {
+    window.removeEventListener('scroll', this.noScroll)
+    document.removeEventListener('keyup', this.onKeyUp)
     lightBox_div.style.display = "none"
     lightBoxContainer_div.innerHTML = ''
   }
 
   render(idMedia) {
+    /**
+     * lock scroll
+     */
+    window.addEventListener('scroll', this.noScroll)
+    document.addEventListener('keyup', this.onKeyUp)
+
     this.activeId = idMedia
     lightBox_div.style.display = "block"
 
@@ -131,6 +172,11 @@ export class Lightbox {
         lightBoxContainer_div.append(titleDiv)
       }
     }
+
+    /**
+     * set focus on the next btn
+     */
+    lightBoxNext_btn.focus()
 
   }
 

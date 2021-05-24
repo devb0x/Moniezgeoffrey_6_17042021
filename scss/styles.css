@@ -96,6 +96,11 @@ a > img {
   color: #911d1d;
   font-size: 1.5rem;
   position: absolute;
+  padding: 0;
+  outline: none;
+}
+.lightbox-btn:focus, .lightbox-btn:focus-visible, .lightbox-btn:active {
+  border-bottom: 2px solid;
 }
 .lightbox-btn__close {
   top: 0;
