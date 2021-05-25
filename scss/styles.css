@@ -383,6 +383,19 @@ a > img {
     font-size: 18px;
   }
 }
+.photographer .photographer-item__info-rate {
+  position: fixed;
+  bottom: 0;
+  right: 5%;
+  width: 23.5rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #db8876;
+  display: grid;
+  align-content: center;
+  text-align: center;
+}
 
 .photographer-gallery {
   width: 90%;

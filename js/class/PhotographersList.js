@@ -7,8 +7,13 @@ const photographers_section = document.querySelector('.photographers');
  */
 export class PhotographersList {
 
+  /**
+   * photographers[] for all photographers
+   * arrayFilter[] for photographers with the right tags
+   */
   constructor() {
     this.photographers = [];
+    this.arrayFilter = [];
   }
 
   /**
@@ -28,6 +33,21 @@ export class PhotographersList {
           this.addPhotographer(element);
         });
       });
+  }
+
+  /**
+   * Filter photographers from the url
+   * @param filter
+   */
+  getPhotographersByFilter(filter) {
+    this.photographers.forEach(el => {
+      el.tags.forEach(tag => {
+        if (tag.match(filter)) {
+          this.arrayFilter.push(el)
+        }
+      })
+      this.renderByFilter()
+    })
   }
 
   /**
@@ -61,35 +81,23 @@ export class PhotographersList {
   }
 
   /**
-   * Push Filter Photographer into an array from e.listener on .filter-btn
-   * @param e
+   * render photographers from tags
    */
-  filter(e) {
-    let arrayFilter;
-    arrayFilter = [];
-    this.resetRender();
-    let filter = e.target.innerText.substring(1).toLowerCase(); // remove #
+  renderByFilter() {
+    this.arrayFilter.forEach(el => {
+      const photographerItem = new Photographer(
+        el.name,
+        el.id,
+        el.city,
+        el.country,
+        el.tags,
+        el.tagline,
+        el.price,
+        el.portrait,
+      );
 
-    this.photographers.forEach(photographer => {
-      photographer.tags.forEach(tag => {
-        if (tag.match(filter)) {
-          arrayFilter.push(photographer);
-
-          const photographerItem = new Photographer(
-            photographer.name,
-            photographer.id,
-            photographer.city,
-            photographer.country,
-            photographer.tags,
-            photographer.tagline,
-            photographer.price,
-            photographer.portrait,
-          );
-
-          const photographerEl = photographerItem.render();
-          photographers_section.append(photographerEl);
-        }
-      })
+      const photographerEl = photographerItem.render(el);
+      photographers_section.append(photographerEl);
     })
   }
 
