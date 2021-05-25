@@ -51,11 +51,12 @@ export class Photographer {
 
     this.tags.forEach(el => {
       const span = document.createElement('span');
-      const btn = document.createElement('button');
+      const btn = document.createElement('a');
       btn.classList.add('filter-btn');
       tags_p.appendChild(span);
       span.appendChild(btn);
       btn.textContent = '#' + el;
+      btn.href = `/index.html?tag=${el}`
       filter.appendChild(span);
       parent.appendChild(span);
     });

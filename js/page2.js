@@ -126,6 +126,15 @@ function renderPhotographer() {
   infoTag.innerText = `${photograph[0].tagline}`
   infoDiv.appendChild(infoTag)
 
+  /**
+   * div bottom page for #likes & price/day
+   * @type {HTMLDivElement}
+   */
+  const infoRate = document.createElement('div')
+  infoRate.classList.add('photographer-item__info-rate')
+  infoRate.innerText = `total likes and ${photograph[0].price}` + '\u20AC / jour'
+  infoDiv.appendChild(infoRate)
+
   photographerEl.appendChild(header)
   photographerEl.appendChild(infoDiv)
 
@@ -141,11 +150,15 @@ function renderPhotographer() {
 
   photograph[0].tags.forEach(el => {
     const span = document.createElement('span');
-    const btn = document.createElement('button');
+    const btn = document.createElement('a');
     btn.classList.add('filter-btn');
     tags_p.appendChild(span);
     span.appendChild(btn);
     btn.textContent = '#' + el;
+    /**
+     * Filter redirect to homepage with correct filter
+     */
+    btn.href = `/index.html?tag=${el}`
     filter.appendChild(span);
     parent.appendChild(span);
   });
