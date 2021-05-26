@@ -26,15 +26,12 @@ export class ContactModal {
     const header = document.createElement('header')
     header.classList.add('modal-header')
     const title = document.createElement('h1')
-    title.innerText = 'Contactez-moi'
-    const span = document.createElement('span')
-    span.innerText = `${this.name}`
+    title.innerText = `Contactez-moi \n ${this.name}`
     const btnClose = document.createElement('button')
     btnClose.classList.add('modal-btn__close')
     btnClose.type = 'button'
     btnClose.innerHTML = `&#10006;`
     header.appendChild(title)
-    header.appendChild(span)
     header.appendChild(btnClose)
     form.append(header)
 

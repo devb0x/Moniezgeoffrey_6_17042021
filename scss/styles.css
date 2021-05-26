@@ -168,13 +168,25 @@ a > img {
 }
 
 .modal {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
   position: absolute;
   top: 0;
   left: 0;
   background-color: #db8876;
   z-index: 100;
+}
+@media (min-width: 37.5em) {
+  .modal {
+    min-width: 669px;
+    max-width: unset;
+    min-height: unset;
+    max-height: 900px;
+    margin: auto;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 .modal > form {
   display: flex;
@@ -183,7 +195,7 @@ a > img {
   margin: auto;
 }
 .modal-header > h1 {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 }
 .modal-header > * {
   font-size: 2.25rem;
@@ -204,7 +216,7 @@ a > img {
   border-radius: 5px;
   height: 52px;
   font-size: 1.5rem;
-  margin: 0.8rem 0 0.4rem 0;
+  margin: 0 0 0.4rem 0;
   border: none;
 }
 .modal-textarea {
@@ -225,6 +237,12 @@ a > img {
   font-size: 1.125rem;
   font-weight: bold;
   border-radius: 5px;
+}
+@media (min-width: 37.5em) {
+  .modal-btn {
+    margin: 2rem 0;
+    height: 69px;
+  }
 }
 
 .homepage-title {
