@@ -17,6 +17,7 @@ export class ContactModal {
     contactModal.classList.add('modal')
 
     const form = document.createElement('form')
+    form.id = 'formContact'
     contactModal.appendChild(form)
 
     /**
@@ -36,13 +37,13 @@ export class ContactModal {
     form.append(header)
 
     /**
-     * Nom
+     * Prénom
      * @type {HTMLLabelElement}
      */
     const labelFname = document.createElement('label')
     labelFname.classList.add('modal-label')
-    labelFname.setAttribute('for', 'lastname')
-    labelFname.innerText = 'Nom'
+    labelFname.setAttribute('for', 'firstname')
+    labelFname.innerText = 'Prénom'
     const inputFname = document.createElement('input')
     inputFname.classList.add('modal-input')
     inputFname.id = 'firstname'
@@ -51,13 +52,13 @@ export class ContactModal {
     form.append(inputFname)
 
     /**
-     * Prénom
+     * Nom
      * @type {HTMLLabelElement}
      */
     const labelLname = document.createElement('label')
     labelLname.classList.add('modal-label')
     labelLname.setAttribute('for', 'lastname')
-    labelLname.innerText = 'Prénom'
+    labelLname.innerText = 'Nom'
     const inputLname = document.createElement('input')
     inputLname.classList.add('modal-input')
     inputLname.id = 'lastname'
@@ -86,7 +87,7 @@ export class ContactModal {
      */
     const labelMessage = document.createElement('label')
     labelMessage.classList.add('modal-label')
-    labelMessage.setAttribute('for', 'email')
+    labelMessage.setAttribute('for', 'message')
     labelMessage.innerText = 'Votre message'
     labelMessage.id = 'message'
     const areaMessage = document.createElement('textarea')
@@ -100,6 +101,9 @@ export class ContactModal {
     button.classList.add('modal-btn')
     button.type = 'button'
     button.innerText = 'Envoyer'
+    button.addEventListener('click', () => {
+      this.submitForm()
+    })
     form.append(button)
 
     const photographerInfo = document.getElementsByClassName('photographer')
@@ -109,6 +113,16 @@ export class ContactModal {
   close() {
     const modal = document.getElementsByClassName('modal')
     modal[0].remove()
+  }
+
+  submitForm() {
+    console.log('form value submit')
+    const form = document.getElementById('formContact')
+    console.log(form.firstname.value)
+    console.log(form.lastname.value)
+    console.log(form.email.value)
+    console.log(form.message.value)
+    this.close()
   }
 
 }
