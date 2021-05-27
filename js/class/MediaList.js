@@ -11,6 +11,7 @@ export class MediaList {
 
   constructor() {
     this.media = []
+    this.totalLikes = 0
   }
 
   getMedia() {
@@ -28,10 +29,17 @@ export class MediaList {
           }
         }
       })
+      .then(this.likesSum())
   }
 
   addMedia(mediaList) {
     this.media.push(mediaList)
+  }
+
+  likesSum() {
+    this.media.forEach(el =>
+      this.totalLikes += el.likes)
+    return this.totalLikes
   }
 
   renderMedia() {
@@ -81,6 +89,7 @@ export class MediaList {
 
     })
 
+    this.likesSum()
     const myLightbox = new Lightbox(this.media)
 
   }
