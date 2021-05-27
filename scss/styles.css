@@ -356,7 +356,7 @@ a > img {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 5%;
+  bottom: 6%;
   color: white;
   background-color: #911d1d;
   border: none;
@@ -410,9 +410,11 @@ a > img {
   font-size: 1.5rem;
   font-weight: bold;
   background-color: #db8876;
-  display: grid;
-  align-content: center;
-  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+.photographer .photographer-item__info-rate > * {
+  margin: auto;
 }
 
 .photographer-gallery {
@@ -421,6 +423,7 @@ a > img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding-bottom: 4rem;
 }
 .photographer-gallery__filter {
   margin-bottom: 2rem;

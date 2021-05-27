@@ -33,6 +33,52 @@ switch (photographerId) {
 }
 
 /**
+ * Filter Event Listener
+ */
+menuFilter.addEventListener('change', () => {
+  const value = menuFilter.value
+
+  if (value === 'popularity') {
+    mediaList.media.sort(
+      (x, y) => {
+        if (x.likes < y.likes)
+          return 1
+        if (x.likes > y.likes)
+          return -1
+        return 0
+      }
+    )
+    renderFiltered()
+  }
+
+  if (value === 'title') {
+    mediaList.media.sort(
+      (x, y) => {
+        if (x.title.toLowerCase() < y.title.toLowerCase())
+          return -1
+        if (x.title.toLowerCase() > y.title.toLowerCase())
+          return 1
+        return 0
+      }
+    )
+    renderFiltered()
+  }
+
+  if (value === 'date') {
+    mediaList.media.sort(
+      (x, y) => {
+        if (x.date < y.date)
+          return 1
+        if (x.date > y.date)
+          return -1
+        return 0
+      }
+    )
+    renderFiltered()
+  }
+})
+
+/**
  * DOM selector
  * @type {Element}
  */
@@ -44,6 +90,7 @@ const photographer_section = document.querySelector('.photographer');
  */
 let data = [];
 let photograph = [];
+let totalLikes = 0;
 
 function getPhotographerById() {
 
@@ -77,9 +124,8 @@ function getPhotographerById() {
  * We generate DOM for photographer
  */
 function renderPhotographer() {
-
-  const photographerEl = document.createElement('div');
-  photographerEl.classList.add('photographer-item');
+  const photographerEl = document.createElement('div')
+  photographerEl.classList.add('photographer-item')
 
   /**
    * header photographer, with img, h1 & button
@@ -132,9 +178,13 @@ function renderPhotographer() {
    */
   const infoRate = document.createElement('div')
   infoRate.classList.add('photographer-item__info-rate')
-  infoRate.innerText = `total likes and ${photograph[0].price}` + '\u20AC / jour'
+  const likesSpan = document.createElement('span')
+  likesSpan.innerHTML = `${mediaList.totalLikes} <i class="fas fa-heart"></i>`
+  infoRate.appendChild(likesSpan)
+  const priceSpan = document.createElement('span')
+  priceSpan.innerText = `${photograph[0].price}` + '\u20AC / jour'
+  infoRate.appendChild(priceSpan)
   infoDiv.appendChild(infoRate)
-
   photographerEl.appendChild(header)
   photographerEl.appendChild(infoDiv)
 
@@ -170,63 +220,23 @@ function renderFiltered() {
   document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e));
   mediaList.renderMedia()
 }
-/**
- * Get the id then
- * Displaying photographer informations on the top of the page
- */
-getPhotographerById().then(() => {
-  renderPhotographer()
-})
+
 
 /**
  * Displaying list of media from photographer Id
  * @type {MediaList}
  */
 const mediaList = new MediaList();
-mediaList.getMedia().then(() => mediaList.renderMedia());
+mediaList.getMedia()
+  .then(() => mediaList.renderMedia())
+
 
 /**
- * Filter Event Listener
+ * Get the id then
+ * Displaying photographer informations on the top of the page
  */
-menuFilter.addEventListener('change', () => {
-  const value = menuFilter.value
-
-  if (value === 'popularity') {
-    mediaList.media.sort(
-      (x, y) => {
-        if (x.likes < y.likes)
-          return 1
-        if (x.likes > y.likes)
-          return -1
-        return 0
-      }
-    )
-    renderFiltered()
-  }
-
-  if (value === 'title') {
-    mediaList.media.sort(
-      (x, y) => {
-        if (x.title.toLowerCase() < y.title.toLowerCase())
-          return -1
-        if (x.title.toLowerCase() > y.title.toLowerCase())
-          return 1
-        return 0
-      }
-    )
-    renderFiltered()
-  }
-
-  if (value === 'date') {
-    mediaList.media.sort(
-      (x, y) => {
-        if (x.date < y.date)
-          return 1
-        if (x.date > y.date)
-          return -1
-        return 0
-      }
-    )
-    renderFiltered()
-  }
-})
+getPhotographerById()
+  .then(
+    () => {
+      renderPhotographer()
+    })
