@@ -1,6 +1,7 @@
-import { Image } from "./Image.js"
-import { Video } from "./Video.js"
-import { Lightbox } from "./Lightbox.js"
+import {Image} from "./Image.js"
+import {Video} from "./Video.js"
+import {Lightbox} from "./Lightbox.js"
+import {MediaFactory} from "./MediaFactory.js";
 
 const photographerGallery_div = document.querySelector('.photographer-gallery')
 
@@ -46,26 +47,41 @@ export class MediaList {
 
     this.media.forEach(el => {
 
-      if (el.image) {
-        const mediaItem = new Image(
-          el.id,
-          el.photographerId,
-          el.title,
-          el.image,
-          el.tags,
-          el.likes,
-          el.date,
-          el.price
-        );
-        const imageEl = mediaItem.render()
-        photographerGallery_div.append(imageEl)
+      new MediaFactory('image',
+        el.photographerId,
+        el.title,
+        el.image,
+        el.tags,
+        el.likes,
+        el.date,
+        el.price
+      )
+      // const imageEl = MediaFactory.render()
+      // photographerGallery_div.append(imageEl)
 
-        imageEl.addEventListener('click', (e) => {
-          e.preventDefault()
-          myLightbox.render(el.id)
-        })
 
-      }
+      new MediaFactory('video')
+
+      // if (el.image) {
+      //   const mediaItem = new Image(
+      //     el.id,
+      //     el.photographerId,
+      //     el.title,
+      //     el.image,
+      //     el.tags,
+      //     el.likes,
+      //     el.date,
+      //     el.price
+      //   );
+      //   const imageEl = mediaItem.render()
+      //   photographerGallery_div.append(imageEl)
+
+      // imageEl.addEventListener('click', (e) => {
+      //   e.preventDefault()
+      //   myLightbox.render(el.id)
+      // })
+
+      // }
 
       if (el.video) {
         const mediaItem = new Video(

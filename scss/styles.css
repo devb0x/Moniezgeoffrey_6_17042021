@@ -499,6 +499,11 @@ a > img {
 }
 .photographer-gallery__item-info-likes {
   margin: auto 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #911d1d;
 }
 .photographer-gallery__item-info-likes i {
   margin-left: 0.225rem;

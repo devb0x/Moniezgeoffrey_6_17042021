@@ -30,24 +30,82 @@ export class Image {
 
     const mediaImageEl = document.createElement('div');
     mediaImageEl.classList.add('photographer-gallery__item');
-    mediaImageEl.innerHTML = `
-    
-    <picture>
-        <img
-          src="./../Sample%20Photos/${photographerPath}/${this.image}"
-          alt="${this.image}"
-          class="photographer-gallery__item-media">
-    </picture>
-    
-    <span class="photographer-gallery__item-info">
-      <h2 class="photographer-gallery__item-info-title">${this.title}</h2>
-      <div class="photographer-gallery__item-info-price">${this.price} &euro;</div>
-      <div class="photographer-gallery__item-info-likes">${this.likes}<i class="fas fa-heart"></i></div>
-    </span>
-  `;
+
+    /**
+     * picture and img balise
+     * @type {HTMLPictureElement}
+     */
+    const pictureEl = document.createElement('picture')
+    const imgEl = document.createElement('img')
+    imgEl.src = `./../Sample%20Photos/${photographerPath}/${this.image}`
+    imgEl.alt = `${this.image}`
+    imgEl.classList.add('photographer-gallery__item-media')
+    pictureEl.appendChild(imgEl)
+    mediaImageEl.appendChild(pictureEl)
+
+    const spanInfo = document.createElement('span')
+    spanInfo.classList.add('photographer-gallery__item-info')
+
+    /**
+     * title
+     * @type {HTMLHeadingElement}
+     */
+    const infoTitle = document.createElement('h2')
+    infoTitle.classList.add('photographer-gallery__item-info-title')
+    infoTitle.innerText = `${this.title}`
+    spanInfo.appendChild(infoTitle)
+
+    /**
+     * price
+     * @type {HTMLDivElement}
+     */
+    const infoPrice = document.createElement('div')
+    infoPrice.classList.add('photographer-gallery__item-info-price')
+    infoPrice.innerHTML = `${this.price} &euro;`
+    spanInfo.appendChild(infoPrice)
+
+    /**
+     * likes btn
+     * @type {HTMLButtonElement}
+     */
+    const btnLikes = document.createElement('button')
+    btnLikes.classList.add('photographer-gallery__item-info-likes')
+    btnLikes.innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
+    spanInfo.appendChild(btnLikes)
+    mediaImageEl.appendChild(spanInfo)
+
+
+    btnLikes.addEventListener('click', () => {
+      console.log('test clic like btn')
+      // this.likes++
+      // console.log(this.likes)
+      this.updateLike()
+      // this.test()
+    })
 
     return mediaImageEl;
   }
 
-}
+  updateLike() {
+    const likes = document.querySelectorAll('.photographer-gallery__item-info-likes')
+    for (let i = 0; i < likes.length; i++) {
+      likes[i].addEventListener('click', () => {
+        console.log('update like fction' + this.likes)
+        // this.likes++
+        // likes[i].innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
+        this.test([i])
+      })
+    }
+  }
 
+  test(i) {
+    console.log('test fction')
+    this.likes++
+    const likes = document.querySelectorAll('.photographer-gallery__item-info-likes')
+    likes[i].innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
+
+  }
+
+
+
+}

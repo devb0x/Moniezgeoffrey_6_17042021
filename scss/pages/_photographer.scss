@@ -212,6 +212,11 @@
 
       &-likes {
         margin: auto 0;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: $p_red;
 
         i {
           margin-left: 0.225rem;

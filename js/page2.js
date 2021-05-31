@@ -208,7 +208,7 @@ function renderPhotographer() {
     /**
      * Filter redirect to homepage with correct filter
      */
-    btn.href = `/index.html?tag=${el}`
+    btn.href = `/?tag=${el}`
     filter.appendChild(span);
     parent.appendChild(span);
   });
