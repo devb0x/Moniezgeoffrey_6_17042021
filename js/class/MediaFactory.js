@@ -4,11 +4,11 @@ import {photographerPath} from "../page2.js";
 
 export class MediaFactory {
 
-  constructor(type, photographerId, title, image, video, tags, likes, date, price) {
-    if (type === "image") {
+  constructor({photographerId, title,  tags, likes, date, price, image, video}) {
+    if (image) {
       return new Image(photographerId, title, image, tags, likes, date, price);
     }
-    if (type === "video") {
+    if (video) {
       return new Video(photographerId, title, video, tags, likes, date, price);
     }
   }

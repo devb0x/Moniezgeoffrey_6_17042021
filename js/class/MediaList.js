@@ -47,20 +47,24 @@ export class MediaList {
 
     this.media.forEach(el => {
 
-      new MediaFactory('image',
-        el.photographerId,
-        el.title,
-        el.image,
-        el.tags,
-        el.likes,
-        el.date,
-        el.price
+      const newMedia = new MediaFactory(
+        {
+          photographerId: el.photographerId,
+          title: el.title,
+          tags: el.tags,
+          likes: el.likes,
+          date: el.date,
+          price: el.price,
+          image: el.image,
+          video: el.video
+        }
       )
+      newMedia.render()
       // const imageEl = MediaFactory.render()
       // photographerGallery_div.append(imageEl)
 
 
-      new MediaFactory('video')
+      // new MediaFactory('video')
 
       // if (el.image) {
       //   const mediaItem = new Image(
