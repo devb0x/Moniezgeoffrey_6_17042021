@@ -27,7 +27,6 @@ export class Video {
   }
 
   render() {
-
     const mediaVideoEl = document.createElement('div');
     mediaVideoEl.classList.add('photographer-gallery__item');
     mediaVideoEl.innerHTML = `

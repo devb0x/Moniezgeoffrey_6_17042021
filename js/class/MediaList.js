@@ -49,6 +49,7 @@ export class MediaList {
 
       const newMedia = new MediaFactory(
         {
+          id: el.id,
           photographerId: el.photographerId,
           title: el.title,
           tags: el.tags,
@@ -59,58 +60,13 @@ export class MediaList {
           video: el.video
         }
       )
-      newMedia.render()
-      // const imageEl = MediaFactory.render()
-      // photographerGallery_div.append(imageEl)
 
-
-      // new MediaFactory('video')
-
-      // if (el.image) {
-      //   const mediaItem = new Image(
-      //     el.id,
-      //     el.photographerId,
-      //     el.title,
-      //     el.image,
-      //     el.tags,
-      //     el.likes,
-      //     el.date,
-      //     el.price
-      //   );
-      //   const imageEl = mediaItem.render()
-      //   photographerGallery_div.append(imageEl)
-
-      // imageEl.addEventListener('click', (e) => {
-      //   e.preventDefault()
-      //   myLightbox.render(el.id)
-      // })
-
-      // }
-
-      if (el.video) {
-        const mediaItem = new Video(
-          el.id,
-          el.photographerId,
-          el.title,
-          el.video,
-          el.tags,
-          el.likes,
-          el.date,
-          el.price
-        );
-        const videoEl = mediaItem.render()
-        photographerGallery_div.append(videoEl)
-
-        videoEl.addEventListener('click', (e) => {
-          e.preventDefault()
-          myLightbox.render(el.id)
-        })
-      }
-
+      const mediaHTML = newMedia.render()
+      photographerGallery_div.append(mediaHTML)
     })
 
     this.likesSum()
-    const myLightbox = new Lightbox(this.media)
+    // const myLightbox = new Lightbox(this.media)
 
   }
 
