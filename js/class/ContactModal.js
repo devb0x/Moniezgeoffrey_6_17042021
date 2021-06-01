@@ -3,6 +3,10 @@
  */
 export class ContactModal {
 
+  /**
+   * photographer name
+   * @param name
+   */
   constructor(name) {
     this.name = name
     this.render()
@@ -12,6 +16,9 @@ export class ContactModal {
     })
   }
 
+  /**
+   * create DOM & display the contact form modal
+   */
   render() {
     const contactModal = document.createElement('div')
     contactModal.classList.add('modal')
@@ -37,7 +44,7 @@ export class ContactModal {
     form.append(header)
 
     /**
-     * Prénom
+     * Firstname
      * @type {HTMLLabelElement}
      */
     const labelFname = document.createElement('label')
@@ -52,7 +59,7 @@ export class ContactModal {
     form.append(inputFname)
 
     /**
-     * Nom
+     * Lastname
      * @type {HTMLLabelElement}
      */
     const labelLname = document.createElement('label')
@@ -97,6 +104,10 @@ export class ContactModal {
     form.append(labelMessage)
     form.append(areaMessage)
 
+    /**
+     * Button submit form
+     * @type {HTMLButtonElement}
+     */
     const button = document.createElement('button')
     button.classList.add('modal-btn')
     button.type = 'button'
@@ -110,11 +121,18 @@ export class ContactModal {
     photographerInfo[0].append(contactModal)
   }
 
+  /**
+   * Remove DOM elements & close the modal
+   */
   close() {
     const modal = document.getElementsByClassName('modal')
     modal[0].remove()
   }
 
+  /**
+   * Submit function
+   * Form value display in the console
+   */
   submitForm() {
     console.log('form value submit')
     const form = document.getElementById('formContact')

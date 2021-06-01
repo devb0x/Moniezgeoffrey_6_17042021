@@ -26,6 +26,10 @@ export class Video {
     this.price = price;
   }
 
+  /**
+   *
+   * @returns {HTMLDivElement}
+   */
   render() {
     const mediaVideoEl = document.createElement('div');
     mediaVideoEl.classList.add('photographer-gallery__item');

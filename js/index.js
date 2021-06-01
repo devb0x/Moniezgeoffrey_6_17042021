@@ -1,5 +1,9 @@
 import { PhotographersList } from "./class/PhotographersList.js";
 
+/**
+ *
+ * @type {URLSearchParams}
+ */
 const params = new URLSearchParams(document.location.search)
 let filter = params.get('tag')
 
@@ -49,7 +53,6 @@ function checkUrl() {
  * Generate photographersList & render
  * @type {PhotographersList}
  */
-
 const photographersList = new PhotographersList();
 photographersList
   .getPhotographers()

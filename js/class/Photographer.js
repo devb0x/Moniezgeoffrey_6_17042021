@@ -3,6 +3,17 @@
  */
 export class Photographer {
 
+  /**
+   * Create a Photographer
+   * @param name
+   * @param id
+   * @param city
+   * @param country
+   * @param tags
+   * @param tagline
+   * @param price
+   * @param portrait
+   */
   constructor(name, id, city, country, tags, tagline, price, portrait) {
     this.name = name;
     this.id = id;
@@ -14,6 +25,10 @@ export class Photographer {
     this.portrait = portrait;
   }
 
+  /**
+   * Generate Dom & display photographer info
+   * @returns {HTMLDivElement}
+   */
   render() {
     const photographerEl = document.createElement('div');
     photographerEl.classList.add('photographer-item');

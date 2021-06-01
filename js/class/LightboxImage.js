@@ -2,10 +2,18 @@ import { photographerPath } from "../page2.js";
 
 export class LightboxImage {
 
+  /**
+   * Create Image for Lightbox
+   * @param mediaList
+   */
   constructor(mediaList) {
     this.mediaList = mediaList
   }
 
+  /**
+   * Create the <img> and the src
+   * @returns {HTMLImageElement}
+   */
   render() {
     const containerImg = document.createElement('img')
     containerImg.classList.add('lightbox__container-media')

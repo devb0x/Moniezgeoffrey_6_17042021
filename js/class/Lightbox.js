@@ -1,6 +1,10 @@
 import { LightboxImage } from "./LightboxImage.js";
 import { LightboxVideo } from "./LightboxVideo.js";
 
+/**
+ * const DOM elements
+ * @type {HTMLElement}
+ */
 const lightBox_div = document.getElementById('lightbox')
 const lightBoxContainer_div = document.querySelector('.lightbox__container')
 const lightBoxClose_btn = document.querySelector('.lightbox-btn__close')
@@ -66,6 +70,9 @@ export class Lightbox {
     lightBoxContainer_div.innerHTML = ''
   }
 
+  /**
+   * Display next element after resetting the lightbox html
+   */
   next() {
     this.index += 1
     /**
@@ -92,6 +99,9 @@ export class Lightbox {
     lightBoxContainer_div.append(titleDiv)
   }
 
+  /**
+   * Display previous element after resetting the lightbox html
+   */
   prev() {
     this.index -= 1
     /**

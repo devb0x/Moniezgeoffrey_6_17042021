@@ -2,6 +2,10 @@ import { Photographer } from "./class/Photographer.js"
 import { MediaList } from "./class/MediaList.js"
 import { ContactModal } from "./class/ContactModal.js";
 
+/**
+ * const used
+ * @type {URLSearchParams}
+ */
 const params = new URLSearchParams(document.location.search)
 const photographerId = Number(params.get('id'))
 const menuFilter = document.getElementById('filter')
@@ -216,11 +220,14 @@ function renderPhotographer() {
   photographer_section.appendChild(photographerEl);
 }
 
+/**
+ * clear the DOM
+ * display media
+ */
 function renderFiltered() {
   document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e));
   mediaList.renderMedia()
 }
-
 
 /**
  * Displaying list of media from photographer Id
@@ -229,7 +236,6 @@ function renderFiltered() {
 const mediaList = new MediaList();
 mediaList.getMedia()
   .then(() => mediaList.renderMedia())
-
 
 /**
  * Get the id then

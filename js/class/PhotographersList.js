@@ -64,6 +64,9 @@ export class PhotographersList {
    */
   render() {
     this.photographers.forEach(el => {
+      /**
+       * @type {Photographer}
+       */
       const photographerItem = new Photographer(
         el.name,
         el.id,
@@ -75,7 +78,7 @@ export class PhotographersList {
         el.portrait,
       );
 
-      const photographerEl = photographerItem.render(el);
+      const photographerEl = photographerItem.render();
       photographers_section.append(photographerEl);
     })
   }
