@@ -99,7 +99,7 @@ export class PhotographersList {
         el.portrait,
       );
 
-      const photographerEl = photographerItem.render(el);
+      const photographerEl = photographerItem.render();
       photographers_section.append(photographerEl);
     })
   }
