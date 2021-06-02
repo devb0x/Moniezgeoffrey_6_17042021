@@ -76,9 +76,11 @@ export class Image {
 
     /**
      * Event Listener click on like button
+     * We prevent propagation for not displaying the Lightbox when we
+     * clic on the like button
      */
-    btnLikes.addEventListener('click', () => {
-      console.log('test clic like btn')
+    btnLikes.addEventListener('click', (e) => {
+      e.stopPropagation()
       this.updateLike()
     })
 
@@ -89,17 +91,21 @@ export class Image {
    * increment the like value
    */
   updateLike() {
-    console.log('update like started')
-    console.log(this.likes)
     this.likes = this.likes + 1
-    console.log(this.likes)
-    console.log(event.currentTarget)
+
+    /**
+     * update the DOM of the media
+     * @type {string}
+     */
     event.currentTarget.innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
 
+    /**
+     * update the number of total likes
+     * @type {HTMLElement}
+     */
     const totalLikes_span = document.getElementById('likes')
     let value = totalLikes_span.innerText
     value++
-
     totalLikes_span.innerHTML = `${value} <i class="fas fa-heart"></i>`
   }
 

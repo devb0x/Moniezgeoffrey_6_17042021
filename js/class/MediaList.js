@@ -88,12 +88,12 @@ export class MediaList {
       const mediaHTML = newMedia.render()
       photographerGallery_div.append(mediaHTML)
 
-      // /**
-      //  * event listener for lightbox opening
-      //  */
-      // mediaHTML.addEventListener('click', () => {
-      //   myLightbox.render(el.id)
-      // })
+      /**
+       * event listener for lightbox opening
+       */
+      mediaHTML.addEventListener('click', () => {
+          myLightbox.render(el.id)
+      })
     })
 
     /**
