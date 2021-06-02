@@ -74,6 +74,9 @@ export class Image {
     spanInfo.appendChild(btnLikes)
     mediaImageEl.appendChild(spanInfo)
 
+    /**
+     * Event Listener click on like button
+     */
     btnLikes.addEventListener('click', () => {
       console.log('test clic like btn')
       this.updateLike()
@@ -82,28 +85,22 @@ export class Image {
     return mediaImageEl;
   }
 
+  /**
+   * increment the like value
+   */
   updateLike() {
-    const likes = document.querySelectorAll('.photographer-gallery__item-info-likes')
-    for (let i = 0; i < likes.length; i++) {
-      likes[i].addEventListener('click', () => {
-        console.log('update like fction' + this.likes)
-        // this.likes++
-        // likes[i].innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
-        this.test([i])
-      })
-    }
+    console.log('update like started')
+    console.log(this.likes)
+    this.likes = this.likes + 1
+    console.log(this.likes)
+    console.log(event.currentTarget)
+    event.currentTarget.innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
+
+    const totalLikes_span = document.getElementById('likes')
+    let value = totalLikes_span.innerText
+    value++
+
+    totalLikes_span.innerHTML = `${value} <i class="fas fa-heart"></i>`
   }
-
-  test(i) {
-    console.log('test fction')
-    this.likes++
-    const likes = document.querySelectorAll('.photographer-gallery__item-info-likes')
-    likes[i].innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
-
-  }
-
-
-
-
 
 }

@@ -43,7 +43,6 @@ export class MediaList {
           }
         }
       })
-      .then(this.likesSum())
   }
 
   /**
@@ -54,10 +53,14 @@ export class MediaList {
     this.media.push(mediaList)
   }
 
+  /**
+   * calcul the total of likes for the photographer
+   * @returns {number}
+   */
   likesSum() {
     this.media.forEach(el =>
       this.totalLikes += el.likes)
-    return this.totalLikes
+      return this.totalLikes
   }
 
   /**
@@ -85,16 +88,24 @@ export class MediaList {
       const mediaHTML = newMedia.render()
       photographerGallery_div.append(mediaHTML)
 
-      /**
-       * open lightbox
-       */
-      mediaHTML.addEventListener('click', () => {
-        myLightbox.render(el.id)
-      })
+      // /**
+      //  * event listener for lightbox opening
+      //  */
+      // mediaHTML.addEventListener('click', () => {
+      //   myLightbox.render(el.id)
+      // })
     })
-    // eslint-disable-next-line no-unused-vars
-    const myLightbox = new Lightbox(this.media)
 
+    /**
+     * render the total of likes on the page
+     */
+    this.likesSum()
+
+    /**
+     * create the Lightbox
+     * @type {Lightbox}
+     */
+    const myLightbox = new Lightbox(this.media)
   }
 
 }

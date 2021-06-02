@@ -183,6 +183,7 @@ function renderPhotographer() {
   const infoRate = document.createElement('div')
   infoRate.classList.add('photographer-item__info-rate')
   const likesSpan = document.createElement('span')
+  likesSpan.id = 'likes'
   likesSpan.innerHTML = `${mediaList.totalLikes} <i class="fas fa-heart"></i>`
   infoRate.appendChild(likesSpan)
   const priceSpan = document.createElement('span')
