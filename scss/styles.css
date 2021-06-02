@@ -99,8 +99,9 @@ a > img {
   padding: 0;
   outline: none;
 }
-.lightbox-btn:focus, .lightbox-btn:focus-visible, .lightbox-btn:active {
+.lightbox-btn:focus, .lightbox-btn:focus-visible, .lightbox-btn:active, .lightbox-btn:hover {
   border-bottom: 2px solid;
+  cursor: pointer;
 }
 .lightbox-btn__close {
   top: 0;

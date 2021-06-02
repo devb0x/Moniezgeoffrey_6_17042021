@@ -74,12 +74,6 @@ export class Image {
     spanInfo.appendChild(btnLikes)
     mediaImageEl.appendChild(spanInfo)
 
-    // imgEl.addEventListener('click', () => {
-    //   console.log('event clic on imgEl')
-    //   // new Lightbox.render(this.id)
-    //   const myLightbox = Lightbox.render(this.id)
-    // })
-
     btnLikes.addEventListener('click', () => {
       console.log('test clic like btn')
       this.updateLike()

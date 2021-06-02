@@ -80,6 +80,11 @@ export class Lightbox {
     titleDiv.classList.add('lightbox__container-title')
     titleDiv.innerHTML = `${this.mediaList[this.index].title}`
     lightBoxContainer_div.append(titleDiv)
+
+    /**
+     * set focus
+     */
+    lightBoxNext_btn.focus()
   }
 
   prev() {
@@ -106,6 +111,11 @@ export class Lightbox {
     titleDiv.classList.add('lightbox__container-title')
     titleDiv.innerHTML = `${this.mediaList[this.index].title}`
     lightBoxContainer_div.append(titleDiv)
+
+    /**
+     * set focus
+     */
+    lightBoxPrev_btn.focus()
   }
 
   close() {
@@ -120,6 +130,7 @@ export class Lightbox {
    */
   render(idMedia) {
     this.activeId = idMedia
+
     lightBox_div.style.display = "block"
 
     for (let i = 0; i < this.mediaList.length; i++) {
