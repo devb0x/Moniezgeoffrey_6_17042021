@@ -71,7 +71,7 @@ export class Photographer {
       tags_p.appendChild(span);
       span.appendChild(btn);
       btn.textContent = '#' + el;
-      btn.href = `./?tag=${el}`
+      btn.href = `?tag=${el}`
       filter.appendChild(span);
       parent.appendChild(span);
     });

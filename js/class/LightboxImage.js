@@ -1,5 +1,8 @@
 import { photographerPath } from "../page2.js";
 
+/**
+ * Class representing the LightboxImage
+ */
 export class LightboxImage {
 
   /**

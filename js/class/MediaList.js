@@ -1,4 +1,5 @@
-import {MediaFactory} from "./MediaFactory.js";
+import { MediaFactory } from "./MediaFactory.js";
+import { Lightbox } from "./Lightbox.js";
 
 /**
  * const
@@ -10,7 +11,7 @@ const params = new URLSearchParams(document.location.search)
 const photographerId = Number(params.get("id"))
 
 /**
- * classe representing the MediaList
+ * Class representing the MediaList
  */
 export class MediaList {
 
@@ -68,7 +69,6 @@ export class MediaList {
      * loop inside media array then create the class with MediaFactory
      */
     this.media.forEach(el => {
-
       const newMedia = new MediaFactory(
         {
           id: el.id,
@@ -82,13 +82,18 @@ export class MediaList {
           video: el.video
         }
       )
-
       const mediaHTML = newMedia.render()
       photographerGallery_div.append(mediaHTML)
-    })
 
-    this.likesSum()
-    // const myLightbox = new Lightbox(this.media)
+      /**
+       * open lightbox
+       */
+      mediaHTML.addEventListener('click', () => {
+        myLightbox.render(el.id)
+      })
+    })
+    // eslint-disable-next-line no-unused-vars
+    const myLightbox = new Lightbox(this.media)
 
   }
 

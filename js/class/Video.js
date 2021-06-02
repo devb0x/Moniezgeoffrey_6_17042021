@@ -50,4 +50,8 @@ export class Video {
     return mediaVideoEl
   }
 
+  renderLightbox() {
+    console.log('video stuff')
+  }
+
 }

@@ -74,13 +74,15 @@ export class Image {
     spanInfo.appendChild(btnLikes)
     mediaImageEl.appendChild(spanInfo)
 
+    // imgEl.addEventListener('click', () => {
+    //   console.log('event clic on imgEl')
+    //   // new Lightbox.render(this.id)
+    //   const myLightbox = Lightbox.render(this.id)
+    // })
 
     btnLikes.addEventListener('click', () => {
       console.log('test clic like btn')
-      // this.likes++
-      // console.log(this.likes)
       this.updateLike()
-      // this.test()
     })
 
     return mediaImageEl;
@@ -105,6 +107,8 @@ export class Image {
     likes[i].innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
 
   }
+
+
 
 
 

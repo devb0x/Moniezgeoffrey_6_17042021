@@ -2,7 +2,7 @@ import { Image } from "./Image.js";
 import { Video } from "./Video.js";
 
 /**
- * Class representinf the MediaFactory
+ * Class representing the MediaFactory
  */
 export class MediaFactory {
 

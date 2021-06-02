@@ -1,10 +1,6 @@
 import { LightboxImage } from "./LightboxImage.js";
 import { LightboxVideo } from "./LightboxVideo.js";
 
-/**
- * const DOM elements
- * @type {HTMLElement}
- */
 const lightBox_div = document.getElementById('lightbox')
 const lightBoxContainer_div = document.querySelector('.lightbox__container')
 const lightBoxClose_btn = document.querySelector('.lightbox-btn__close')
@@ -20,7 +16,6 @@ export class Lightbox {
     this.mediaList = mediaList
     this.activeId = null
     this.index = null
-    this.onKeyUp = this.onKeyUp.bind(this)
 
     /**
      * Event Listener for close prev and next
@@ -37,30 +32,21 @@ export class Lightbox {
       this.next()
     })
 
-  }
-
-  /**
-   * function for preventing scroll
-   * used when we render & close the Lightbox
-   */
-  noScroll() {
-    window.scrollTo(0, 0)
-  }
-
-  /**
-   * Keyboard Event for navigation / close
-   * @param e
-   */
-  onKeyUp(e) {
-    if (e.key === 'Escape') {
-      this.close()
-    }
-    if (e.key === 'ArrowLeft') {
-      this.prev()
-    }
-    if (e.key === 'ArrowRight') {
-      this.next()
-    }
+    /**
+     * Keyboard Event for navigation / close
+     * @param e
+     */
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'Escape') {
+        this.close()
+      }
+      if (e.key === 'ArrowLeft') {
+        this.prev()
+      }
+      if (e.key === 'ArrowRight') {
+        this.next()
+      }
+    })
   }
 
   /**
@@ -70,15 +56,12 @@ export class Lightbox {
     lightBoxContainer_div.innerHTML = ''
   }
 
-  /**
-   * Display next element after resetting the lightbox html
-   */
   next() {
     this.index += 1
     /**
      * If we are on the last element, display the first one
      */
-    if (this.index > this.mediaList.length -1) {
+    if (this.index > this.mediaList.length - 1) {
       this.index = 0
     }
     this.reset()
@@ -99,16 +82,13 @@ export class Lightbox {
     lightBoxContainer_div.append(titleDiv)
   }
 
-  /**
-   * Display previous element after resetting the lightbox html
-   */
   prev() {
     this.index -= 1
     /**
      * If we are on first element, display the last one
      */
     if (this.index < 0) {
-      this.index = this.mediaList.length -1
+      this.index = this.mediaList.length - 1
     }
     this.reset()
 
@@ -128,24 +108,17 @@ export class Lightbox {
     lightBoxContainer_div.append(titleDiv)
   }
 
-  /**
-   * hide the Lightbox
-   * remove the scroll lock function
-   */
   close() {
-    window.removeEventListener('scroll', this.noScroll)
-    document.removeEventListener('keyup', this.onKeyUp)
     lightBox_div.style.display = "none"
     lightBoxContainer_div.innerHTML = ''
   }
 
+  /**
+   * Display the Lightbox
+   * @param idMedia
+   * @returns {Element}
+   */
   render(idMedia) {
-    /**
-     * lock scroll
-     */
-    window.addEventListener('scroll', this.noScroll)
-    document.addEventListener('keyup', this.onKeyUp)
-
     this.activeId = idMedia
     lightBox_div.style.display = "block"
 
@@ -180,13 +153,10 @@ export class Lightbox {
         titleDiv.classList.add('lightbox__container-title')
         titleDiv.innerHTML = `${this.mediaList[i].title}`
         lightBoxContainer_div.append(titleDiv)
+
+        return lightBoxContainer_div
       }
     }
-
-    /**
-     * set focus on the next btn
-     */
-    lightBoxNext_btn.focus()
 
   }
 
