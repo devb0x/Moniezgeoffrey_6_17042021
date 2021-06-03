@@ -72,6 +72,7 @@ export class Image {
     btnLikes.classList.add('photographer-gallery__item-info-likes')
     btnLikes.innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
     spanInfo.appendChild(btnLikes)
+
     mediaImageEl.appendChild(spanInfo)
 
     /**
