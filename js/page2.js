@@ -213,7 +213,7 @@ function renderPhotographer() {
     /**
      * Filter redirect to homepage with correct filter
      */
-    btn.href = `/?tag=${el}`
+    btn.href = `../?tag=${el}`
     filter.appendChild(span);
     parent.appendChild(span);
   });

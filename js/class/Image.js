@@ -26,8 +26,15 @@ export class Image {
     this.price = price;
   }
 
+  /**
+   * render Image
+   * @returns {HTMLDivElement}
+   */
   render() {
-
+    /**
+     * parent div for image media
+     * @type {HTMLDivElement}
+     */
     const mediaImageEl = document.createElement('div');
     mediaImageEl.classList.add('photographer-gallery__item');
 

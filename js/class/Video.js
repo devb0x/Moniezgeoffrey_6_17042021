@@ -27,7 +27,7 @@ export class Video {
   }
 
   /**
-   *
+   * render Video
    * @returns {HTMLDivElement}
    */
   render() {
