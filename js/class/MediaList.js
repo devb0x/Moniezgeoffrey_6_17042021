@@ -1,5 +1,6 @@
 import { MediaFactory } from "./MediaFactory.js";
-import { Lightbox } from "./Lightbox.js";
+import { LightboxFactory } from "./LightboxFactory.js";
+import {Lightbox} from "./Lightbox.js";
 
 /**
  * const
@@ -7,6 +8,8 @@ import { Lightbox } from "./Lightbox.js";
  * @type {Element}
  */
 const photographerGallery_div = document.querySelector('.photographer-gallery')
+const lightbox_div = document.getElementsByClassName('lightbox__container')
+
 const params = new URLSearchParams(document.location.search)
 const photographerId = Number(params.get("id"))
 
@@ -67,11 +70,16 @@ export class MediaList {
    * display media
    */
   renderMedia() {
+    const myLightbox = new Lightbox(this.media)
 
     /**
      * loop inside media array then create the class with MediaFactory
      */
+      let arrayTest = []
     this.media.forEach(el => {
+
+      this.index = this.media.indexOf(el)
+
       const newMedia = new MediaFactory(
         {
           id: el.id,
@@ -88,24 +96,46 @@ export class MediaList {
       const mediaHTML = newMedia.render()
       photographerGallery_div.append(mediaHTML)
 
+      const newLightboxMedia = new LightboxFactory(
+        {
+          id: el.id,
+          photographerId: el.photographerId,
+          title: el.title,
+          image: el.image,
+          video: el.video,
+          index: this.index,
+        }
+      )
+      // console.log(newLightboxMedia)
+      arrayTest.push(newLightboxMedia)
       /**
        * event listener for lightbox opening
        */
       mediaHTML.addEventListener('click', () => {
-          myLightbox.render(el.id)
+        // const xxx = newLightboxMedia.render() ???
+        // const test = new Lightbox(el).render
+        // newLightboxMedia.render()
+        // const newLightboxMedia = new LightboxFactory(
+        //   {
+        //     id: el.id,
+        //     photographerId: el.photographerId,
+        //     title: el.title,
+        //     image: el.image,
+        //     video: el.video,
+        //     index: this.index
+        //   }
+        // )
+
+        myLightbox.render(newLightboxMedia)
       })
     })
+
+    console.log(arrayTest)
 
     /**
      * render the total of likes on the page
      */
     this.likesSum()
-
-    /**
-     * create the Lightbox
-     * @type {Lightbox}
-     */
-    const myLightbox = new Lightbox(this.media)
   }
 
 }

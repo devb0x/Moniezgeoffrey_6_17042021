@@ -97,7 +97,6 @@ let photograph = [];
 let totalLikes = 0;
 
 function getPhotographerById() {
-
   return fetch('https://raw.githubusercontent.com/devb0x/Moniezgeoffrey_6_17042021/master/file.json')
     .then(response => {
       if (!response.ok) {

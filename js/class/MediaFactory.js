@@ -19,7 +19,7 @@ export class MediaFactory {
    * @param video
    * @returns {Video|Image}
    */
-  constructor({id, photographerId, title,  tags, likes, date, price, image, video}) {
+  constructor({id, photographerId, title, tags, likes, date, price, image, video}) {
     if (image) {
       return new Image(id, photographerId, title, image, tags, likes, date, price);
     }
