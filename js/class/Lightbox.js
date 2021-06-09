@@ -70,7 +70,7 @@ export class Lightbox {
     this.reset()
     //
     if (this.mediaList[this.index].image) {
-      const lightboxImage = new LightboxImage(this.mediaList[this.index])
+      const lightboxImage = new LightboxImage(this.mediaList[this.index]).render()
       lightBoxContainer_div.append(lightboxImage)
     }
 
@@ -107,7 +107,7 @@ export class Lightbox {
       console.log('image')
       // const lightboxImage = new LightboxImage(this.mediaList[this.index]).render()
       console.log(this.mediaList[this.index])
-      const lightboxImage = new LightboxImage.render(this.mediaList[this.index])
+      const lightboxImage = new LightboxImage(this.mediaList[this.index]).render()
       lightBoxContainer_div.append(lightboxImage)
     }
 
