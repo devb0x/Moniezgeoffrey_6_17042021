@@ -1,5 +1,4 @@
 import { photographerPath } from "../../page2.js";
-import { Lightbox } from "./Lightbox.js";
 
 const lightbox_div = document.getElementsByClassName('lightbox__container')[0]
 // const lightBox_parent_div = document.getElementById('lightbox')

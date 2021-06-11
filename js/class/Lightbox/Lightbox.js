@@ -48,6 +48,23 @@ export class Lightbox {
   }
 
   /**
+   * Create a new media
+   * @returns {LightboxFactory}
+   */
+  newMedia() {
+    const lightboxMedia = new LightboxFactory(
+      {
+        id: this.mediaList[this.index].id,
+        photographerId: this.mediaList[this.index].photographerId,
+        title: this.mediaList[this.index].title,
+        image: this.mediaList[this.index].image,
+        video: this.mediaList[this.index].video,
+      }
+    )
+    return lightboxMedia
+  }
+
+  /**
    * Remove the <img> inside the container of the lightbox
    */
   reset() {
@@ -67,16 +84,7 @@ export class Lightbox {
     }
     this.reset()
 
-    const lightboxMedia = new LightboxFactory(
-      {
-        id: this.mediaList[this.index].id,
-        photographerId: this.mediaList[this.index].photographerId,
-        title: this.mediaList[this.index].title,
-        image: this.mediaList[this.index].image,
-        video: this.mediaList[this.index].video,
-      }
-    )
-    lightboxMedia.render()
+    this.newMedia().render()
 
     /**
      * set focus
@@ -86,8 +94,6 @@ export class Lightbox {
   }
 
   prev() {
-    // console.error(arrayTest)
-
     this.index -= 1
     /**
      * If we are on first element, display the last one
@@ -97,16 +103,7 @@ export class Lightbox {
     }
     this.reset()
 
-    const lightboxMedia = new LightboxFactory(
-      {
-        id: this.mediaList[this.index].id,
-        photographerId: this.mediaList[this.index].photographerId,
-        title: this.mediaList[this.index].title,
-        image: this.mediaList[this.index].image,
-        video: this.mediaList[this.index].video,
-      }
-    )
-    lightboxMedia.render()
+    this.newMedia().render()
 
     /**
      * set focus
@@ -122,20 +119,14 @@ export class Lightbox {
     lightBoxContainer_div.innerHTML = ''
   }
 
+  /**
+   * Display lightbox
+   * @param idMedia
+   */
   render(idMedia) {
     this.index = idMedia
     this.open()
-
-    const lightboxMedia = new LightboxFactory(
-      {
-      id: this.mediaList[this.index].id,
-      photographerId: this.mediaList[this.index].photographerId,
-      title: this.mediaList[this.index].title,
-      image: this.mediaList[this.index].image,
-      video: this.mediaList[this.index].video,
-      }
-    )
-    lightboxMedia.render()
+    this.newMedia().render()
   }
 
   /**
