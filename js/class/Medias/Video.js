@@ -1,4 +1,4 @@
-import { photographerPath } from "../page2.js";
+import { photographerPath } from "../../page2.js";
 
 /**
  * Class representing a Video

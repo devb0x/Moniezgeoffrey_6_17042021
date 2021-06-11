@@ -1,5 +1,5 @@
-import { MediaFactory } from "./MediaFactory.js";
-import { Lightbox } from "./Lightbox.js";
+import { MediaFactory } from "./Medias/MediaFactory.js";
+import { Lightbox } from "./Lightbox/Lightbox.js";
 
 /**
  * const
@@ -7,6 +7,7 @@ import { Lightbox } from "./Lightbox.js";
  * @type {Element}
  */
 const photographerGallery_div = document.querySelector('.photographer-gallery')
+
 const params = new URLSearchParams(document.location.search)
 const photographerId = Number(params.get("id"))
 
@@ -71,7 +72,8 @@ export class MediaList {
     /**
      * loop inside media array then create the class with MediaFactory
      */
-    this.media.forEach(el => {
+    this.media.forEach((el, index) => {
+
       const newMedia = new MediaFactory(
         {
           id: el.id,
@@ -92,20 +94,16 @@ export class MediaList {
        * event listener for lightbox opening
        */
       mediaHTML.addEventListener('click', () => {
-          myLightbox.render(el.id)
+        const myLightbox = new Lightbox(this.media)
+        myLightbox.render(index)
       })
-    })
+
+    }) // end forEach
 
     /**
      * render the total of likes on the page
      */
     this.likesSum()
-
-    /**
-     * create the Lightbox
-     * @type {Lightbox}
-     */
-    const myLightbox = new Lightbox(this.media)
   }
 
 }
