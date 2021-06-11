@@ -1,5 +1,3 @@
-import { LightboxImage } from "./LightboxImage.js";
-import { LightboxVideo } from "./LightboxVideo.js";
 import {LightboxFactory} from "./LightboxFactory.js";
 
 const lightBox_parent_div = document.getElementById('lightbox')
@@ -14,11 +12,8 @@ const lightBoxNext_btn = document.querySelector('.lightbox-btn__next')
 export class Lightbox {
 
   constructor(mediaList) {
-    console.warn('lightbox created')
     this.mediaList = mediaList
-    this.activeId = null
     this.index = null
-    console.log(this.index)
 
     /**
      * Event Listener for close prev and next
@@ -63,8 +58,6 @@ export class Lightbox {
    * Next media
    */
   next() {
-    console.log(this.mediaList)
-    console.log(this.index)
     this.index += 1
     /**
      * If we are on the last element, display the first one
@@ -74,42 +67,16 @@ export class Lightbox {
     }
     this.reset()
 
-    console.warn(this.index)
-    // this.mediaList[this.index]
-    // console.log(this.mediaList)
-
-    const newMedia = new LightboxFactory(
+    const lightboxMedia = new LightboxFactory(
       {
         id: this.mediaList[this.index].id,
         photographerId: this.mediaList[this.index].photographerId,
         title: this.mediaList[this.index].title,
         image: this.mediaList[this.index].image,
         video: this.mediaList[this.index].video,
-        // index: this.media.indexOf(el),
-      })
-    newMedia.render()
-
-    //
-    // if (this.mediaList[this.index].image) {
-    //   const lightboxImage = new LightboxImage(this.mediaList[this.index]).render()
-    //   lightBoxContainer_div.append(lightboxImage)
-    // }
-    //
-    // if (this.mediaList[this.index].video) {
-    //   const lightboxVideo = new LightboxVideo(this.mediaList[this.index]).render()
-    //   lightBoxContainer_div.append(lightboxVideo)
-    // }
-
-    // const mediaDiv = document.createElement('div')
-    // mediaDiv.classList.add('CLASSTOADD')
-    // mediaDiv.innerHTML = `${this.mediaList[this.index].image}`
-    //
-    // const titleDiv = document.createElement('div')
-    // titleDiv.classList.add('lightbox__container-title')
-    // titleDiv.innerHTML = `${this.mediaList[this.index].title}`
-    //
-    // lightBoxContainer_div.append(mediaDiv)
-    // lightBoxContainer_div.append(titleDiv)
+      }
+    )
+    lightboxMedia.render()
 
     /**
      * set focus
@@ -128,52 +95,18 @@ export class Lightbox {
     if (this.index < 0) {
       this.index = this.mediaList.length - 1
     }
-    console.error(this.index)
     this.reset()
 
-    // if (this.mediaList[this.index].image) {
-    //   console.log('image')
-    //   // const lightboxImage = new LightboxImage(this.mediaList[this.index]).render()
-    //   console.log(this.mediaList[this.index])
-    //   const lightboxImage = new LightboxImage(this.mediaList[this.index]).render()
-    //   lightBoxContainer_div.append(lightboxImage)
-    // }
-    //
-    // if (this.mediaList[this.index].video) {
-    //   console.log('video')
-    //   const lightboxVideo = new LightboxVideo(this.mediaList[this.index]).render()
-    //   lightBoxContainer_div.append(lightboxVideo)
-    // }
-
-    const lightboxMedia = new LightboxFactory({
-      id: this.mediaList[this.index].id,
-      photographerId: this.mediaList[this.index].photographerId,
-      title: this.mediaList[this.index].title,
-      image: this.mediaList[this.index].image,
-      video: this.mediaList[this.index].video,
-    })
-    console.warn(this.index)
-    console.log(lightboxMedia)
+    const lightboxMedia = new LightboxFactory(
+      {
+        id: this.mediaList[this.index].id,
+        photographerId: this.mediaList[this.index].photographerId,
+        title: this.mediaList[this.index].title,
+        image: this.mediaList[this.index].image,
+        video: this.mediaList[this.index].video,
+      }
+    )
     lightboxMedia.render()
-
-
-
-    // const lightboxMedia = new LightboxFactory(
-    //   {
-    //     id: this.mediaList.id,
-    //     photographerId: this.mediaList.photographerId,
-    //     title: this.mediaList.title,
-    //     image: this.mediaList.image,
-    //     video: this.mediaList.video,
-    //     index: this.index,
-    //   }
-    // )
-    // console.log(lightboxMedia)
-
-    // const titleDiv = document.createElement('div')
-    // titleDiv.classList.add('lightbox__container-title')
-    // titleDiv.innerHTML = `${this.mediaList[this.index].title}`
-    // lightBoxContainer_div.append(titleDiv)
 
     /**
      * set focus
@@ -181,6 +114,9 @@ export class Lightbox {
     lightBoxPrev_btn.focus()
   }
 
+  /**
+   * Close Lightbox
+   */
   close() {
     lightBox_parent_div.style.display = "none"
     lightBoxContainer_div.innerHTML = ''
@@ -188,84 +124,23 @@ export class Lightbox {
 
   render(idMedia) {
     this.index = idMedia
-    console.log('start render from Lightbox')
     this.open()
-    console.warn(this.index)
-    // console.log(newLightboxMedia)
-    // this.index = newLightboxMedia.index
-    // newLightboxMedia.render()
-    // this.activeId = el.id
-    const lightboxMedia = new LightboxFactory({
+
+    const lightboxMedia = new LightboxFactory(
+      {
       id: this.mediaList[this.index].id,
       photographerId: this.mediaList[this.index].photographerId,
       title: this.mediaList[this.index].title,
       image: this.mediaList[this.index].image,
       video: this.mediaList[this.index].video,
-    })
-    console.log(lightboxMedia)
+      }
+    )
     lightboxMedia.render()
-
-    // lightBox_parent_div.style.display = "block"
-
-    // if (el.image) {
-    //   console.log(el)
-    // }
-    // if (el.image) {
-    //   /**
-    //    * Create a new LightboxImage
-    //    * @type {HTMLImageElement}
-    //    */
-    //   const lightboxImage = new LightboxImage.render(el)
-    //   lightBoxContainer_div.append(lightboxImage)
-    // }
-
-    // if (el.video) {
-    //   /**
-    //    * Create a new LightboxImage
-    //    * @type {HTMLImageElement}
-    //    */
-    //   const lightboxVideo = new LightboxVideo.render()
-    //   lightBoxContainer_div.append(lightboxVideo)
-    // }
-
-    // for (let i = 0; i < this.mediaList.length; i++) {
-
-      // if (this.activeId === this.mediaList[i].id) {
-      //   this.index = this.mediaList.indexOf(this.mediaList[i])
-
-        // if (this.image) {
-        //   /**
-        //    * Create a new LightboxImage
-        //    * @type {HTMLImageElement}
-        //    */
-        //   const lightboxImage = new LightboxImage(this.mediaList[i]).render()
-        //   lightBoxContainer_div.append(lightboxImage)
-        // }
-
-        // if (this.mediaList[i].video) {
-        //   /**
-        //    * Create a new LightboxVideo
-        //    * @type {HTMLVideoElement}
-        //    */
-        //   const lightboxVideo = new LightboxVideo(this.mediaList[i]).render()
-        //   lightBoxContainer_div.append(lightboxVideo)
-        // }
-
-        /**
-         * Create <div> for the title image
-         * @type {HTMLDivElement}
-         */
-    //     const titleDiv = document.createElement('div')
-    //     titleDiv.classList.add('lightbox__container-title')
-    //     titleDiv.innerHTML = `${el.title}`
-    //     lightBoxContainer_div.append(titleDiv)
-    //
-    //     return lightBoxContainer_div
-    //   }
-    // }
-
   }
 
+  /**
+   * Add style for display
+   */
   open() {
     lightBox_parent_div.style.display = "block"
   }

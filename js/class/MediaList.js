@@ -1,6 +1,5 @@
 import { MediaFactory } from "./Medias/MediaFactory.js";
-import { LightboxFactory } from "./Lightbox/LightboxFactory.js";
-import {Lightbox} from "./Lightbox/Lightbox.js";
+import { Lightbox } from "./Lightbox/Lightbox.js";
 
 /**
  * const
@@ -8,7 +7,6 @@ import {Lightbox} from "./Lightbox/Lightbox.js";
  * @type {Element}
  */
 const photographerGallery_div = document.querySelector('.photographer-gallery')
-const lightbox_div = document.getElementsByClassName('lightbox__container')
 
 const params = new URLSearchParams(document.location.search)
 const photographerId = Number(params.get("id"))
@@ -70,14 +68,11 @@ export class MediaList {
    * display media
    */
   renderMedia() {
-    // const myLightbox = new Lightbox(this.media)
 
     /**
      * loop inside media array then create the class with MediaFactory
      */
     this.media.forEach((el, index) => {
-
-      // this.index = this.media.indexOf(el)
 
       const newMedia = new MediaFactory(
         {
@@ -95,37 +90,14 @@ export class MediaList {
       const mediaHTML = newMedia.render()
       photographerGallery_div.append(mediaHTML)
 
-      // const newLightboxMedia = new LightboxFactory(
-      //   {
-      //     id: el.id,
-      //     photographerId: el.photographerId,
-      //     title: el.title,
-      //     image: el.image,
-      //     video: el.video,
-      //     index: this.index,
-      //   }
-      // )
-      // console.log(newLightboxMedia)
       /**
        * event listener for lightbox opening
        */
       mediaHTML.addEventListener('click', () => {
-        // const newLightboxMedia = new LightboxFactory(
-        //   {
-        //     id: el.id,
-        //     photographerId: el.photographerId,
-        //     title: el.title,
-        //     image: el.image,
-        //     video: el.video,
-        //     // index: this.index
-        //     index: this.media.indexOf(el),
-        //   }
-        // )
-        // console.log(this.index)
-        // newLightboxMedia.render()
         const myLightbox = new Lightbox(this.media)
         myLightbox.render(index)
       })
+
     }) // end forEach
 
     /**
