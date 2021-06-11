@@ -1,4 +1,4 @@
-import { photographerPath } from "../page2.js";
+import { photographerPath } from "../../page2.js";
 import { Lightbox } from "./Lightbox.js";
 
 const lightbox_div = document.getElementsByClassName('lightbox__container')[0]
@@ -6,23 +6,23 @@ const lightbox_div = document.getElementsByClassName('lightbox__container')[0]
 
 
 /**
- * Class representing the LightboxImage
+ * Class representing the LightboxVideo
  */
-export class LightboxImage {
+export class LightboxVideo {
 
   /**
    *
    * @param id
    * @param photographerId
    * @param title
-   * @param image
+   * @param video
    * @param index
    */
-  constructor(id, photographerId, title, image, index) {
-    this.id = id
-    this.photographerId = photographerId
-    this.title = title
-    this.image = image
+  constructor(id, photographerId, title, video, index) {
+    this.id = id;
+    this.photographerId = photographerId;
+    this.title = title;
+    this.video = video;
     this.index = index
   }
 
@@ -30,16 +30,14 @@ export class LightboxImage {
    * open the lightbox & render media
    */
   render() {
-    console.log(this.index)
-    Lightbox.open()
-
     /**
-     * create img
-     * @type {HTMLImageElement}
+     * create video
+     * @type {HTMLVideoElement}
      */
-    const containerImg = document.createElement('img')
-    containerImg.classList.add('lightbox__container-media')
-    containerImg.src= `./../Sample%20Photos/${photographerPath}/${this.image}`
+    const containerVideo = document.createElement('video')
+    containerVideo.classList.add('lightbox__container-media')
+    containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.video}`
+    containerVideo.controls = true
 
     /**
      * create title
@@ -52,10 +50,10 @@ export class LightboxImage {
     /**
      * add HTML Element to the DOM
      */
-    lightbox_div.append(containerImg)
+    lightbox_div.append(containerVideo)
     lightbox_div.append(titleDiv)
 
-    return LightboxImage
+    // return LightboxVideo
   }
 
 }

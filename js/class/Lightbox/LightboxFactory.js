@@ -15,12 +15,12 @@ export class LightboxFactory {
    * @param index
    * @returns {LightboxImage|LightboxVideo}
    */
-  constructor({id, photographerId, title, image, video, index}) {
+  constructor({id, photographerId, title, image, video}) {
     if (image) {
-      return new LightboxImage(id, photographerId, title, image, index)
+      return new LightboxImage(id, photographerId, title, image)
     }
     if (video) {
-      return new LightboxVideo(id, photographerId, title, video, index)
+      return new LightboxVideo(id, photographerId, title, video)
     }
   }
 

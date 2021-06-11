@@ -1,6 +1,6 @@
-import { MediaFactory } from "./MediaFactory.js";
-import { LightboxFactory } from "./LightboxFactory.js";
-import {Lightbox} from "./Lightbox.js";
+import { MediaFactory } from "./Medias/MediaFactory.js";
+import { LightboxFactory } from "./Lightbox/LightboxFactory.js";
+import {Lightbox} from "./Lightbox/Lightbox.js";
 
 /**
  * const
@@ -70,15 +70,14 @@ export class MediaList {
    * display media
    */
   renderMedia() {
-    const myLightbox = new Lightbox(this.media)
+    // const myLightbox = new Lightbox(this.media)
 
     /**
      * loop inside media array then create the class with MediaFactory
      */
-      let arrayTest = []
-    this.media.forEach(el => {
+    this.media.forEach((el, index) => {
 
-      this.index = this.media.indexOf(el)
+      // this.index = this.media.indexOf(el)
 
       const newMedia = new MediaFactory(
         {
@@ -96,25 +95,21 @@ export class MediaList {
       const mediaHTML = newMedia.render()
       photographerGallery_div.append(mediaHTML)
 
-      const newLightboxMedia = new LightboxFactory(
-        {
-          id: el.id,
-          photographerId: el.photographerId,
-          title: el.title,
-          image: el.image,
-          video: el.video,
-          index: this.index,
-        }
-      )
+      // const newLightboxMedia = new LightboxFactory(
+      //   {
+      //     id: el.id,
+      //     photographerId: el.photographerId,
+      //     title: el.title,
+      //     image: el.image,
+      //     video: el.video,
+      //     index: this.index,
+      //   }
+      // )
       // console.log(newLightboxMedia)
-      arrayTest.push(newLightboxMedia)
       /**
        * event listener for lightbox opening
        */
       mediaHTML.addEventListener('click', () => {
-        // const xxx = newLightboxMedia.render() ???
-        // const test = new Lightbox(el).render
-        // newLightboxMedia.render()
         // const newLightboxMedia = new LightboxFactory(
         //   {
         //     id: el.id,
@@ -122,15 +117,16 @@ export class MediaList {
         //     title: el.title,
         //     image: el.image,
         //     video: el.video,
-        //     index: this.index
+        //     // index: this.index
+        //     index: this.media.indexOf(el),
         //   }
         // )
-
-        myLightbox.render(newLightboxMedia)
+        // console.log(this.index)
+        // newLightboxMedia.render()
+        const myLightbox = new Lightbox(this.media)
+        myLightbox.render(index)
       })
-    })
-
-    console.log(arrayTest)
+    }) // end forEach
 
     /**
      * render the total of likes on the page
