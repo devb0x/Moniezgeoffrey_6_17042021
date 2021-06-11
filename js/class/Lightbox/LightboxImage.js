@@ -1,8 +1,6 @@
 import { photographerPath } from "../../page2.js";
 
 const lightbox_div = document.getElementsByClassName('lightbox__container')[0]
-// const lightBox_parent_div = document.getElementById('lightbox')
-
 
 /**
  * Class representing the LightboxImage

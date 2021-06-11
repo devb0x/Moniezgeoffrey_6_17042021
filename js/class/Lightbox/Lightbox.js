@@ -52,7 +52,7 @@ export class Lightbox {
    * @returns {LightboxFactory}
    */
   newMedia() {
-    const lightboxMedia = new LightboxFactory(
+    return new LightboxFactory(
       {
         id: this.mediaList[this.index].id,
         photographerId: this.mediaList[this.index].photographerId,
@@ -61,7 +61,6 @@ export class Lightbox {
         video: this.mediaList[this.index].video,
       }
     )
-    return lightboxMedia
   }
 
   /**
