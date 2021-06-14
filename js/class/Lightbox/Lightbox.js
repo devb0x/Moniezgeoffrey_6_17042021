@@ -14,6 +14,15 @@ export class Lightbox {
   constructor(mediaList) {
     this.mediaList = mediaList
     this.index = null
+    this.focusableEl = [
+      lightBoxClose_btn,
+      lightBoxPrev_btn,
+      lightBoxNext_btn,
+    ]
+
+    // this.getKeyboardFocusableElements()
+    // console.log(this.getKeyboardFocusableElements())
+    // console.log(this.focusableEl[1])
 
     /**
      * Event Listener for close prev and next
@@ -34,7 +43,7 @@ export class Lightbox {
      * Keyboard Event for navigation / close
      * @param e
      */
-    document.addEventListener('keyup', (e) => {
+    document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         this.close()
       }
@@ -44,8 +53,82 @@ export class Lightbox {
       if (e.key === 'ArrowRight') {
         this.next()
       }
+      if (e.key === 'Tab') {
+        e.preventDefault()
+        console.warn('tab pressed')
+        // this.focusableEl[0].focus()
+        /**
+         * 0 = close
+         * 1 = prev
+         * 2 = next
+         */
+        console.log(document.activeElement)
+
+        switch (document.activeElement) {
+          case lightBoxClose_btn:
+            // e.preventDefault()
+
+            console.log('1')
+            lightBoxPrev_btn.focus()
+            break
+          case lightBoxPrev_btn:
+            // e.preventDefault()
+            lightBoxNext_btn.focus()
+            console.log('2')
+            break
+          case lightBoxNext_btn:
+            // e.preventDefault()
+
+            console.log('3')
+            lightBoxClose_btn.focus()
+            break
+        }
+      }
     })
   }
+
+
+    // this.tabLock()
+
+
+
+  // tabLock() {
+  //   document.addEventListener('keyup', (e) => {
+  //
+  //     if (e.key === 'Tab') {
+  //       e.preventDefault()
+  //       console.warn('tab pressed')
+  //       // this.focusableEl[0].focus()
+  //       /**
+  //        * 0 = close
+  //        * 1 = prev
+  //        * 2 = next
+  //        */
+  //       console.log(document.activeElement)
+  //
+  //       switch (document.activeElement) {
+  //         case lightBoxClose_btn:
+  //           e.preventDefault()
+  //
+  //           console.log('1')
+  //           lightBoxPrev_btn.focus()
+  //           break
+  //         case lightBoxPrev_btn:
+  //           e.preventDefault()
+  //           lightBoxNext_btn.focus()
+  //           console.log('2')
+  //           break
+  //         case lightBoxNext_btn:
+  //           e.preventDefault()
+  //
+  //           console.log('3')
+  //           lightBoxClose_btn.focus()
+  //           break
+  //       }
+  //     }
+  //   })
+  //
+  // }
 
   /**
    * Create a new media
@@ -89,7 +172,6 @@ export class Lightbox {
      * set focus
      */
     lightBoxNext_btn.focus()
-
   }
 
   prev() {
@@ -114,8 +196,8 @@ export class Lightbox {
    * Close Lightbox
    */
   close() {
+    this.reset()
     lightBox_parent_div.style.display = "none"
-    lightBoxContainer_div.innerHTML = ''
   }
 
   /**
@@ -126,6 +208,8 @@ export class Lightbox {
     this.index = idMedia
     this.open()
     this.newMedia().render()
+
+    lightBoxNext_btn.focus()
   }
 
   /**

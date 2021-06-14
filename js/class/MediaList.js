@@ -98,7 +98,7 @@ export class MediaList {
         myLightbox.render(index)
       })
 
-    }) // end forEach
+    })
 
     /**
      * render the total of likes on the page
