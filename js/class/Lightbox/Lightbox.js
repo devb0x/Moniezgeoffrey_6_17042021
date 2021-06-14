@@ -53,82 +53,51 @@ export class Lightbox {
       if (e.key === 'ArrowRight') {
         this.next()
       }
-      if (e.key === 'Tab') {
+      if (!e.shiftKey && e.key === 'Tab') {
         e.preventDefault()
         console.warn('tab pressed')
-        // this.focusableEl[0].focus()
-        /**
-         * 0 = close
-         * 1 = prev
-         * 2 = next
-         */
         console.log(document.activeElement)
 
         switch (document.activeElement) {
-          case lightBoxClose_btn:
-            // e.preventDefault()
-
-            console.log('1')
+          case lightBoxClose_btn: // close to prev
+            console.log('tab 1')
             lightBoxPrev_btn.focus()
             break
-          case lightBoxPrev_btn:
-            // e.preventDefault()
-            lightBoxNext_btn.focus()
-            console.log('2')
-            break
-          case lightBoxNext_btn:
-            // e.preventDefault()
 
-            console.log('3')
+          case lightBoxPrev_btn: // prev to next
+            console.log('tab 2')
+            lightBoxNext_btn.focus()
+            break
+
+          case lightBoxNext_btn: // next to close
+            console.log('tab 3')
             lightBoxClose_btn.focus()
             break
         }
       }
+
+      if (e.shiftKey && e.key === 'Tab') {
+        e.preventDefault()
+        switch (document.activeElement) {
+          case lightBoxClose_btn: // close to next
+            console.log('shit tab 1')
+            lightBoxNext_btn.focus()
+            break
+
+          case lightBoxPrev_btn: // prev to close
+            console.log('shit tab 2')
+            lightBoxClose_btn.focus()
+            break
+
+          case lightBoxNext_btn: // next to prev
+            console.log('shit tab 3')
+            lightBoxPrev_btn.focus()
+            break
+        }
+      }
     })
+  //  TODO remove eventListener on close()
   }
-
-
-    // this.tabLock()
-
-
-
-  // tabLock() {
-  //   document.addEventListener('keyup', (e) => {
-  //
-  //     if (e.key === 'Tab') {
-  //       e.preventDefault()
-  //       console.warn('tab pressed')
-  //       // this.focusableEl[0].focus()
-  //       /**
-  //        * 0 = close
-  //        * 1 = prev
-  //        * 2 = next
-  //        */
-  //       console.log(document.activeElement)
-  //
-  //       switch (document.activeElement) {
-  //         case lightBoxClose_btn:
-  //           e.preventDefault()
-  //
-  //           console.log('1')
-  //           lightBoxPrev_btn.focus()
-  //           break
-  //         case lightBoxPrev_btn:
-  //           e.preventDefault()
-  //           lightBoxNext_btn.focus()
-  //           console.log('2')
-  //           break
-  //         case lightBoxNext_btn:
-  //           e.preventDefault()
-  //
-  //           console.log('3')
-  //           lightBoxClose_btn.focus()
-  //           break
-  //       }
-  //     }
-  //   })
-  //
-  // }
 
   /**
    * Create a new media
@@ -198,6 +167,8 @@ export class Lightbox {
   close() {
     this.reset()
     lightBox_parent_div.style.display = "none"
+
+    // document.removeEventListener()
   }
 
   /**
