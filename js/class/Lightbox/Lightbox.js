@@ -14,16 +14,6 @@ export class Lightbox {
   constructor(mediaList) {
     this.mediaList = mediaList
     this.index = null
-    this.focusableEl = [
-      lightBoxClose_btn,
-      lightBoxPrev_btn,
-      lightBoxNext_btn,
-    ]
-
-    // this.getKeyboardFocusableElements()
-    // console.log(this.getKeyboardFocusableElements())
-    // console.log(this.focusableEl[1])
-
     /**
      * Event Listener for close prev and next
      */
@@ -39,124 +29,67 @@ export class Lightbox {
       this.next()
     })
 
-    this.navigation()
-    // document.addEventListener('keydown', () => {
-    //   e.preventDefault()
-    // })
-    // /**
-    //  * Keyboard Event for navigation / close
-    //  * @param e
-    //  */
-    // document.addEventListener('keydown', (e) => {
-    //   if (e.key === 'Escape') {
-    //     this.close()
-    //   }
-    //   if (e.key === 'ArrowLeft') {
-    //     this.prev()
-    //   }
-    //   if (e.key === 'ArrowRight') {
-    //     this.next()
-    //   }
-    //   if (!e.shiftKey && e.key === 'Tab') {
-    //     e.preventDefault()
-    //     console.warn('tab pressed')
-    //     console.log(document.activeElement)
-    //
-    //     switch (document.activeElement) {
-    //       case lightBoxClose_btn: // close to prev
-    //         console.log('tab 1')
-    //         lightBoxPrev_btn.focus()
-    //         break
-    //
-    //       case lightBoxPrev_btn: // prev to next
-    //         console.log('tab 2')
-    //         lightBoxNext_btn.focus()
-    //         break
-    //
-    //       case lightBoxNext_btn: // next to close
-    //         console.log('tab 3')
-    //         lightBoxClose_btn.focus()
-    //         break
-    //     }
-    //   }
-    //
-    //   if (e.shiftKey && e.key === 'Tab') {
-    //     e.preventDefault()
-    //     switch (document.activeElement) {
-    //       case lightBoxClose_btn: // close to next
-    //         console.log('shit tab 1')
-    //         lightBoxNext_btn.focus()
-    //         break
-    //
-    //       case lightBoxPrev_btn: // prev to close
-    //         console.log('shit tab 2')
-    //         lightBoxClose_btn.focus()
-    //         break
-    //
-    //       case lightBoxNext_btn: // next to prev
-    //         console.log('shit tab 3')
-    //         lightBoxPrev_btn.focus()
-    //         break
-    //     }
-    //   }
-    // })
-  //  TODO remove eventListener on close()
+    this.navigation = this.navigation.bind(this)
+
+    document.addEventListener('keydown', this.navigation)
   }
 
-  navigation() {
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        this.close()
+  /**
+   * Listen to keydown for navigation and close inside the lightbox
+   * @param e
+   */
+  navigation(e) {
+    if (e.key === 'Escape') {
+      this.close()
+    }
+    if (e.key === 'ArrowLeft') {
+      this.prev()
+    }
+    if (e.key === 'ArrowRight') {
+      this.next()
+    }
+    if (!e.shiftKey && e.key === 'Tab') {
+      e.preventDefault()
+      console.warn('tab pressed')
+      console.log(document.activeElement)
+
+      switch (document.activeElement) {
+        case lightBoxClose_btn: // close to prev
+          console.log('tab 1')
+          lightBoxPrev_btn.focus()
+          break
+
+        case lightBoxPrev_btn: // prev to next
+          console.log('tab 2')
+          lightBoxNext_btn.focus()
+          break
+
+        case lightBoxNext_btn: // next to close
+          console.log('tab 3')
+          lightBoxClose_btn.focus()
+          break
       }
-      if (e.key === 'ArrowLeft') {
-        this.prev()
+    }
+
+    if (e.shiftKey && e.key === 'Tab') {
+      e.preventDefault()
+      switch (document.activeElement) {
+        case lightBoxClose_btn: // close to next
+          console.log('shit tab 1')
+          lightBoxNext_btn.focus()
+          break
+
+        case lightBoxPrev_btn: // prev to close
+          console.log('shit tab 2')
+          lightBoxClose_btn.focus()
+          break
+
+        case lightBoxNext_btn: // next to prev
+          console.log('shit tab 3')
+          lightBoxPrev_btn.focus()
+          break
       }
-      if (e.key === 'ArrowRight') {
-        this.next()
-      }
-      if (!e.shiftKey && e.key === 'Tab') {
-        e.preventDefault()
-        console.warn('tab pressed')
-        console.log(document.activeElement)
-
-        switch (document.activeElement) {
-          case lightBoxClose_btn: // close to prev
-            console.log('tab 1')
-            lightBoxPrev_btn.focus()
-            break
-
-          case lightBoxPrev_btn: // prev to next
-            console.log('tab 2')
-            lightBoxNext_btn.focus()
-            break
-
-          case lightBoxNext_btn: // next to close
-            console.log('tab 3')
-            lightBoxClose_btn.focus()
-            break
-        }
-      }
-
-      if (e.shiftKey && e.key === 'Tab') {
-        e.preventDefault()
-        switch (document.activeElement) {
-          case lightBoxClose_btn: // close to next
-            console.log('shit tab 1')
-            lightBoxNext_btn.focus()
-            break
-
-          case lightBoxPrev_btn: // prev to close
-            console.log('shit tab 2')
-            lightBoxClose_btn.focus()
-            break
-
-          case lightBoxNext_btn: // next to prev
-            console.log('shit tab 3')
-            lightBoxPrev_btn.focus()
-            break
-        }
-      }
-    })
+    }
   }
 
   /**
@@ -203,6 +136,9 @@ export class Lightbox {
     lightBoxNext_btn.focus()
   }
 
+  /**
+   * Prev media
+   */
   prev() {
     this.index -= 1
     /**
@@ -225,7 +161,7 @@ export class Lightbox {
    * Close Lightbox
    */
   close() {
-    document.removeEventListener('any', this.navigation)
+    document.removeEventListener('keydown', this.navigation)
     this.reset()
     lightBox_parent_div.style.display = "none"
 
