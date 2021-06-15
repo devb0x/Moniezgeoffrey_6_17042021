@@ -29,16 +29,19 @@ export class Lightbox {
       this.next()
     })
 
-    this.navigation = this.navigation.bind(this)
+    this.keyboardNavigation = this.keyboardNavigation.bind(this)
+    this.mouseEvent = this.mouseEvent.bind(this)
 
-    document.addEventListener('keydown', this.navigation)
+    document.addEventListener('keydown', this.keyboardNavigation)
+    document.addEventListener('click', this.mouseEvent)
   }
 
   /**
    * Listen to keydown for navigation and close inside the lightbox
    * @param e
    */
-  navigation(e) {
+  keyboardNavigation(e) {
+    e.preventDefault()
     if (e.key === 'Escape') {
       this.close()
     }
@@ -49,47 +52,46 @@ export class Lightbox {
       this.next()
     }
     if (!e.shiftKey && e.key === 'Tab') {
-      e.preventDefault()
-      console.warn('tab pressed')
-      console.log(document.activeElement)
-
       switch (document.activeElement) {
         case lightBoxClose_btn: // close to prev
-          console.log('tab 1')
           lightBoxPrev_btn.focus()
           break
 
         case lightBoxPrev_btn: // prev to next
-          console.log('tab 2')
           lightBoxNext_btn.focus()
           break
 
         case lightBoxNext_btn: // next to close
-          console.log('tab 3')
           lightBoxClose_btn.focus()
           break
       }
     }
 
     if (e.shiftKey && e.key === 'Tab') {
-      e.preventDefault()
       switch (document.activeElement) {
         case lightBoxClose_btn: // close to next
-          console.log('shit tab 1')
           lightBoxNext_btn.focus()
           break
 
         case lightBoxPrev_btn: // prev to close
-          console.log('shit tab 2')
           lightBoxClose_btn.focus()
           break
 
         case lightBoxNext_btn: // next to prev
-          console.log('shit tab 3')
           lightBoxPrev_btn.focus()
           break
       }
     }
+  }
+
+  /**
+   * set focus on next btn if we clic on the modal
+   * @param e
+   */
+  mouseEvent(e) {
+      if (e.button === 0) {
+        lightBoxNext_btn.focus()
+      }
   }
 
   /**
@@ -161,7 +163,8 @@ export class Lightbox {
    * Close Lightbox
    */
   close() {
-    document.removeEventListener('keydown', this.navigation)
+    document.removeEventListener('keydown', this.keyboardNavigation)
+    document.removeEventListener('click', this.mouseEvent)
     this.reset()
     lightBox_parent_div.style.display = "none"
 
