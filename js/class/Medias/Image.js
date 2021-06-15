@@ -46,6 +46,7 @@ export class Image {
     const imgEl = document.createElement('img')
     imgEl.src = `./../Sample%20Photos/${photographerPath}/${this.image}`
     imgEl.alt = `${this.image}`
+    imgEl.loading = 'lazy'
     imgEl.classList.add('photographer-gallery__item-media')
     pictureEl.appendChild(imgEl)
     mediaImageEl.appendChild(pictureEl)

@@ -105,7 +105,7 @@ export class PhotographersList {
   }
 
   /**
-   * Cleaning the html before rerender when we filter
+   * Cleaning the html before render when we filter
    */
   resetRender() {
     photographers_section.innerHTML = '';

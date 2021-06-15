@@ -14,7 +14,6 @@ export class Lightbox {
   constructor(mediaList) {
     this.mediaList = mediaList
     this.index = null
-
     /**
      * Event Listener for close prev and next
      */
@@ -30,21 +29,69 @@ export class Lightbox {
       this.next()
     })
 
-    /**
-     * Keyboard Event for navigation / close
-     * @param e
-     */
-    document.addEventListener('keyup', (e) => {
-      if (e.key === 'Escape') {
-        this.close()
+    this.keyboardNavigation = this.keyboardNavigation.bind(this)
+    this.mouseEvent = this.mouseEvent.bind(this)
+
+    document.addEventListener('keydown', this.keyboardNavigation)
+    document.addEventListener('click', this.mouseEvent)
+  }
+
+  /**
+   * Listen to keydown for navigation and close inside the lightbox
+   * @param e
+   */
+  keyboardNavigation(e) {
+    e.preventDefault()
+    if (e.key === 'Escape') {
+      this.close()
+    }
+    if (e.key === 'ArrowLeft') {
+      this.prev()
+    }
+    if (e.key === 'ArrowRight') {
+      this.next()
+    }
+    if (!e.shiftKey && e.key === 'Tab') {
+      switch (document.activeElement) {
+        case lightBoxClose_btn: // close to prev
+          lightBoxPrev_btn.focus()
+          break
+
+        case lightBoxPrev_btn: // prev to next
+          lightBoxNext_btn.focus()
+          break
+
+        case lightBoxNext_btn: // next to close
+          lightBoxClose_btn.focus()
+          break
       }
-      if (e.key === 'ArrowLeft') {
-        this.prev()
+    }
+
+    if (e.shiftKey && e.key === 'Tab') {
+      switch (document.activeElement) {
+        case lightBoxClose_btn: // close to next
+          lightBoxNext_btn.focus()
+          break
+
+        case lightBoxPrev_btn: // prev to close
+          lightBoxClose_btn.focus()
+          break
+
+        case lightBoxNext_btn: // next to prev
+          lightBoxPrev_btn.focus()
+          break
       }
-      if (e.key === 'ArrowRight') {
-        this.next()
+    }
+  }
+
+  /**
+   * set focus on next btn if we clic on the modal
+   * @param e
+   */
+  mouseEvent(e) {
+      if (e.button === 0) {
+        lightBoxNext_btn.focus()
       }
-    })
   }
 
   /**
@@ -89,9 +136,11 @@ export class Lightbox {
      * set focus
      */
     lightBoxNext_btn.focus()
-
   }
 
+  /**
+   * Prev media
+   */
   prev() {
     this.index -= 1
     /**
@@ -114,8 +163,11 @@ export class Lightbox {
    * Close Lightbox
    */
   close() {
+    document.removeEventListener('keydown', this.keyboardNavigation)
+    document.removeEventListener('click', this.mouseEvent)
+    this.reset()
     lightBox_parent_div.style.display = "none"
-    lightBoxContainer_div.innerHTML = ''
+
   }
 
   /**
@@ -126,6 +178,8 @@ export class Lightbox {
     this.index = idMedia
     this.open()
     this.newMedia().render()
+
+    lightBoxNext_btn.focus()
   }
 
   /**

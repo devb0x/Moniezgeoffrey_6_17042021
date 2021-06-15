@@ -35,7 +35,7 @@ export class Photographer {
 
     photographerEl.innerHTML = `
       <a href="html/photographer.html?id=${this.id}">
-        <img src="./Sample%20Photos/Photographers%20ID%20Photos/${this.portrait}" alt="${this.name}">
+        <img src="./Sample%20Photos/Photographers%20ID%20Photos/${this.portrait}" alt="${this.name}" loading="lazy">
         
         <h2 class="photographer-item__name">
           ${this.name}
