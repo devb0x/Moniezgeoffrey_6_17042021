@@ -51,6 +51,10 @@ export class Image {
     pictureEl.appendChild(imgEl)
     mediaImageEl.appendChild(pictureEl)
 
+    /**
+     * span for displaying info
+     * @type {HTMLSpanElement}
+     */
     const spanInfo = document.createElement('span')
     spanInfo.classList.add('photographer-gallery__item-info')
 
@@ -64,13 +68,14 @@ export class Image {
     spanInfo.appendChild(infoTitle)
 
     /**
+     * removed from the mockup
      * price
      * @type {HTMLDivElement}
      */
-    const infoPrice = document.createElement('div')
-    infoPrice.classList.add('photographer-gallery__item-info-price')
-    infoPrice.innerHTML = `${this.price} &euro;`
-    spanInfo.appendChild(infoPrice)
+    // const infoPrice = document.createElement('div')
+    // infoPrice.classList.add('photographer-gallery__item-info-price')
+    // infoPrice.innerHTML = `${this.price} &euro;`
+    // spanInfo.appendChild(infoPrice)
 
     /**
      * likes btn

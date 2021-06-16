@@ -1,4 +1,4 @@
-import {LightboxFactory} from "./LightboxFactory.js";
+import { LightboxFactory } from "./LightboxFactory.js";
 
 const lightBox_parent_div = document.getElementById('lightbox')
 const lightBoxContainer_div = document.querySelector('.lightbox__container')
@@ -14,6 +14,7 @@ export class Lightbox {
   constructor(mediaList) {
     this.mediaList = mediaList
     this.index = null
+
     /**
      * Event Listener for close prev and next
      */
@@ -40,7 +41,6 @@ export class Lightbox {
    * Listen to keydown for navigation and close inside the lightbox
    * @param e
    */
-  // TODO spacebar en étant sur prev fonctionne mais renvoi le focus sur next
   // TODO nvda bloque navigation fleches gauche et droite
   keyboardNavigation(e) {
     if (e.key === 'Escape') {
@@ -185,9 +185,13 @@ export class Lightbox {
   render(idMedia) {
     this.index = idMedia
     this.open()
+    if (this.newMedia.video) {
+      console.log('video')
+    }
+    if (this.newMedia.image) {
+      console.log('image lel')
+    }
     this.newMedia().render()
-
-    lightBoxNext_btn.focus()
   }
 
   /**

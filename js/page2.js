@@ -221,11 +221,11 @@ function renderPhotographer() {
 }
 
 /**
- * clear the DOM
- * display media
+ * clear the DOM when we change the filter sort
+ * then display media
  */
 function renderFiltered() {
-  document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e));
+  document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e))
   mediaList.renderMedia()
 }
 

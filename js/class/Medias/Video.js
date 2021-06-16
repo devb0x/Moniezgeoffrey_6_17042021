@@ -57,16 +57,29 @@ export class Video {
     const spanInfos = document.createElement('span')
     spanInfos.classList.add('photographer-gallery__item-info')
 
+    /**
+     * title
+     * @type {HTMLHeadingElement}
+     */
     const spanTitle = document.createElement('h2')
     spanTitle.classList.add('photographer-gallery__item-info-title')
     spanTitle.innerText = `${this.title}`
     spanInfos.appendChild(spanTitle)
 
-    const spanPrice = document.createElement('div')
-    spanPrice.classList.add('photographer-gallery__item-info-price')
-    spanPrice.innerText = `${this.price}`
-    spanInfos.appendChild(spanPrice)
+    /**
+     * removed from the mockup
+     * price
+     * @type {HTMLDivElement}
+     */
+    // const spanPrice = document.createElement('div')
+    // spanPrice.classList.add('photographer-gallery__item-info-price')
+    // spanPrice.innerText = `${this.price}`
+    // spanInfos.appendChild(spanPrice)
 
+    /**
+     * likes btn
+     * @type {HTMLButtonElement}
+     */
     const btnLikes = document.createElement('button')
     btnLikes.classList.add('photographer-gallery__item-info-likes')
     btnLikes.innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
