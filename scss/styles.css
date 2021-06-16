@@ -261,6 +261,13 @@ a > img {
     top: 34px;
   }
 }
+@media (min-width: 75em) {
+  .homepage-title {
+    position: relative;
+    float: right;
+    top: -45px;
+  }
+}
 
 .photographers {
   width: 90%;

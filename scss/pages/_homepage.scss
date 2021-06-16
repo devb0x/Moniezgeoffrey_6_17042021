@@ -13,6 +13,12 @@
     font-size: 36px;
     top: 34px;
   }
+
+  @include for-desktop-up() {
+    position: relative;
+    float: right;
+    top: -45px;
+  }
 }
 
 .photographers {
