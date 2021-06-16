@@ -1,5 +1,4 @@
-@import "../utils/variables";
-@import "../utils/mixins";
+@use "../utils" as *;
 
 .homepage-title {
   position: absolute;
@@ -12,6 +11,12 @@
   @include for-tablet-portrait-up() {
     font-size: 36px;
     top: 34px;
+  }
+
+  @include for-desktop-up() {
+    position: relative;
+    float: right;
+    top: -45px;
   }
 }
 

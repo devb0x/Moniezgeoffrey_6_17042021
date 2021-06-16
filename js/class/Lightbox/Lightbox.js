@@ -40,8 +40,9 @@ export class Lightbox {
    * Listen to keydown for navigation and close inside the lightbox
    * @param e
    */
+  // TODO spacebar en étant sur prev fonctionne mais renvoi le focus sur next
+  // TODO nvda bloque navigation fleches gauche et droite
   keyboardNavigation(e) {
-    e.preventDefault()
     if (e.key === 'Escape') {
       this.close()
     }
@@ -51,7 +52,11 @@ export class Lightbox {
     if (e.key === 'ArrowRight') {
       this.next()
     }
+    /**
+     * tab
+     */
     if (!e.shiftKey && e.key === 'Tab') {
+      e.preventDefault()
       switch (document.activeElement) {
         case lightBoxClose_btn: // close to prev
           lightBoxPrev_btn.focus()
@@ -66,8 +71,11 @@ export class Lightbox {
           break
       }
     }
-
+    /**
+     * shift + tab
+     */
     if (e.shiftKey && e.key === 'Tab') {
+      e.preventDefault()
       switch (document.activeElement) {
         case lightBoxClose_btn: // close to next
           lightBoxNext_btn.focus()
@@ -89,9 +97,9 @@ export class Lightbox {
    * @param e
    */
   mouseEvent(e) {
-      if (e.button === 0) {
-        lightBoxNext_btn.focus()
-      }
+    if (e.button === 0) {
+      lightBoxNext_btn.focus()
+    }
   }
 
   /**
@@ -160,7 +168,7 @@ export class Lightbox {
   }
 
   /**
-   * Close Lightbox
+   * Close Lightbox & remove EventListener
    */
   close() {
     document.removeEventListener('keydown', this.keyboardNavigation)

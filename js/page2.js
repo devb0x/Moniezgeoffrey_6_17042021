@@ -157,7 +157,7 @@ function renderPhotographer() {
   headerBtn.addEventListener('click', () => {
     new ContactModal(photograph[0].name)
   })
-  headerTitle.appendChild(headerBtn)
+  header.appendChild(headerBtn)
 
   /**
    * div photographer for displaying info

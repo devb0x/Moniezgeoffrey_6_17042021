@@ -1,11 +1,10 @@
-@import "utils/variables";
-@import "base/globals";
+@use "base/globals";
 
-@import "components/buttons";
+@use "components/buttons";
 
-@import "layouts/header";
-@import "layouts/lightbox";
-@import "layouts/modal";
-@import "pages/homepage";
-@import "pages/photographer";
-@import "layouts/photographer"; // ..empty
+@use "layouts/header";
+@use "layouts/lightbox";
+@use "layouts/modal";
+
+@use "pages/homepage";
+@use "pages/photographer";

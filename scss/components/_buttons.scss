@@ -1,4 +1,4 @@
-@import "../utils/variables";
+@use "../utils" as *;
 
 .filter-btn {
   font-size: 12px;

@@ -25,30 +25,6 @@ function checkUrl() {
   }
 }
 
-// /**
-//  * Remove .btn-active class on buttons
-//  */
-// function resetActive() {
-//   for (let i = 0; i < buttons.length; i++) {
-//     buttons[i].classList.remove('btn-active');
-//   }
-// }
-
-// /**
-//  * remove and add .btn-active class when we filter
-//  * render photographers list from #category (e.g sports)
-//  * @type {NodeListOf<Element>}
-//  */
-// let buttons = document.querySelectorAll(".filter-btn");
-//   for (let i = 0; i < buttons.length; i++) {
-//     buttons[i].addEventListener('click', (e) => {
-//       resetActive();
-//       if (e.target.matches("button.filter-btn")) {
-//         e.target.classList.add('btn-active');
-//       }
-//   })
-// }
-
 /**
  * Generate photographersList & render
  * @type {PhotographersList}

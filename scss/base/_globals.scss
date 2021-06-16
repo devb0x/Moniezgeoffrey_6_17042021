@@ -1,5 +1,4 @@
-@import "../utils/variables";
-@import "../utils/mixins";
+@use "../utils" as *;
 
 html {
   font-size: 100%;
@@ -13,7 +12,8 @@ html {
 }
 
 body {
-  margin: 0;
+  max-width: 1240px;
+  margin: auto;
   padding: 0;
 }
 
