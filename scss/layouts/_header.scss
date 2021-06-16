@@ -1,8 +1,6 @@
-@import "../utils/mixins";
+@use "../utils" as *;
 
 header {
-  //position: relative;
-
   @include for-desktop-up() {
     display: flex;
   }
