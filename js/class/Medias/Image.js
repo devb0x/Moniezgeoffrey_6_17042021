@@ -48,6 +48,8 @@ export class Image {
     imgEl.alt = `${this.image}`
     imgEl.loading = 'lazy'
     imgEl.classList.add('photographer-gallery__item-media')
+    imgEl.tabIndex = 0
+
     pictureEl.appendChild(imgEl)
     mediaImageEl.appendChild(pictureEl)
 

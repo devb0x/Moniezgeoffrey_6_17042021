@@ -5,6 +5,7 @@ const lightBoxContainer_div = document.querySelector('.lightbox__container')
 const lightBoxClose_btn = document.querySelector('.lightbox-btn__close')
 const lightBoxPrev_btn = document.querySelector('.lightbox-btn__prev')
 const lightBoxNext_btn = document.querySelector('.lightbox-btn__next')
+let test = lightBoxContainer_div.children[0]
 
 /**
  * Class representing the Lightbox
@@ -85,9 +86,24 @@ export class Lightbox {
           lightBoxClose_btn.focus()
           break
 
-        case lightBoxNext_btn: // next to prev
+        case lightBoxNext_btn: // next to media
+          console.log('next to media')
+          lightBoxContainer_div.children[0].focus()
+          console.log(document.activeElement)
+          break
+
+        case lightBoxContainer_div.children[0]: // media to prev
+          console.log('media to prev')
           lightBoxPrev_btn.focus()
           break
+
+        // case lightBoxNext_btn: // next to prev
+        //   lightBoxPrev_btn.focus()
+        //   break
+
+        // next to media
+
+          // media to prev
       }
     }
   }

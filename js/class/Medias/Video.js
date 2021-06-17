@@ -44,6 +44,7 @@ export class Video {
      */
     const video = document.createElement('video')
     video.classList.add('photographer-gallery__item-media')
+    video.tabIndex = 0
     const source = document.createElement('source')
     source.src = `./../Sample%20Photos/${photographerPath}/${this.video}`
     source.type = 'video/mp4'
