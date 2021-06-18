@@ -46,7 +46,7 @@
         line-height: 1;
 
         @include for-tablet-landscape-up() {
-          margin-right: 2rem;
+          margin: 0 2rem 0 0;
           font-size: 64px;
         }
       }
@@ -144,23 +144,57 @@
   &__filter {
     margin-bottom: 2rem;
     width: 100%;
+    display: flex;
+    z-index: 10;
 
-    label, select {
+    & > span {
+      font-weight: bold;
+      font-size: 18px;
+      margin-right: 1rem;
+    }
+
+    .select-btn {
+      width: 170px;
+      color: white;
+      border: none;
+      border-radius: 5px;
       font-size: 18px;
       font-weight: bold;
-    }
-
-    select, option {
-      margin-left: 1.5rem;
-      border: none;
       background-color: $p_red;
-      color: white;
-      border-radius: 5px;
+      padding: 1rem;
+      cursor: pointer;
     }
 
-    select {
-      appearance: none; // remove arrow
-      padding: 1rem;
+    .select {
+      position: relative;
+
+      & ul {
+        list-style: none;
+        padding: 0;
+        position: absolute;
+        top: -1rem;
+
+        & li {
+          width: 170px;
+          color: white;
+          font-size: 18px;
+          font-weight: bold;
+          background-color: $p_red;
+          padding: 1rem;
+          cursor: pointer;
+          z-index: 5;
+
+          &:first-child {
+            border-radius: 5px 5px 0 0;
+            border-bottom: 1px solid white;
+          }
+
+          &:last-child {
+            border-radius: 0 0 5px 5px;
+            border-top: 1px solid white;
+          }
+        }
+      }
     }
 
   }

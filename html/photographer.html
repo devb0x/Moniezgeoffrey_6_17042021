@@ -30,30 +30,40 @@
 
     <section class="photographer-gallery">
 
-      <div class="photographer-gallery__filter" style="display: flex">
-        <label for="filter">Trier par</label>
+      <div class="photographer-gallery__filter">
+        <span>Trier par</span>
         <div class="select">
-          <select name="filter-choice" id="filter">
-            <option value="popularity" id="popularity">Popularité</option>
-            <option value="date" id="date">Date</option>
-            <option value="title" id="title">Titre</option>
-          </select>
+          <button id="order_btn"
+              class="select-btn"
+              role="button"
+              aria-haspopup="listbox"
+              aria-labelledby="order by"
+              aria-expanded="true">
+            Popularité
+          </button>
+          <ul id="order_list"
+              tabindex="-1"
+              class="hidden"
+              role="listbox"
+              aria-labelledby="order by">
+            <li id="order_popularity" role="option">
+              Popularité
+            </li>
+            <li id="order_date" role="option">
+              Date
+            </li>
+            <li id="order_title" role="option">
+              Titre
+            </li>
+          </ul>
+
         </div>
-<!--        <button class="select">-->
-<!--          Popularité-->
-<!--        </button>-->
-<!--        <button class="select">-->
-<!--          Date-->
-<!--        </button>-->
-<!--        <button class="select">-->
-<!--          Titre-->
-<!--        </button>-->
       </div>
 
       <div id="lightbox" class="lightbox">
-        <button class="lightbox-btn lightbox-btn__close">&#10006;</button>
-        <button class="lightbox-btn lightbox-btn__prev">&#10094;</button>
-        <button class="lightbox-btn lightbox-btn__next">&#10095;</button>
+        <button class="lightbox-btn lightbox-btn__close" aria-label="ferme dialog">&#10006;</button>
+        <button class="lightbox-btn lightbox-btn__prev" aria-label="précédent">&#10094;</button>
+        <button class="lightbox-btn lightbox-btn__next" aria-label="suivant">&#10095;</button>
         <div class="lightbox__container"></div>
       </div>
 
@@ -62,6 +72,7 @@
   </main>
 
   <script src="../js/page2.js" type="module"></script>
+<!--  <script src="../js/filter.js" type="module"></script>-->
 
 </body>
 </html>

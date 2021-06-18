@@ -39,48 +39,48 @@ switch (photographerId) {
 /**
  * Filter Event Listener
  */
-menuFilter.addEventListener('change', () => {
-  const value = menuFilter.value
-
-  if (value === 'popularity') {
-    mediaList.media.sort(
-      (x, y) => {
-        if (x.likes < y.likes)
-          return 1
-        if (x.likes > y.likes)
-          return -1
-        return 0
-      }
-    )
-    renderFiltered()
-  }
-
-  if (value === 'title') {
-    mediaList.media.sort(
-      (x, y) => {
-        if (x.title.toLowerCase() < y.title.toLowerCase())
-          return -1
-        if (x.title.toLowerCase() > y.title.toLowerCase())
-          return 1
-        return 0
-      }
-    )
-    renderFiltered()
-  }
-
-  if (value === 'date') {
-    mediaList.media.sort(
-      (x, y) => {
-        if (x.date < y.date)
-          return 1
-        if (x.date > y.date)
-          return -1
-        return 0
-      }
-    )
-    renderFiltered()
-  }
-})
+// menuFilter.addEventListener('change', () => {
+//   const value = menuFilter.value
+//
+//   if (value === 'popularity') {
+//     mediaList.media.sort(
+//       (x, y) => {
+//         if (x.likes < y.likes)
+//           return 1
+//         if (x.likes > y.likes)
+//           return -1
+//         return 0
+//       }
+//     )
+//     renderFiltered()
+//   }
+//
+//   if (value === 'title') {
+//     mediaList.media.sort(
+//       (x, y) => {
+//         if (x.title.toLowerCase() < y.title.toLowerCase())
+//           return -1
+//         if (x.title.toLowerCase() > y.title.toLowerCase())
+//           return 1
+//         return 0
+//       }
+//     )
+//     renderFiltered()
+//   }
+//
+//   if (value === 'date') {
+//     mediaList.media.sort(
+//       (x, y) => {
+//         if (x.date < y.date)
+//           return 1
+//         if (x.date > y.date)
+//           return -1
+//         return 0
+//       }
+//     )
+//     renderFiltered()
+//   }
+// })
 
 /**
  * DOM selector
@@ -246,3 +246,67 @@ getPhotographerById()
     () => {
       renderPhotographer()
     })
+
+
+/**
+ * start filter
+ */
+const order_btn = document.getElementById('order_btn')
+const list = document.getElementById('order_list')
+const filterPopularity = document.getElementById('order_popularity')
+const filterDate = document.getElementById('order_date')
+const filterTitle = document.getElementById('order_title')
+
+order_btn.addEventListener('click', () => {
+  console.log('click start event')
+  list.classList.toggle('hidden')
+})
+
+filterPopularity.addEventListener('click', () => {
+  mediaList.media.sort(
+    (x, y) => {
+      if (x.likes < y.likes)
+        return 1
+      if (x.likes > y.likes)
+        return -1
+      return 0
+    }
+  )
+  order_btn.innerText = 'Popularité'
+  hideList()
+  renderFiltered()
+})
+
+filterDate.addEventListener('click', () => {
+  mediaList.media.sort(
+    (x, y) => {
+      if (x.date < y.date)
+        return 1
+      if (x.date > y.date)
+        return -1
+      return 0
+    }
+  )
+  order_btn.innerText = 'Date'
+  hideList()
+  renderFiltered()
+})
+
+filterTitle.addEventListener('click', () => {
+  mediaList.media.sort(
+    (x, y) => {
+      if (x.title.toLowerCase() < y.title.toLowerCase())
+        return -1
+      if (x.title.toLowerCase() > y.title.toLowerCase())
+        return 1
+      return 0
+    }
+  )
+  order_btn.innerText = 'Titre'
+  hideList()
+  renderFiltered()
+})
+
+function hideList() {
+  list.classList.toggle('hidden')
+}
