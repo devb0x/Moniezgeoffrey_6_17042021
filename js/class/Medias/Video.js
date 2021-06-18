@@ -83,7 +83,7 @@ export class Video {
      */
     const btnLikes = document.createElement('button')
     btnLikes.classList.add('photographer-gallery__item-info-likes')
-    btnLikes.innerHTML = `${this.likes}<i class="fas fa-heart"></i>`
+    btnLikes.innerHTML = `${this.likes}<i class="fas fa-heart" aria-label="likes"></i>`
     spanInfos.appendChild(btnLikes)
 
     mediaVideoEl.appendChild(spanInfos)
