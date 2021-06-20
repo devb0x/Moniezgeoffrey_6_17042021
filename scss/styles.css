@@ -19,8 +19,13 @@ a {
   text-decoration: none;
 }
 
+.filter a {
+  margin-top: 0.5rem;
+  display: inline-flex;
+}
+
 .filters-nav {
-  width: 80%;
+  width: 90%;
   margin: 2rem auto;
   text-align: center;
 }
@@ -38,10 +43,6 @@ a {
 .stop-scrolling {
   height: 100%;
   overflow: hidden;
-}
-
-.hidden {
-  display: none;
 }
 
 .filter-btn {
@@ -186,7 +187,7 @@ a > img {
 .modal {
   min-height: 100vh;
   min-width: 100vw;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: #db8876;
@@ -349,12 +350,13 @@ a > img {
   }
 }
 .photographer .photographer-item__header {
+  position: relative;
   display: flex;
   justify-content: space-between;
-  height: 112px;
 }
 .photographer .photographer-item__header img {
-  order: 2;
+  position: absolute;
+  right: 0;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -374,6 +376,8 @@ a > img {
   font-weight: normal;
   color: #d3573c;
   line-height: 1;
+  margin: 1rem 0 0 0;
+  width: 70%;
 }
 @media (min-width: 56.25em) {
   .photographer .photographer-item__header h1 {
@@ -400,27 +404,39 @@ a > img {
   border-radius: 5px;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  min-width: 170px;
+  min-width: 10.625rem;
   z-index: 2;
+}
+@media (min-width: 37.5em) and (max-width: 56.1875em) {
+  .photographer .photographer-item__header-contact-btn {
+    position: absolute;
+    bottom: -15.75rem;
+    left: 30%;
+    transform: translateX(133%);
+    height: 4.375rem;
+  }
 }
 @media (min-width: 37.5em) {
   .photographer .photographer-item__header-contact-btn {
-    position: relative;
-    left: unset;
-    transform: none;
-    line-height: 26px;
+    position: absolute;
+    bottom: -15rem;
+    transform: translateX(133%);
+    height: 4.375rem;
   }
 }
 @media (min-width: 75em) {
   .photographer .photographer-item__header-contact-btn {
     font-size: 1.25rem;
+    transform: translate(50%, -339%);
   }
 }
 .photographer .photographer-item__info {
   font-size: 13px;
+  width: 70%;
 }
 .photographer .photographer-item__info-location {
   color: #911d1d;
+  margin-top: 0;
 }
 @media (min-width: 37.5em) {
   .photographer .photographer-item__info-location {
@@ -429,6 +445,7 @@ a > img {
 }
 .photographer .photographer-item__info-tagline {
   color: #757575;
+  margin-top: 0;
 }
 @media (min-width: 37.5em) {
   .photographer .photographer-item__info-tagline {
@@ -446,6 +463,7 @@ a > img {
   background-color: #db8876;
   display: flex;
   justify-content: space-around;
+  margin: 0;
 }
 .photographer .photographer-item__info-rate > * {
   margin: auto;
@@ -528,6 +546,8 @@ a > img {
   object-fit: cover;
   object-position: center;
   border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.2);
 }
 @media (min-width: 37.5em) {
   .photographer-gallery__item-media {

@@ -9,6 +9,7 @@ html {
 
 *, *::before, *::after {
   box-sizing: inherit;
+  //outline: 1px solid blue;
 }
 
 body {
@@ -21,8 +22,13 @@ a {
   text-decoration: none;
 }
 
+.filter a {
+  margin-top: 0.5rem;
+  display: inline-flex;
+}
+
 .filters-nav {
-  width: 80%;
+  width: 90%;
   margin: 2rem auto;
   text-align: center;
 
@@ -39,8 +45,4 @@ a {
 .stop-scrolling {
   height: 100%;
   overflow: hidden;
-}
-
-.hidden {
-  display: none;
 }
