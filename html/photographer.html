@@ -1,78 +1,91 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script src="https://kit.fontawesome.com/95587cb5c9.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/95587cb5c9.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../scss/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../scss/styles.css" />
 
-  <title>Fisheye</title>
-</head>
-<body>
+    <title>Fisheye</title>
+  </head>
+  <body>
+    <header>
+      <nav class="top-nav">
+        <a href="https://devb0x.github.io/Moniezgeoffrey_6_17042021/">
+          <img src="../logo.png" alt="Fisheye Home page" />
+        </a>
+      </nav>
+    </header>
 
-  <header>
-    <nav class="top-nav">
-      <a href="https://devb0x.github.io/Moniezgeoffrey_6_17042021/">
-        <img src="../logo.png" alt="Fisheye Home page">
-      </a>
-    </nav>
-  </header>
+    <main>
+      <section class="photographer"></section>
 
-  <main>
-
-    <section class="photographer">
-
-    </section>
-
-    <section class="photographer-gallery">
-
-      <div class="photographer-gallery__filter">
-        <span>Trier par</span>
-        <div class="select">
-          <button id="order_btn"
+      <section class="photographer-gallery">
+        <div class="photographer-gallery__filter">
+          <span>Trier par</span>
+          <div class="select">
+            <button
+              id="order_btn"
               class="select-btn"
               role="button"
               aria-haspopup="listbox"
               aria-labelledby="order by"
-              aria-expanded="true">
-            Popularité
-          </button>
-          <ul id="order_list"
+              aria-expanded="true"
+            >
+              Popularité
+            </button>
+            <ul
+              id="order_list"
               tabindex="-1"
               class="hidden"
               role="listbox"
-              aria-labelledby="order by">
-            <li id="order_popularity" role="option" tabindex="0">
-              Popularité
-            </li>
-            <li id="order_date" role="option" tabindex="0">
-              Date
-            </li>
-            <li id="order_title" role="option" tabindex="0">
-              Titre
-            </li>
-          </ul>
-
+              aria-labelledby="order by"
+            >
+              <li id="order_popularity" role="option" tabindex="0">
+                Popularité
+              </li>
+              <li id="order_date" role="option" tabindex="0">Date</li>
+              <li id="order_title" role="option" tabindex="0">Titre</li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div id="lightbox" class="lightbox">
-        <button class="lightbox-btn lightbox-btn__close" aria-label="ferme dialog">&#10006;</button>
-        <button class="lightbox-btn lightbox-btn__prev" aria-label="précédent">&#10094;</button>
-        <button class="lightbox-btn lightbox-btn__next" aria-label="suivant">&#10095;</button>
-        <div class="lightbox__container"></div>
-      </div>
+        <div id="lightbox" class="lightbox">
+          <button
+            class="lightbox-btn lightbox-btn__close"
+            aria-label="ferme dialog"
+          >
+            &#10006;
+          </button>
+          <button
+            class="lightbox-btn lightbox-btn__prev"
+            aria-label="précédent"
+          >
+            &#10094;
+          </button>
+          <button
+            class="lightbox-btn lightbox-btn__next"
+            tabindex="4"
+            aria-label="suivant"
+          >
+            &#10095;
+          </button>
+          <div class="lightbox__container"></div>
+        </div>
+      </section>
+    </main>
 
-    </section>
-
-  </main>
-
-  <script src="../js/page2.js" type="module"></script>
-<!--  <script src="../js/filter.js" type="module"></script>-->
-
-</body>
+    <script src="../js/page2.js" type="module"></script>
+    <!--  <script src="../js/filter.js" type="module"></script>-->
+  </body>
 </html>

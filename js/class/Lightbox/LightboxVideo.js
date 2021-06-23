@@ -1,12 +1,11 @@
 import { photographerPath } from "../../page2.js";
 
-const lightbox_div = document.getElementsByClassName('lightbox__container')[0]
+const lightbox_div = document.getElementsByClassName("lightbox__container")[0];
 
 /**
  * Class representing the LightboxVideo
  */
 export class LightboxVideo {
-
   /**
    *
    * @param id
@@ -20,7 +19,7 @@ export class LightboxVideo {
     this.photographerId = photographerId;
     this.title = title;
     this.video = video;
-    this.index = index
+    this.index = index;
   }
 
   /**
@@ -31,26 +30,26 @@ export class LightboxVideo {
      * create video
      * @type {HTMLVideoElement}
      */
-    const containerVideo = document.createElement('video')
-    containerVideo.classList.add('lightbox__container-media')
-    containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.video}`
-    containerVideo.controls = true
+    const containerVideo = document.createElement("video");
+    containerVideo.classList.add("lightbox__container-media");
+    containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.video}`;
+    containerVideo.controls = true;
+    containerVideo.setAttribute("tabindex", "3");
 
     /**
      * create title
      * @type {HTMLDivElement}
      */
-    const titleDiv = document.createElement('div')
-    titleDiv.classList.add('lightbox__container-title')
-    titleDiv.innerText = `${this.title}`
+    const titleDiv = document.createElement("div");
+    titleDiv.classList.add("lightbox__container-title");
+    titleDiv.innerText = `${this.title}`;
 
     /**
      * add HTML Element to the DOM
      */
-    lightbox_div.append(containerVideo)
-    lightbox_div.append(titleDiv)
+    lightbox_div.append(containerVideo);
+    lightbox_div.append(titleDiv);
 
     // return LightboxVideo
   }
-
 }
