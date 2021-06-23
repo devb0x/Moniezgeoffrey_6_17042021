@@ -5,7 +5,6 @@ const lightBoxContainer_div = document.querySelector('.lightbox__container')
 const lightBoxClose_btn = document.querySelector('.lightbox-btn__close')
 const lightBoxPrev_btn = document.querySelector('.lightbox-btn__prev')
 const lightBoxNext_btn = document.querySelector('.lightbox-btn__next')
-let test = lightBoxContainer_div.children[0]
 
 /**
  * Class representing the Lightbox
@@ -44,6 +43,8 @@ export class Lightbox {
    */
   // TODO nvda bloque navigation fleches gauche et droite
   keyboardNavigation(e) {
+    const media = document.querySelector('.lightbox__container-media')
+
     if (e.key === 'Escape') {
       this.close()
     }
@@ -53,57 +54,62 @@ export class Lightbox {
     if (e.key === 'ArrowRight') {
       this.next()
     }
+
+    /**
+     * set focus to next btn
+     * when we lose focus on video
+     */
+    if (media) {
+      media.addEventListener('focusout', (e) => {
+        console.log('lost focus')
+        e.preventDefault()
+        lightBoxNext_btn.focus()
+      })
+    }
+
     /**
      * tab
      */
     if (!e.shiftKey && e.key === 'Tab') {
-      e.preventDefault()
       switch (document.activeElement) {
         case lightBoxClose_btn: // close to prev
+          e.preventDefault()
           lightBoxPrev_btn.focus()
           break
 
-        case lightBoxPrev_btn: // prev to next
+        case lightBoxPrev_btn: // prev to media or next
+          e.preventDefault()
           lightBoxNext_btn.focus()
+          media.focus()
           break
 
         case lightBoxNext_btn: // next to close
+          e.preventDefault()
           lightBoxClose_btn.focus()
           break
       }
     }
+
     /**
      * shift + tab
      */
     if (e.shiftKey && e.key === 'Tab') {
-      e.preventDefault()
       switch (document.activeElement) {
         case lightBoxClose_btn: // close to next
+          e.preventDefault()
           lightBoxNext_btn.focus()
           break
 
         case lightBoxPrev_btn: // prev to close
+          e.preventDefault()
           lightBoxClose_btn.focus()
           break
 
-        case lightBoxNext_btn: // next to media
-          console.log('next to media')
-          lightBoxContainer_div.children[0].focus()
-          console.log(document.activeElement)
-          break
-
-        case lightBoxContainer_div.children[0]: // media to prev
-          console.log('media to prev')
+        case lightBoxNext_btn: // next to media or prev
+          e.preventDefault()
           lightBoxPrev_btn.focus()
+          media.focus()
           break
-
-        // case lightBoxNext_btn: // next to prev
-        //   lightBoxPrev_btn.focus()
-        //   break
-
-        // next to media
-
-          // media to prev
       }
     }
   }
