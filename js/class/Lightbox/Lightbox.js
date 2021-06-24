@@ -37,6 +37,7 @@ export class Lightbox {
     document.addEventListener('click', this.mouseEvent)
   }
 
+
   /**
    * Listen to keydown for navigation and close inside the lightbox
    * @param e
@@ -59,9 +60,8 @@ export class Lightbox {
      * set focus to next btn
      * when we lose focus on video
      */
-    if (media) {
+    if (media.classList.contains('media-video')) {
       media.addEventListener('focusout', (e) => {
-        console.log('lost focus')
         e.preventDefault()
         lightBoxNext_btn.focus()
       })
@@ -207,12 +207,6 @@ export class Lightbox {
   render(idMedia) {
     this.index = idMedia
     this.open()
-    if (this.newMedia.video) {
-      console.log('video')
-    }
-    if (this.newMedia.image) {
-      console.log('image lel')
-    }
     this.newMedia().render()
   }
 

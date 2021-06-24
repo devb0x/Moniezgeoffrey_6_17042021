@@ -32,7 +32,7 @@ export class LightboxVideo {
      * @type {HTMLVideoElement}
      */
     const containerVideo = document.createElement('video')
-    containerVideo.classList.add('lightbox__container-media')
+    containerVideo.classList.add('lightbox__container-media', 'media-video')
     containerVideo.src = `./../Sample%20Photos/${photographerPath}/${this.video}`
     containerVideo.controls = true
 
@@ -50,7 +50,7 @@ export class LightboxVideo {
     lightbox_div.append(containerVideo)
     lightbox_div.append(titleDiv)
 
-    // return LightboxVideo
+    return LightboxVideo
   }
 
 }
