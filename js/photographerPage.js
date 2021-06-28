@@ -211,7 +211,6 @@ function renderFiltered() {
  * start filter
  */
 order_btn.addEventListener('click', () => {
-  console.log('click start event')
   list.classList.toggle('hidden')
 })
 
