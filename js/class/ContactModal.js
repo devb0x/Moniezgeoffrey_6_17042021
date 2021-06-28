@@ -9,6 +9,15 @@ export class ContactModal {
   constructor(name) {
     this.name = name
     this.render()
+    this.keyboardNavigation = this.keyboardNavigation.bind(this)
+
+    document.addEventListener('keydown', this.keyboardNavigation)
+  }
+
+  keyboardNavigation(e) {
+    if (e.key === 'Escape') {
+      this.close()
+    }
   }
 
   /**
@@ -66,7 +75,15 @@ export class ContactModal {
     btnClose.addEventListener('click', () => {
       this.close()
     })
-
+    /**
+     * set focus to the submit btn if we press shift + tab while we are on the close button
+     */
+    btnClose.addEventListener('keydown', (e) => {
+      if (e.shiftKey && e.key === 'Tab') {
+        e.preventDefault()
+        submit_btn.focus()
+      }
+    })
     header.appendChild(title)
     header.appendChild(btnClose)
     form.append(header)
@@ -163,14 +180,24 @@ export class ContactModal {
      * Button submit form
      * @type {HTMLButtonElement}
      */
-    const button = document.createElement('button')
-    button.classList.add('modal-btn')
-    button.type = 'button'
-    button.innerText = 'Envoyer'
-    button.addEventListener('click', () => {
+    const submit_btn = document.createElement('button')
+    submit_btn.classList.add('modal-btn')
+    submit_btn.type = 'button'
+    submit_btn.innerText = 'Envoyer'
+    submit_btn.addEventListener('click', () => {
       this.submitForm()
     })
-    form.append(button)
+
+    submit_btn.addEventListener('keydown', (e) => {
+      /**
+       * set focus to the close btn if we press tab while we are on the submit button
+       */
+      if (!e.shiftKey && e.key === 'Tab') {
+        e.preventDefault()
+        btnClose.focus()
+      }
+    })
+    form.append(submit_btn)
 
     /**
      * add background and modal to <main>
@@ -187,6 +214,7 @@ export class ContactModal {
    * Remove the background and the modal from the DOM
    */
   close() {
+    document.removeEventListener('keydown', this.keyboardNavigation)
     const modal = document.getElementsByClassName('modal')
     const bg = document.getElementsByClassName('background-modal')
     modal[0].remove()
