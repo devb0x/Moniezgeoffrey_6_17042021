@@ -1,5 +1,5 @@
-import { MediaFactory } from "./Medias/MediaFactory.js";
-import { Lightbox } from "./Lightbox/Lightbox.js";
+import { MediaFactory } from "./Medias/MediaFactory.js"
+import { Lightbox } from "./Lightbox/Lightbox.js"
 
 /**
  * const

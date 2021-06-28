@@ -1,5 +1,5 @@
-import { LightboxImage } from "./LightboxImage.js";
-import { LightboxVideo } from "./LightboxVideo.js";
+import { LightboxImage } from "./LightboxImage.js"
+import { LightboxVideo } from "./LightboxVideo.js"
 
 /**
  * Class representing the LightboxFactory

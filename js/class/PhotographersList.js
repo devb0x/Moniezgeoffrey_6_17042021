@@ -1,4 +1,4 @@
-import {Photographer} from "./Photographer.js";
+import { Photographer } from "./Photographer.js"
 
 const photographers_section = document.querySelector('.photographers')
 const filters_nav = document.querySelector('.filters-nav')
@@ -59,6 +59,8 @@ export class PhotographersList {
       })
       this.renderByFilter()
     })
+    this.generateFilters()
+    this.renderFilter(this.arrayTags)
   }
 
   /**
@@ -112,7 +114,6 @@ export class PhotographersList {
       tagLink.innerText = `#${tag}`
 
       newTag.appendChild(tagLink)
-
       filters_nav.appendChild(newTag)
     })
   }

@@ -2,9 +2,6 @@
  * Class representing a Contact Form
  */
 export class ContactModal {
-  // TODO add required
-
-
   /**
    * photographer name
    * @param name
@@ -64,6 +61,7 @@ export class ContactModal {
     const btnClose = document.createElement('button')
     btnClose.classList.add('modal-btn__close')
     btnClose.type = 'button'
+    btnClose.setAttribute('aria-label','close contact form')
     btnClose.innerHTML = `&#10006;`
     btnClose.addEventListener('click', () => {
       this.close()
@@ -181,6 +179,8 @@ export class ContactModal {
     const main = document.querySelector('main')
     main.append(bgModal)
     main.append(contactModal)
+
+    labelFname.focus()
   }
 
   /**

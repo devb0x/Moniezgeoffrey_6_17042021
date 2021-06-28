@@ -1,4 +1,4 @@
-import { photographerPath } from "../../page2.js";
+import { photographerPath } from "../../photographerPage.js"
 
 const lightbox_div = document.getElementsByClassName('lightbox__container')[0]
 
@@ -49,8 +49,6 @@ export class LightboxVideo {
      */
     lightbox_div.append(containerVideo)
     lightbox_div.append(titleDiv)
-
-    return LightboxVideo
   }
 
 }
