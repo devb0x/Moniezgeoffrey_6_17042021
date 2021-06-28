@@ -1,4 +1,4 @@
-import { PhotographersList } from "./class/PhotographersList.js";
+import { PhotographersList } from "./class/PhotographersList.js"
 
 /**
  *

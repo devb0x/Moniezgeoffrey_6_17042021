@@ -1,4 +1,4 @@
-import { LightboxFactory } from "./LightboxFactory.js";
+import { LightboxFactory } from "./LightboxFactory.js"
 
 const lightBox_parent_div = document.getElementById('lightbox')
 const lightBoxContainer_div = document.querySelector('.lightbox__container')

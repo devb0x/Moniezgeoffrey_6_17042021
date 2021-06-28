@@ -3,12 +3,25 @@ import { MediaList } from "./class/MediaList.js"
 import { ContactModal } from "./class/ContactModal.js";
 
 /**
- * const used
+ * const for url
  * @type {URLSearchParams}
  */
 const params = new URLSearchParams(document.location.search)
+/**
+ * const for id
+ * @type {number}
+ */
 const photographerId = Number(params.get('id'))
-const menuFilter = document.getElementById('filter')
+/**
+ * DOM Element
+ * @type {Element}
+ */
+const photographer_section = document.querySelector('.photographer');
+const order_btn = document.getElementById('order_btn')
+const list = document.getElementById('order_list')
+const filterPopularity = document.getElementById('order_popularity')
+const filterDate = document.getElementById('order_date')
+const filterTitle = document.getElementById('order_title')
 
 /**
  * Set the photographPath from the id
@@ -37,64 +50,11 @@ switch (photographerId) {
 }
 
 /**
- * Filter Event Listener
- */
-// menuFilter.addEventListener('change', () => {
-//   const value = menuFilter.value
-//
-//   if (value === 'popularity') {
-//     mediaList.media.sort(
-//       (x, y) => {
-//         if (x.likes < y.likes)
-//           return 1
-//         if (x.likes > y.likes)
-//           return -1
-//         return 0
-//       }
-//     )
-//     renderFiltered()
-//   }
-//
-//   if (value === 'title') {
-//     mediaList.media.sort(
-//       (x, y) => {
-//         if (x.title.toLowerCase() < y.title.toLowerCase())
-//           return -1
-//         if (x.title.toLowerCase() > y.title.toLowerCase())
-//           return 1
-//         return 0
-//       }
-//     )
-//     renderFiltered()
-//   }
-//
-//   if (value === 'date') {
-//     mediaList.media.sort(
-//       (x, y) => {
-//         if (x.date < y.date)
-//           return 1
-//         if (x.date > y.date)
-//           return -1
-//         return 0
-//       }
-//     )
-//     renderFiltered()
-//   }
-// })
-
-/**
- * DOM selector
- * @type {Element}
- */
-const photographer_section = document.querySelector('.photographer');
-
-/**
  * We push the photograph from the id inside the array
  * @type {*[]}
  */
 let data = [];
 let photograph = [];
-let totalLikes = 0;
 
 function getPhotographerById() {
   return fetch('https://raw.githubusercontent.com/devb0x/Moniezgeoffrey_6_17042021/master/file.json')
@@ -131,27 +91,45 @@ function renderPhotographer() {
   photographerEl.classList.add('photographer-item')
 
   /**
-   * header photographer, with img, h1 & button
+   * header photographer
    * @type {HTMLElement}
    */
   const header = document.createElement('header')
   header.classList.add('photographer-item__header')
+  /**
+   * profil img
+   * @type {HTMLImageElement}
+   */
   const headerImg = document.createElement('img')
   headerImg.src = `./../Sample%20Photos/Photographers%20ID%20Photos/${photograph[0].portrait}`
   headerImg.alt = `${photograph[0].name}`
   header.appendChild(headerImg)
 
+  /**
+   * header div
+   * @type {HTMLDivElement}
+   */
   const headerDiv = document.createElement('div')
   headerDiv.classList.add('photographer-item__header-contact')
+  /**
+   * header title h1
+   * @type {HTMLHeadingElement}
+   */
   const headerTitle = document.createElement('h1')
   headerTitle.innerText = `${photograph[0].name}`
   header.appendChild(headerTitle)
 
+  /**
+   * header button contact me
+   * @type {HTMLButtonElement}
+   */
   const headerBtn = document.createElement('button')
   headerBtn.id = 'contactBtn'
   headerBtn.classList.add('photographer-item__header-contact-btn')
   headerBtn.innerText = 'Contactez-moi'
+
   /**
+   * event listener
    * create ContactModal
    */
   headerBtn.addEventListener('click', () => {
@@ -230,33 +208,8 @@ function renderFiltered() {
 }
 
 /**
- * Displaying list of media from photographer Id
- * @type {MediaList}
- */
-const mediaList = new MediaList();
-mediaList.getMedia()
-  .then(() => mediaList.renderMedia())
-
-/**
- * Get the id then
- * Displaying photographer informations on the top of the page
- */
-getPhotographerById()
-  .then(
-    () => {
-      renderPhotographer()
-    })
-
-
-/**
  * start filter
  */
-const order_btn = document.getElementById('order_btn')
-const list = document.getElementById('order_list')
-const filterPopularity = document.getElementById('order_popularity')
-const filterDate = document.getElementById('order_date')
-const filterTitle = document.getElementById('order_title')
-
 order_btn.addEventListener('click', () => {
   console.log('click start event')
   list.classList.toggle('hidden')
@@ -310,3 +263,19 @@ filterTitle.addEventListener('click', () => {
 function hideList() {
   list.classList.toggle('hidden')
 }
+
+/**
+ * Displaying list of media from photographer Id
+ * @type {MediaList}
+ */
+const mediaList = new MediaList();
+mediaList.getMedia()
+  .then(() => {
+    mediaList.renderMedia()
+    return getPhotographerById()
+  }).then(() => {
+    renderPhotographer()
+  }
+)
+
+

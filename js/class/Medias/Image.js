@@ -1,4 +1,4 @@
-import { photographerPath } from "../../page2.js";
+import { photographerPath } from "../../photographerPage.js"
 
 /**
  * Class representing an Image
@@ -16,14 +16,14 @@ export class Image {
    * @param price
    */
   constructor(id, photographerId, title, image, tags, likes, date, price) {
-    this.id = id;
-    this.photographerId = photographerId;
-    this.title = title;
-    this.image = image;
-    this.tags = tags;
-    this.likes = likes;
-    this.date = date;
-    this.price = price;
+    this.id = id
+    this.photographerId = photographerId
+    this.title = title
+    this.image = image
+    this.tags = tags
+    this.likes = likes
+    this.date = date
+    this.price = price
   }
 
   /**
@@ -35,8 +35,8 @@ export class Image {
      * parent div for image media
      * @type {HTMLDivElement}
      */
-    const mediaImageEl = document.createElement('div');
-    mediaImageEl.classList.add('photographer-gallery__item');
+    const mediaImageEl = document.createElement('div')
+    mediaImageEl.classList.add('photographer-gallery__item')
 
     /**
      * picture and img balise
