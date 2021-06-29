@@ -18,8 +18,24 @@ body {
   padding: 0;
 }
 
+.main-nav {
+  position: sticky;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $s_orange;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.125rem;
+  width: 182px;
+  padding: 3px 0;
+  z-index: 100;
+}
+
 a {
   text-decoration: none;
+  color: black;
 }
 
 .filter a {

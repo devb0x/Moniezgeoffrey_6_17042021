@@ -208,12 +208,15 @@ function renderFiltered() {
 }
 
 /**
- * start filter
+ * start filters EventListener
  */
 order_btn.addEventListener('click', () => {
   list.classList.toggle('hidden')
 })
 
+/**
+ * filter by popularity
+ */
 filterPopularity.addEventListener('click', () => {
   mediaList.media.sort(
     (x, y) => {
@@ -229,6 +232,9 @@ filterPopularity.addEventListener('click', () => {
   renderFiltered()
 })
 
+/**
+ * filter by date
+ */
 filterDate.addEventListener('click', () => {
   mediaList.media.sort(
     (x, y) => {
@@ -244,6 +250,9 @@ filterDate.addEventListener('click', () => {
   renderFiltered()
 })
 
+/**
+ * filter by name
+ */
 filterTitle.addEventListener('click', () => {
   mediaList.media.sort(
     (x, y) => {
@@ -272,9 +281,8 @@ mediaList.getMedia()
   .then(() => {
     mediaList.renderMedia()
     return getPhotographerById()
-  }).then(() => {
+  })
+  .then(() => {
     renderPhotographer()
   }
 )
-
-

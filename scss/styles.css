@@ -15,8 +15,24 @@ body {
   padding: 0;
 }
 
+.main-nav {
+  position: sticky;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #db8876;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.125rem;
+  width: 182px;
+  padding: 3px 0;
+  z-index: 100;
+}
+
 a {
   text-decoration: none;
+  color: black;
 }
 
 .filter a {
@@ -74,13 +90,11 @@ a {
     display: flex;
   }
 }
-
-.top-nav {
+header .top-nav {
   margin: 40px 0 0 20px;
   width: 150px;
 }
-
-a > img {
+header a > img {
   width: 150px;
   transform: scale(1.5);
 }

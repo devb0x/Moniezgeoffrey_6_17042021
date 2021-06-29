@@ -1,5 +1,7 @@
 import { PhotographersList } from "./class/PhotographersList.js"
 
+const toMain_nav = document.querySelector('.main-nav')
+
 /**
  *
  * @type {URLSearchParams}
@@ -26,6 +28,18 @@ function checkUrl() {
 }
 
 /**
+ * display or hide the link to #main section when we scroll
+ */
+document.addEventListener('scroll', () => {
+  if (window.pageYOffset > 650) {
+    toMain_nav.classList.remove('hidden')
+  }
+  if (window.pageYOffset < 651) {
+    toMain_nav.classList.add('hidden')
+  }
+})
+
+/**
  * Generate photographersList & render
  * @type {PhotographersList}
  */
@@ -33,4 +47,3 @@ const photographersList = new PhotographersList();
 photographersList
   .getPhotographers()
   .then(checkUrl)
-
