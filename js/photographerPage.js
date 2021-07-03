@@ -1,6 +1,6 @@
 import { Photographer } from "./class/Photographer.js"
 import { MediaList } from "./class/MediaList.js"
-import { ContactModal } from "./class/ContactModal.js";
+import { ContactModal } from "./class/ContactModal.js"
 
 /**
  * const for url
@@ -16,53 +16,48 @@ const photographerId = Number(params.get('id'))
  * DOM Element
  * @type {Element}
  */
-const photographer_section = document.querySelector('.photographer');
-const order_btn = document.getElementById('order_btn')
-const list = document.getElementById('order_list')
-const filterPopularity = document.getElementById('order_popularity')
-const filterDate = document.getElementById('order_date')
-const filterTitle = document.getElementById('order_title')
+const photographer_section = document.querySelector('.photographer')
 
 /**
  * Set the photographPath from the id
  * @type {string}
  */
-export let photographerPath = '';
+export let photographerPath = ''
 switch (photographerId) {
   case 243:
-    photographerPath = 'Mimi';
-    break;
+    photographerPath = 'Mimi'
+    break
   case 930:
-    photographerPath = 'Ellie%20Rose';
-    break;
+    photographerPath = 'Ellie%20Rose'
+    break
   case 82:
-    photographerPath = 'Tracy';
-    break;
+    photographerPath = 'Tracy'
+    break
   case 527:
-    photographerPath = 'Nabeel';
-    break;
+    photographerPath = 'Nabeel'
+    break
   case 925:
-    photographerPath = 'Rhode';
-    break;
+    photographerPath = 'Rhode'
+    break
   case 195:
-    photographerPath = 'Marcel';
-    break;
+    photographerPath = 'Marcel'
+    break
 }
 
 /**
  * We push the photograph from the id inside the array
  * @type {*[]}
  */
-let data = [];
-let photograph = [];
+let data = []
+let photograph = []
 
 function getPhotographerById() {
   return fetch('https://raw.githubusercontent.com/devb0x/Moniezgeoffrey_6_17042021/master/file.json')
     .then(response => {
       if (!response.ok) {
-        throw new Error("HTTP error" + response.status);
+        throw new Error("HTTP error" + response.status)
       }
-      return response.json();
+      return response.json()
     })
     .then(json => {
       data.push(json);
@@ -174,109 +169,35 @@ function renderPhotographer() {
    * filters buttons inside <span>
    * @type {HTMLParagraphElement}
    */
-  const filter = document.createElement('p');
-  filter.classList.add('photographer-item__info-filters');
+  const filter = document.createElement('p')
+  filter.classList.add('photographer-item__info-filters')
 
-  const parent = photographerEl.querySelector('.photographer-item__info');
-  const tags_p = document.createElement('p');
+  const parent = photographerEl.querySelector('.photographer-item__info')
+  const tags_p = document.createElement('p')
 
   photograph[0].tags.forEach(el => {
-    const span = document.createElement('span');
-    const btn = document.createElement('a');
-    btn.classList.add('filter-btn');
-    tags_p.appendChild(span);
-    span.appendChild(btn);
-    btn.textContent = '#' + el;
+    const span = document.createElement('span')
+    const btn = document.createElement('a')
+    btn.classList.add('filter-btn')
+    tags_p.appendChild(span)
+    span.appendChild(btn)
+    btn.textContent = '#' + el
     /**
      * Filter redirect to homepage with correct filter
      */
     btn.href = `../?tag=${el}`
-    filter.appendChild(span);
-    parent.appendChild(span);
-  });
+    filter.appendChild(span)
+    parent.appendChild(span)
+  })
 
-  photographer_section.appendChild(photographerEl);
-}
-
-/**
- * clear the DOM when we change the filter sort
- * then display media
- */
-function renderFiltered() {
-  document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e))
-  mediaList.renderMedia()
-}
-
-/**
- * start filters EventListener
- */
-order_btn.addEventListener('click', () => {
-  list.classList.toggle('hidden')
-})
-
-/**
- * filter by popularity
- */
-filterPopularity.addEventListener('click', () => {
-  mediaList.media.sort(
-    (x, y) => {
-      if (x.likes < y.likes)
-        return 1
-      if (x.likes > y.likes)
-        return -1
-      return 0
-    }
-  )
-  order_btn.innerText = 'Popularité'
-  hideList()
-  renderFiltered()
-})
-
-/**
- * filter by date
- */
-filterDate.addEventListener('click', () => {
-  mediaList.media.sort(
-    (x, y) => {
-      if (x.date < y.date)
-        return 1
-      if (x.date > y.date)
-        return -1
-      return 0
-    }
-  )
-  order_btn.innerText = 'Date'
-  hideList()
-  renderFiltered()
-})
-
-/**
- * filter by name
- */
-filterTitle.addEventListener('click', () => {
-  mediaList.media.sort(
-    (x, y) => {
-      if (x.title.toLowerCase() < y.title.toLowerCase())
-        return -1
-      if (x.title.toLowerCase() > y.title.toLowerCase())
-        return 1
-      return 0
-    }
-  )
-  order_btn.innerText = 'Titre'
-  hideList()
-  renderFiltered()
-})
-
-function hideList() {
-  list.classList.toggle('hidden')
+  photographer_section.appendChild(photographerEl)
 }
 
 /**
  * Displaying list of media from photographer Id
  * @type {MediaList}
  */
-const mediaList = new MediaList();
+export const mediaList = new MediaList()
 mediaList.getMedia()
   .then(() => {
     mediaList.renderMedia()

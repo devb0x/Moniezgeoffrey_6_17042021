@@ -190,6 +190,13 @@ export class Lightbox {
   }
 
   /**
+   * Add style for display
+   */
+  open() {
+    lightBox_parent_div.style.display = "block"
+  }
+
+  /**
    * Close Lightbox & remove EventListener
    */
   close() {
@@ -197,7 +204,6 @@ export class Lightbox {
     document.removeEventListener('click', this.mouseEvent)
     this.reset()
     lightBox_parent_div.style.display = "none"
-
   }
 
   /**
@@ -208,13 +214,6 @@ export class Lightbox {
     this.index = idMedia
     this.open()
     this.newMedia().render()
-  }
-
-  /**
-   * Add style for display
-   */
-  open() {
-    lightBox_parent_div.style.display = "block"
   }
 
 }

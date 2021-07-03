@@ -43,7 +43,7 @@ document.addEventListener('scroll', () => {
  * Generate photographersList & render
  * @type {PhotographersList}
  */
-const photographersList = new PhotographersList();
+const photographersList = new PhotographersList()
 photographersList
   .getPhotographers()
   .then(checkUrl)
