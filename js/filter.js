@@ -2,8 +2,8 @@ import { mediaList } from "./photographerPage.js"
 
 const order_btn = document.getElementById('order_btn')
 const list = document.getElementById('order_list')
-
 const filter_li = document.querySelectorAll('li')
+const last_li  = document.querySelector('li:last-child');
 const filterPopularity = document.getElementById('order_popularity')
 const filterDate = document.getElementById('order_date')
 const filterTitle = document.getElementById('order_title')
@@ -67,6 +67,13 @@ filter_li.forEach(li => {
       }
     }
   })
+})
+
+/**
+ * hide filter list when we lose focus
+ */
+last_li.addEventListener('focusout', () => {
+  hideList()
 })
 
 function filterByLikes() {
