@@ -3,16 +3,21 @@ import { mediaList } from "./photographerPage.js"
 const order_btn = document.getElementById('order_btn')
 const list = document.getElementById('order_list')
 const filter_li = document.querySelectorAll('li')
+const first_li = document.querySelector('li:first-child')
 const last_li  = document.querySelector('li:last-child');
 const filterPopularity = document.getElementById('order_popularity')
 const filterDate = document.getElementById('order_date')
 const filterTitle = document.getElementById('order_title')
+
+let isOpen = false
 
 /**
  * start filters EventListener
  */
 order_btn.addEventListener('click', () => {
   list.classList.toggle('hidden')
+  isOpen =! isOpen
+  first_li.focus()
 })
 
 /**
@@ -69,11 +74,30 @@ filter_li.forEach(li => {
   })
 })
 
+first_li.addEventListener('keydown', (e) => {
+  if (e.shiftKey && e.key === 'Tab') {
+    e.preventDefault()
+    hideList()
+  }
+})
+
 /**
- * hide filter list when we lose focus
+ * hide filter list when we use tab for navigation on the last element
  */
-last_li.addEventListener('focusout', () => {
-  hideList()
+last_li.addEventListener('keydown', (e) => {
+  if (!e.shiftKey && e.key === 'Tab') {
+    e.preventDefault()
+    hideList()
+  }
+})
+
+/**
+ * hide filter when we clic outside the filters list
+ */
+document.addEventListener('click', (e) => {
+  if (isOpen && e.target.tagName !== 'BUTTON') {
+    hideList()
+  }
 })
 
 function filterByLikes() {
@@ -120,6 +144,7 @@ function filterByTitle() {
  */
 function hideList() {
   list.classList.toggle('hidden')
+  isOpen =! isOpen
 }
 
 /**
@@ -130,4 +155,3 @@ function renderFiltered() {
   document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e))
   mediaList.renderMedia()
 }
-

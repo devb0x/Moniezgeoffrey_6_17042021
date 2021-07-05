@@ -40,18 +40,10 @@ export class MediaList {
       .then(json => {
         for (let i = 0; i < json.media.length; i++) {
           if (json.media[i].photographerId === photographerId) {
-            this.addMedia(json.media[i])
+            this.media.push(json.media[i])
           }
         }
       })
-  }
-
-  /**
-   * function push inside media array
-   * @param mediaList
-   */
-  addMedia(mediaList) {
-    this.media.push(mediaList)
   }
 
   /**
@@ -68,7 +60,6 @@ export class MediaList {
    * display media
    */
   renderMedia() {
-
     /**
      * loop inside media array then create the class with MediaFactory
      */

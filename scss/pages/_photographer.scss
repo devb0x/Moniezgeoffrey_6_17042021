@@ -257,6 +257,7 @@
       color: $p_red;
       font-size: 0.875rem;
       font-weight: 500;
+      cursor: pointer;
 
       @include for-tablet-portrait-up() {
         font-size: 1.5rem;

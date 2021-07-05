@@ -3,7 +3,6 @@ import { PhotographersList } from "./class/PhotographersList.js"
 const toMain_nav = document.querySelector('.main-nav')
 
 /**
- *
  * @type {URLSearchParams}
  */
 const params = new URLSearchParams(document.location.search)

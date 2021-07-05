@@ -585,6 +585,7 @@ header a > img {
   color: #911d1d;
   font-size: 0.875rem;
   font-weight: 500;
+  cursor: pointer;
 }
 @media (min-width: 37.5em) {
   .photographer-gallery__item-info {

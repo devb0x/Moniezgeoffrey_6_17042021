@@ -10,7 +10,6 @@ export class ContactModal {
     this.name = name
     this.render()
     this.keyboardNavigation = this.keyboardNavigation.bind(this)
-
     document.addEventListener('keydown', this.keyboardNavigation)
   }
 
