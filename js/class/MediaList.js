@@ -89,6 +89,16 @@ export class MediaList {
         myLightbox.render(index)
       })
 
+      /**
+       * touch Enter
+       */
+      mediaHTML.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const myLightbox = new Lightbox(this.media)
+          myLightbox.render(index)
+        }
+      })
+
     })
 
     /**
