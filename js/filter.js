@@ -3,18 +3,10 @@ import { mediaList } from "./photographerPage.js"
 const order_btn = document.getElementById('order_btn')
 const list = document.getElementById('order_list')
 
+const filter_li = document.querySelectorAll('li')
 const filterPopularity = document.getElementById('order_popularity')
 const filterDate = document.getElementById('order_date')
 const filterTitle = document.getElementById('order_title')
-
-/**
- * clear the DOM when we change the filter sort
- * then display media
- */
-function renderFiltered() {
-  document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e))
-  mediaList.renderMedia()
-}
 
 /**
  * start filters EventListener
@@ -27,6 +19,57 @@ order_btn.addEventListener('click', () => {
  * filter by popularity
  */
 filterPopularity.addEventListener('click', () => {
+  filterByLikes()
+  hideList()
+  renderFiltered()
+})
+
+/**
+ * filter by date
+ */
+filterDate.addEventListener('click', () => {
+  filterByDate()
+  hideList()
+  renderFiltered()
+})
+
+/**
+ * filter by name
+ */
+filterTitle.addEventListener('click', () => {
+  filterByTitle()
+  hideList()
+  renderFiltered()
+})
+
+/**
+ * eventListener for keyboard 'Enter'
+ */
+filter_li.forEach(li => {
+  li.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      switch (e.target.innerText) {
+        case 'Date':
+          filterByDate()
+          hideList()
+          renderFiltered()
+          break
+        case 'Popularité':
+          filterByLikes()
+          hideList()
+          renderFiltered()
+          break
+        case 'Titre':
+          filterByTitle()
+          hideList()
+          renderFiltered()
+          break
+      }
+    }
+  })
+})
+
+function filterByLikes() {
   mediaList.media.sort(
     (x, y) => {
       if (x.likes < y.likes)
@@ -37,14 +80,9 @@ filterPopularity.addEventListener('click', () => {
     }
   )
   order_btn.innerText = 'Popularité'
-  hideList()
-  renderFiltered()
-})
+}
 
-/**
- * filter by date
- */
-filterDate.addEventListener('click', () => {
+function filterByDate() {
   mediaList.media.sort(
     (x, y) => {
       if (x.date < y.date)
@@ -55,14 +93,9 @@ filterDate.addEventListener('click', () => {
     }
   )
   order_btn.innerText = 'Date'
-  hideList()
-  renderFiltered()
-})
+}
 
-/**
- * filter by name
- */
-filterTitle.addEventListener('click', () => {
+function filterByTitle() {
   mediaList.media.sort(
     (x, y) => {
       if (x.title.toLowerCase() < y.title.toLowerCase())
@@ -73,9 +106,7 @@ filterTitle.addEventListener('click', () => {
     }
   )
   order_btn.innerText = 'Titre'
-  hideList()
-  renderFiltered()
-})
+}
 
 /**
  * hide / display filter list
@@ -83,3 +114,13 @@ filterTitle.addEventListener('click', () => {
 function hideList() {
   list.classList.toggle('hidden')
 }
+
+/**
+ * clear the DOM when we change the filter sort
+ * then display media
+ */
+function renderFiltered() {
+  document.querySelectorAll(".photographer-gallery__item").forEach(e => e.parentNode.removeChild(e))
+  mediaList.renderMedia()
+}
+

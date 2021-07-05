@@ -42,7 +42,6 @@ export class Lightbox {
    * Listen to keydown for navigation and close inside the lightbox
    * @param e
    */
-  // TODO nvda bloque navigation fleches gauche et droite
   keyboardNavigation(e) {
     const media = document.querySelector('.lightbox__container-media')
 
