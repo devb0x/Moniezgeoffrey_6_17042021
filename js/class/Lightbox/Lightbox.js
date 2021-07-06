@@ -16,6 +16,11 @@ export class Lightbox {
     this.index = null
 
     /**
+     * set focus on btn next to prevent multiple display when we render the Lightbox with 'Enter'
+     */
+    lightBoxNext_btn.focus()
+
+    /**
      * Event Listener for close prev and next
      */
     lightBoxClose_btn.addEventListener('click', () => {
