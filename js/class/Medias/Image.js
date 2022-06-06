@@ -98,6 +98,8 @@ export class Image {
     btnLikes.addEventListener('click', (e) => {
       e.stopPropagation()
       this.updateLike()
+      btnLikes.disabled = true
+      btnLikes.style.cursor = 'default'
     })
 
     return mediaImageEl;
